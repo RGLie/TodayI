@@ -10,13 +10,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildBody()
-    );
+    return Scaffold(body: _buildBody());
   }
 
   Widget _buildBody() {
-    return Container();
+    return Column(
+      children: [
+        Text(
+          '안',
+          style: TextStyle(fontFamily: 'NotoSansKR'),
+        ),
+        Text('안')
+      ],
+    );
+  }
 }
-}
-

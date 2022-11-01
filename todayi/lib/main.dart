@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/utils/colors.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -23,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Today I',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorLibrary.mainThemeColor,
-        textTheme: GoogleFonts.latoTextTheme(myTheme),
+        textTheme: myTheme,
       ),
       home: HomePage(),
     );
