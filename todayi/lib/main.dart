@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'Today I',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorLibrary.mainThemeColor,
-        textTheme: myTheme
+        textTheme: myTheme,
+        fontFamily: Google
       ),
       home: HomePage(),
     );
