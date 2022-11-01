@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/utils/colors.dart';
 
@@ -15,14 +16,14 @@ class MyApp extends StatelessWidget {
     final myTheme = Theme.of(context).textTheme.apply(
       bodyColor: ColorLibrary.textThemeColor,
       displayColor: ColorLibrary.textThemeColor,
+      
     );
 
     return MaterialApp(
       title: 'Today I',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorLibrary.mainThemeColor,
-        textTheme: myTheme,
-        fontFamily: Google
+        textTheme: GoogleFonts.latoTextTheme(myTheme),
       ),
       home: HomePage(),
     );
