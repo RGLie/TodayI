@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     final myTheme = Theme.of(context).textTheme.apply(
       bodyColor: ColorLibrary.textThemeColor,
       displayColor: ColorLibrary.textThemeColor,
-      
+      fontFamily: 'Pretendard'
     );
 
     return MaterialApp(
