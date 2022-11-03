@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
             0: FixedColumnWidth(MediaQuery.of(context).size.width*0.17),
             1: IntrinsicColumnWidth(),
             2: FixedColumnWidth(MediaQuery.of(context).size.width*0.22),
-            3: IntrinsicColumnWidth(),
+            3: FixedColumnWidth(400),
             4: FlexColumnWidth()
           },
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
@@ -58,30 +58,28 @@ class _HomePageState extends State<HomePage> {
                   color: ColorLibrary.textThemeColor,
                   height: 3,
                 ),
-                // Container(
-                //   child: Text('Learned', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 60)),
-                // ),
                 Container(
                   padding: EdgeInsets.only(left:10, right:10),
                   child: DefaultTextStyle(
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 90.0,
-                      fontWeight: FontWeight.w500
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff3A2000)
                     ),
                     child: AnimatedTextKit(
                       animatedTexts: [
                         FadeAnimatedText('Learned'),
                         FadeAnimatedText('Designed'),
-                        FadeAnimatedText('Developed'),
+                        FadeAnimatedText('Read'),
+                        FadeAnimatedText('Developed', textStyle: TextStyle(fontSize: 80)),
                       ],
-                      
                       onTap: () {
-                        print("Tap Event");
+                        
                       },
                     ),
                   ),
                 ),
-
                 Container(
                   color: ColorLibrary.textThemeColor,
                   height: 3,
@@ -91,7 +89,26 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         Container(
-          color: ColorLibrary.cardColor,
+          width: 320,
+          height: 320,
+          decoration: BoxDecoration(
+            color: ColorLibrary.cardColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.25),
+                blurRadius: 5,
+                offset: Offset(4, 4), // Shadow position
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/icons/write_icon.png'),
+              )
+            ],
+          ),
         ),
         Container()
       ],
