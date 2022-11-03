@@ -19,15 +19,24 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         Container(
+          padding: EdgeInsets.only(top: 20, right: 25),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text('About', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),)
+            ],
+          ),
+        ),
+        Container(
           height: MediaQuery.of(context).size.height * 0.125,
           width: double.infinity,
         ),
         Table(
           //IntrinsicColumnWidth()FixedColumnWidth(64)
           columnWidths: {
-            0: FixedColumnWidth(MediaQuery.of(context).size.width*0.17),
+            0: FixedColumnWidth(MediaQuery.of(context).size.width*0.15),
             1: IntrinsicColumnWidth(),
-            2: FixedColumnWidth(MediaQuery.of(context).size.width*0.22),
+            2: FixedColumnWidth(MediaQuery.of(context).size.width*0.25),
             3: FixedColumnWidth(400),
             4: FlexColumnWidth()
           },
@@ -60,23 +69,32 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   padding: EdgeInsets.only(left:10, right:10),
-                  child: DefaultTextStyle(
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 90.0,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xff3A2000)
-                    ),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        FadeAnimatedText('Learned'),
-                        FadeAnimatedText('Designed'),
-                        FadeAnimatedText('Read'),
-                        FadeAnimatedText('Developed', textStyle: TextStyle(fontSize: 80)),
-                      ],
-                      onTap: () {
-                        
-                      },
+                  child: Center(
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 90.0,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff3A2000),
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          FadeAnimatedText('Learned'),
+                          FadeAnimatedText('Designed'),
+                          FadeAnimatedText('Read'),
+                          FadeAnimatedText('Developed', textStyle: TextStyle(fontSize: 80)),
+                          FadeAnimatedText('Learned'),
+                          FadeAnimatedText('Designed'),
+                          FadeAnimatedText('Read'),
+                          FadeAnimatedText('Developed', textStyle: TextStyle(fontSize: 80)),
+                          FadeAnimatedText('Learned'),
+                          FadeAnimatedText('Designed'),
+                          FadeAnimatedText('Read'),
+                          FadeAnimatedText('Developed', textStyle: TextStyle(fontSize: 80)),
+                        ],
+                        onTap: () {
+                          
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -89,8 +107,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         Container(
-          width: 320,
-          height: 320,
+          width: 260,
+          height: 290,
           decoration: BoxDecoration(
             color: ColorLibrary.cardColor,
             borderRadius: BorderRadius.circular(10),
@@ -103,14 +121,28 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/icons/write_icon.png'),
-              )
+              Image(
+                width: 150,
+                image: AssetImage('assets/icons/write_icon.png'),
+              ),
+              Text('시작하기', style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700),)
             ],
           ),
         ),
-        Container()
+
+        SizedBox(
+          height: 35,
+        ),
+
+        Container(
+          child: Column(
+            children: [
+              Text('명언', style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700),)
+            ],
+          ),
+        )
       ],
     );
   }
