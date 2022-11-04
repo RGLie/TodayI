@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:todayi/utils/colors.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -22,8 +23,10 @@ class _HomePageState extends State<HomePage> {
           width: double.infinity,
           height: double.infinity,
           child: GridPaper(
-            color: Colors.black,
-            divisions: 7,
+            color: Colors.black38,
+            divisions: 1,
+            interval: 250,
+            subdivisions: 1,
           ),
         ),
         SingleChildScrollView(
@@ -187,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
-                        fontWeight: FontWeight.w200,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
                     SizedBox(

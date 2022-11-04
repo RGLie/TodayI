@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:todayi/pages/home_page.dart';
+import 'package:todayi/providers/button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'firebase_options.dart';
 
@@ -31,7 +33,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: ColorLibrary.mainThemeColor,
         textTheme: myTheme,
       ),
-      home: HomePage(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (BuildContext context) => StartButtonProvider()),
+        ],
+        child: HomePage()
+      ),
     );
   }
 }
