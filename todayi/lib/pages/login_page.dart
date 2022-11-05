@@ -12,6 +12,8 @@ class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -105,19 +107,72 @@ class _LoginPageState extends State<LoginPage>
               controller: _tabController,
               children: [
                 // first tab bar view widget
-                Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      child: TextField(
-                          cursorColor: ColorLibrary.textThemeColor,
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                          )),
-                    )
-                  ],
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(5),
+                        child: TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        cursorColor: ColorLibrary.textThemeColor,
+                        decoration: InputDecoration(
+                          suffixIcon: Icon(Icons.mail),
+                          suffixIconColor: ColorLibrary.textThemeColor,
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                          labelStyle: TextStyle(
+                              color: ColorLibrary.textThemeColor
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: ColorLibrary.textThemeColor),
+                          )
+                        ),
+                        validator: (value) {
+                          if(value!.isEmpty) {
+                            return '이메일은 필수사항입니다.';
+                          }
+                          if(!RegExp(
+                              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                              .hasMatch(value)){
+                            return '잘못된 이메일 형식입니다.';
+                          }
+                          return null;
+                        },
+                      )
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(5),
+                        child: TextFormField(
+                        controller: _passwordController,
+                        cursorColor: ColorLibrary.textThemeColor,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          suffixIcon: Icon(Icons.lock),
+                          suffixIconColor: ColorLibrary.textThemeColor,
+                          border: OutlineInputBorder(),
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                              color: ColorLibrary.textThemeColor
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: ColorLibrary.textThemeColor),
+                          )
+                        ),
+                        validator: (value) {
+                          if(value!.isEmpty) {
+                            return '비밀번호를 입력하세요.';
+                          }
+                          return null;
+                        },
+                      )
+                      ),
+                    ],
+                  ),
                 ),
 
                 // second tab bar view widget
