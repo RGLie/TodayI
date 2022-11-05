@@ -1,6 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todayi/providers/button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/home_page/start_button.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -11,12 +14,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late StartButtonProvider _startButtonProvider;
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: _buildBody());
   }
 
   Widget _buildBody() {
+    _startButtonProvider = Provider.of<StartButtonProvider>(context);
+
     return Stack(
       children: [
         Container(
@@ -128,37 +136,45 @@ class _HomePageState extends State<HomePage> {
                   ])
                 ],
               ),
-              InkWell(
-                child: Container(
-                  width: 260,
-                  height: 290,
-                  decoration: BoxDecoration(
-                    color: ColorLibrary.cardColor,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.25),
-                        blurRadius: 5,
-                        offset: Offset(4, 4), // Shadow position
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image(
-                        width: 150,
-                        image: AssetImage('assets/icons/write_icon.png'),
-                      ),
-                      Text(
-                        '시작하기',
-                        style: TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.w700),
-                      )
-                    ],
-                  ),
-                ),
-                onTap: () {},
+              MouseRegion(
+                onEnter: (PointerEvent details) {_startButtonProvider.isRegion();},
+                onExit: (PointerEvent details) {_startButtonProvider.isnRegion();},
+                child: InkWell(
+                  onTap: () {
+                    _startButtonProvider.clicked();
+                  },
+                  child: ((){
+                    switch (_startButtonProvider.mouse_state) {
+                      case 1:
+                        return HomePageStartButton(
+                          boxColor: ColorLibrary.cardColorRegioned,
+                          boxShadows: [
+                            BoxShadow(
+                              color: Color.fromRGBO(0, 0, 0, 0.25),
+                              blurRadius: 5,
+                              offset: Offset(4, 4), // Shadow position
+                            ),
+                          ],
+                        );
+                      case 2:
+                        return HomePageStartButton(
+                          boxColor: ColorLibrary.cardColorRegioned,
+                          boxShadows: [
+                          ],
+                        );
+                    }
+                    return HomePageStartButton(
+                      boxColor: ColorLibrary.cardColor,
+                      boxShadows: [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.25),
+                          blurRadius: 5,
+                          offset: Offset(4, 4), // Shadow position
+                        ),
+                      ],
+                    );
+                  })(),
+                )
               ),
               SizedBox(
                 height: 35,
