@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/providers/button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/login_page/sign_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,12 +15,17 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
-
-  
   late TabController _tabController;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _inEmailController = TextEditingController();
+  final _inPasswordController = TextEditingController();
+  final _upEmailController = TextEditingController();
+  final _upPasswordController = TextEditingController();
+  final _upPasswordCheckController = TextEditingController();
+  final _upNameController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  double tabBarHeight = 220;
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -39,8 +47,6 @@ class _LoginPageState extends State<LoginPage>
   }
 
   Widget _buildBody() {
-    
-
     return Stack(children: [
       Container(
         width: double.infinity,
@@ -54,13 +60,21 @@ class _LoginPageState extends State<LoginPage>
       ),
       Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(
+            color: ColorLibrary.textThemeColor,
+            height: 2,
+            width: 400,
+          ),
+          SizedBox(
+            height: 3,
+          ),
           Text('Today I',
               style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 105,
                   fontFamily: 'NotoSansKR')),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           Container(
             color: ColorLibrary.textThemeColor,
@@ -72,9 +86,14 @@ class _LoginPageState extends State<LoginPage>
           ),
           Container(
             width: 400,
-            color: Color(0xffDFD7CA),
             height: 45,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                topLeft: Radius.circular(10),
+              ),
+              color: Color(0xffDFD7CA),
+            ),
             child: TabBar(
               controller: _tabController,
               // give the indicator a decoration (color and border radius)
@@ -82,6 +101,10 @@ class _LoginPageState extends State<LoginPage>
                 // borderRadius: BorderRadius.circular(
                 //   25.0,
                 // ),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                ),
                 color: ColorLibrary.textThemeColor,
               ),
               labelColor: Colors.white,
@@ -100,13 +123,14 @@ class _LoginPageState extends State<LoginPage>
           ),
           // tab bar view here
           Container(
-            color: ColorLibrary.cardColor,
+            height: tabBarHeight,
             width: 400,
-            height: 300,
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                25.0,
+              color: ColorLibrary.cardColor,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
               ),
             ),
             child: TabBarView(
@@ -118,80 +142,212 @@ class _LoginPageState extends State<LoginPage>
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.all(5),
-                        child: TextFormField(
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: ColorLibrary.textThemeColor,
-                        decoration: InputDecoration(
-                          suffixIcon: Icon(Icons.mail),
-                          suffixIconColor: ColorLibrary.textThemeColor,
-                          border: OutlineInputBorder(),
-                          labelText: 'Email',
-                          labelStyle: TextStyle(
-                              color: ColorLibrary.textThemeColor
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: ColorLibrary.textThemeColor),
-                          )
-                        ),
-                        validator: (value) {
-                          if(value!.isEmpty) {
-                            return '이메일은 필수사항입니다.';
-                          }
-                          if(!RegExp(
-                              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                              .hasMatch(value)){
-                            return '잘못된 이메일 형식입니다.';
-                          }
-                          return null;
-                        },
-                      )
-                      ),
+                          margin: EdgeInsets.all(5),
+                          child: TextFormField(
+                            controller: _inEmailController,
+                            keyboardType: TextInputType.emailAddress,
+                            cursorColor: ColorLibrary.textThemeColor,
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.mail),
+                                suffixIconColor: ColorLibrary.textThemeColor,
+                                border: OutlineInputBorder(),
+                                labelText: 'Email',
+                                labelStyle: TextStyle(
+                                    color: ColorLibrary.textThemeColor),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: ColorLibrary.textThemeColor),
+                                )),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return '이메일은 필수사항입니다.';
+                              }
+                              if (!RegExp(
+                                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                  .hasMatch(value)) {
+                                return '잘못된 이메일 형식입니다.';
+                              }
+                              return null;
+                            },
+                          )),
                       SizedBox(
                         height: 5,
                       ),
                       Container(
-                        margin: EdgeInsets.all(5),
-                        child: TextFormField(
-                        controller: _passwordController,
-                        cursorColor: ColorLibrary.textThemeColor,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          suffixIcon: Icon(Icons.lock),
-                          suffixIconColor: ColorLibrary.textThemeColor,
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
-                          labelStyle: TextStyle(
-                              color: ColorLibrary.textThemeColor
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: ColorLibrary.textThemeColor),
-                          )
-                        ),
-                        validator: (value) {
-                          if(value!.isEmpty) {
-                            return '비밀번호를 입력하세요.';
-                          }
-                          return null;
-                        },
-                      )
-                      ),
+                          margin: EdgeInsets.all(5),
+                          child: TextFormField(
+                            controller: _inPasswordController,
+                            obscureText: true,
+                            cursorColor: ColorLibrary.textThemeColor,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.lock),
+                                suffixIconColor: ColorLibrary.textThemeColor,
+                                border: OutlineInputBorder(),
+                                labelText: 'Password',
+                                labelStyle: TextStyle(
+                                    color: ColorLibrary.textThemeColor),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: ColorLibrary.textThemeColor),
+                                )),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return '비밀번호를 입력하세요.';
+                              }
+                              return null;
+                            },
+                          )),
                       SizedBox(
                         height: 5,
                       ),
-                      
+                      SignInUpButton(
+                        signText: 'Sign In',
+                        signTab: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
 
                 // second tab bar view widget
-                Center(
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
+                ///////////////////////////////////////////////
+                SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.all(5),
+                            child: TextFormField(
+                              controller: _upEmailController,
+                              keyboardType: TextInputType.emailAddress,
+                              cursorColor: ColorLibrary.textThemeColor,
+                              decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.mail),
+                                  suffixIconColor: ColorLibrary.textThemeColor,
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Email',
+                                  labelStyle: TextStyle(
+                                      color: ColorLibrary.textThemeColor),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ColorLibrary.textThemeColor),
+                                  )),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return '이메일은 필수사항입니다.';
+                                }
+                                if (!RegExp(
+                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                    .hasMatch(value)) {
+                                  return '잘못된 이메일 형식입니다.';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(5),
+                            child: TextFormField(
+                              controller: _upPasswordController,
+                              obscureText: true,
+                              cursorColor: ColorLibrary.textThemeColor,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.lock),
+                                  suffixIconColor: ColorLibrary.textThemeColor,
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Password',
+                                  labelStyle: TextStyle(
+                                      color: ColorLibrary.textThemeColor),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ColorLibrary.textThemeColor),
+                                  )),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return '비밀번호를 입력하세요.';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(5),
+                            child: TextFormField(
+                              controller: _upPasswordCheckController,
+                              obscureText: true,
+                              cursorColor: ColorLibrary.textThemeColor,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.lock),
+                                  suffixIconColor: ColorLibrary.textThemeColor,
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Password Check',
+                                  labelStyle: TextStyle(
+                                      color: ColorLibrary.textThemeColor),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ColorLibrary.textThemeColor),
+                                  )),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return '비밀번호를 입력하세요.';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(5),
+                            child: TextFormField(
+                              controller: _upNameController,
+                              cursorColor: ColorLibrary.textThemeColor,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.person),
+                                  suffixIconColor: ColorLibrary.textThemeColor,
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Name',
+                                  labelStyle: TextStyle(
+                                      color: ColorLibrary.textThemeColor),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ColorLibrary.textThemeColor),
+                                  )),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return '이름을 입력하세요.';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        SignInUpButton(
+                          signText: 'Sign Up',
+                          signTab: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage()),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),

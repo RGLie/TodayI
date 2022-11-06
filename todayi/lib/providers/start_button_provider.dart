@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ButtonProvider extends ChangeNotifier {
+class StartButtonProvider extends ChangeNotifier {
   int _mouse_state = 0;
   int get mouse_state => _mouse_state;
   //is mouse region : 1
