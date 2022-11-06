@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      sha256: "681cd2aa4f05a76eef4cfd959f0c337e95697bd92e6e3e80bc9130957db63a10"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.4"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:

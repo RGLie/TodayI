@@ -340,11 +340,7 @@ class _LoginPageState extends State<LoginPage>
                         SignInUpButton(
                           signText: 'Sign Up',
                           signTab: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()),
-                            );
+                            _signUp();
                           },
                         ),
                       ],
@@ -357,5 +353,13 @@ class _LoginPageState extends State<LoginPage>
         ]),
       )
     ]);
+  }
+
+  void _signUp() {
+    String email = _upEmailController.text;
+    String password = _upPasswordController.text;
+
+    _upEmailController.clear();
+    _upPasswordController.clear();
   }
 }
