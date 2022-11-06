@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (BuildContext context) => StartButtonProvider()),
+          ChangeNotifierProvider(
+            create: (BuildContext context) => ButtonProvider()),
         ],
         child: HomePage()
       ),

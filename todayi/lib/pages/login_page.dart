@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todayi/providers/button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +12,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
+
+  
   late TabController _tabController;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -35,6 +39,8 @@ class _LoginPageState extends State<LoginPage>
   }
 
   Widget _buildBody() {
+    
+
     return Stack(children: [
       Container(
         width: double.infinity,
@@ -171,6 +177,10 @@ class _LoginPageState extends State<LoginPage>
                         },
                       )
                       ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      
                     ],
                   ),
                 ),

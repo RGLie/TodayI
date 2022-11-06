@@ -15,16 +15,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late StartButtonProvider _startButtonProvider;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: _buildBody());
   }
 
   Widget _buildBody() {
-    _startButtonProvider = Provider.of<StartButtonProvider>(context);
-
     return Stack(
       children: [
         Container(
@@ -136,52 +132,7 @@ class _HomePageState extends State<HomePage> {
                   ])
                 ],
               ),
-              MouseRegion(
-                  onEnter: (PointerEvent details) {
-                    _startButtonProvider.isRegion();
-                  },
-                  onExit: (PointerEvent details) {
-                    _startButtonProvider.isnRegion();
-                  },
-                  child: InkWell(
-                    onTap: () {
-                      _startButtonProvider.clicked();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const RootPage()),
-                      ); 
-                    },
-                    child: (() {
-                      switch (_startButtonProvider.mouse_state) {
-                        case 1:
-                          return HomePageStartButton(
-                            boxColor: ColorLibrary.cardColorRegioned,
-                            boxShadows: [
-                              BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, 0.25),
-                                blurRadius: 5,
-                                offset: Offset(4, 4), // Shadow position
-                              ),
-                            ],
-                          );
-                        case 2:
-                          return HomePageStartButton(
-                            boxColor: ColorLibrary.cardColorRegioned,
-                            boxShadows: [],
-                          );
-                      }
-                      return HomePageStartButton(
-                        boxColor: ColorLibrary.cardColor,
-                        boxShadows: [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.25),
-                            blurRadius: 5,
-                            offset: Offset(4, 4), // Shadow position
-                          ),
-                        ],
-                      );
-                    })(),
-                  )),
+              StartButton(),
               SizedBox(
                 height: 35,
               ),

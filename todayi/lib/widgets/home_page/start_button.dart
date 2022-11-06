@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/pages/root_page.dart';
 import 'package:todayi/utils/colors.dart';
 
 import '../../providers/button_provider.dart';
@@ -14,7 +15,8 @@ class HomePageStartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    Container(
       width: 260,
       height: 290,
       decoration: BoxDecoration(
@@ -36,6 +38,72 @@ class HomePageStartButton extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+
+
+class StartButton extends StatefulWidget {
+  const StartButton({super.key});
+
+  @override
+  State<StartButton> createState() => _StartButtonState();
+}
+
+class _StartButtonState extends State<StartButton> {
+  late StartButtonProvider _startButtonProvider;
+  
+  @override
+  Widget build(BuildContext context) {
+    _startButtonProvider = Provider.of<StartButtonProvider>(context);
+
+    return MouseRegion(
+      onEnter: (PointerEvent details) {
+        _startButtonProvider.isRegion();
+      },
+      onExit: (PointerEvent details) {
+        _startButtonProvider.isnRegion();
+      },
+      child: InkWell(
+        onTap: () {
+          _startButtonProvider.clicked();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const RootPage()),
+          ); 
+        },
+        child: (() {
+          switch (_startButtonProvider.mouse_state) {
+            case 1:
+              return HomePageStartButton(
+                boxColor: ColorLibrary.cardColorRegioned,
+                boxShadows: [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    blurRadius: 5,
+                    offset: Offset(4, 4), // Shadow position
+                  ),
+                ],
+              );
+            case 2:
+              return HomePageStartButton(
+                boxColor: ColorLibrary.cardColorRegioned,
+                boxShadows: [],
+              );
+          }
+          return HomePageStartButton(
+            boxColor: ColorLibrary.cardColor,
+            boxShadows: [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.25),
+                blurRadius: 5,
+                offset: Offset(4, 4), // Shadow position
+              ),
+            ],
+          );
+        })(),
+      )
     );
   }
 }
