@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage>
   final _upPasswordCheckController = TextEditingController();
   final _upNameController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formUpKey = GlobalKey<FormState>();
   double tabBarHeight = 220;
 
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -219,7 +220,7 @@ class _LoginPageState extends State<LoginPage>
                 ///////////////////////////////////////////////
                 SingleChildScrollView(
                   child: Form(
-                    key: _formKey,
+                    key: _formUpKey,
                     child: Column(
                       children: [
                         Container(
@@ -337,10 +338,22 @@ class _LoginPageState extends State<LoginPage>
                         SizedBox(
                           height: 5,
                         ),
+                        InkWell(
+                          onTap: (){
+                            var a = createUser(_upEmailController.text, _upPasswordController.text);
+                          },
+                          child: Container(
+                            color: Colors.red,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
                         SignInUpButton(
                           signText: 'Sign Up',
                           signTab: () {
-                            _signUp();
+                            print('adfd');
+                            createUser(_upEmailController.text, _upPasswordController.text);
+
                           },
                         ),
                       ],
@@ -355,11 +368,35 @@ class _LoginPageState extends State<LoginPage>
     ]);
   }
 
-  void _signUp() {
-    String email = _upEmailController.text;
-    String password = _upPasswordController.text;
+  void _signUp() async{
+    UserCredential result;
+    dynamic user;
+
+    result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _upEmailController.text, password: _upPasswordController.text);
+
 
     _upEmailController.clear();
     _upPasswordController.clear();
+  }
+
+    Future<bool> createUser(String email, String pw) async{
+    try {
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: pw,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      //logger.e(e);
+      return false;
+    }
+    // authPersistence(); // 인증 영속
+    return true;
   }
 }
