@@ -302,8 +302,8 @@ class _LoginPageState extends State<LoginPage>
                                         color: ColorLibrary.textThemeColor),
                                   )),
                               validator: (value) {
-                                if (value!.isEmpty) {
-                                  return '비밀번호를 입력하세요.';
+                                if (value !=_upPasswordController.text){
+                                  return "비밀번호가 일치하지 않습니다";
                                 }
                                 return null;
                               },
@@ -341,8 +341,14 @@ class _LoginPageState extends State<LoginPage>
                         SignInUpButton(
                           signText: 'Sign Up',
                           signTab: () {
+                            if (_formUpKey.currentState!.validate()) {
+                              createUser(_upEmailController.text, _upPasswordController.text);
+                                _upEmailController.clear();
+                                _upPasswordController.clear();
+                                _upNameController.clear();
+                                _upPasswordCheckController.clear();
+                            }
                             
-                            createUser(_upEmailController.text, _upPasswordController.text);
 
                           },
                         ),
@@ -365,9 +371,6 @@ class _LoginPageState extends State<LoginPage>
     result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _upEmailController.text, password: _upPasswordController.text);
 
-
-    _upEmailController.clear();
-    _upPasswordController.clear();
   }
 
     Future<bool> createUser(String email, String pw) async{
@@ -378,9 +381,87 @@ class _LoginPageState extends State<LoginPage>
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        //print('The password provided is too weak.');
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              //Dialog Main Title
+              title: Column(
+                children: <Widget>[
+                  new Text("경고", style: TextStyle(color: Colors.redAccent),),
+                ],
+              ),
+              //
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "비밀번호가 취약합니다. 비밀번호를 다시 입력해주세요.",
+                    style: TextStyle(color: Colors.black)
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                new ElevatedButton(
+                  child: new Text("확인"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorLibrary.textThemeColor
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          }
+        );
+
+
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        //print('The account already exists for that email.');
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              //Dialog Main Title
+              title: Column(
+                children: <Widget>[
+                  new Text("경고", style: TextStyle(color: Colors.redAccent),),
+                ],
+              ),
+              //
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "이미 가입된 이메일입니다. 다른 이메일을 입력해주세요.",
+                    style: TextStyle(color: Colors.black)
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                new ElevatedButton(
+                  child: new Text("확인"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorLibrary.textThemeColor
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          }
+        );        
       }
     } catch (e) {
       //logger.e(e);
