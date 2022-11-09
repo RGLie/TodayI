@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage>
                             },
                           )),
                       SizedBox(
-                        height: 5,
+                        height: 3,
                       ),
                       SignInUpButton(
                         signText: 'Sign In',
@@ -338,20 +338,10 @@ class _LoginPageState extends State<LoginPage>
                         SizedBox(
                           height: 5,
                         ),
-                        InkWell(
-                          onTap: (){
-                            var a = createUser(_upEmailController.text, _upPasswordController.text);
-                          },
-                          child: Container(
-                            color: Colors.red,
-                            width: 100,
-                            height: 100,
-                          ),
-                        ),
                         SignInUpButton(
                           signText: 'Sign Up',
                           signTab: () {
-                            print('adfd');
+                            
                             createUser(_upEmailController.text, _upPasswordController.text);
 
                           },
