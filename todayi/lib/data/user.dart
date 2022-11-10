@@ -1,9 +1,9 @@
-class Data {
+class TUser {
   String uid;
   String email;
   String name;
 
-  Data({
+  TUser({
     required this.uid,
     required this.email,  
     required this.name,
@@ -19,9 +19,9 @@ class Data {
     };
   }
 
-  factory Data.fromMap(Map<String, dynamic> map) {
-    return Data(
-      uid: map['uid'],
+  factory TUser.fromMap(Map<String, dynamic>? map) {
+    return TUser(
+      uid: map!['uid'],
       email: map['email'],
       name: map['name'],
     );

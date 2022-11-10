@@ -63,7 +63,7 @@ class _StartButtonState extends State<StartButton> {
             _startButtonProvider.clicked();
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const RootPage()),
+              MaterialPageRoute(builder: (context) => RootPage()),
             );
           },
           child: (() {

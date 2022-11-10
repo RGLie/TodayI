@@ -205,11 +205,13 @@ class _LoginPageState extends State<LoginPage>
                       SignInUpButton(
                         signText: 'Sign In',
                         signTab: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                          );
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          if (_formKey.currentState!.validate()) {
+                            signIn(_inEmailController.text, _inPasswordController.text);
+                              _inEmailController.clear();
+                              _inPasswordController.clear();
+                              
+                          }
                         },
                       ),
                     ],
@@ -341,6 +343,7 @@ class _LoginPageState extends State<LoginPage>
                         SignInUpButton(
                           signText: 'Sign Up',
                           signTab: () {
+                            FocusScope.of(context).requestFocus(new FocusNode());
                             if (_formUpKey.currentState!.validate()) {
                               createUser(_upEmailController.text, _upPasswordController.text);
                                 _upEmailController.clear();
@@ -363,15 +366,106 @@ class _LoginPageState extends State<LoginPage>
       )
     ]);
   }
-
-  void _signUp() async{
-    UserCredential result;
-    dynamic user;
-
-    result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _upEmailController.text, password: _upPasswordController.text);
-
+  
+  void _handleSignIn(String email, String pw) async{
+    UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: pw);
   }
+
+  Future<bool> signIn(String email, String pw) async{
+  try {
+    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: pw
+    );
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      //logger.w('No user found for that email.');
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            //Dialog Main Title
+            title: Column(
+              children: <Widget>[
+                new Text("경고", style: TextStyle(color: Colors.redAccent),),
+              ],
+            ),
+            //
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "계정이 존재하지 않습니다.",
+                  style: TextStyle(color: Colors.black)
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              new ElevatedButton(
+                child: new Text("확인"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorLibrary.textThemeColor
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        }
+      );
+    } else if (e.code == 'wrong-password') {
+      //logger.w('Wrong password provided for that user.');
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            //Dialog Main Title
+            title: Column(
+              children: <Widget>[
+                new Text("경고", style: TextStyle(color: Colors.redAccent),),
+              ],
+            ),
+            //
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "비밀번호가 다릅니다.",
+                  style: TextStyle(color: Colors.black)
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              new ElevatedButton(
+                child: new Text("확인"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorLibrary.textThemeColor
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        }
+      );
+    }
+  } catch (e) {
+    //logger.e(e);
+    return false;
+  }
+  // authPersistence(); // 인증 영속
+  return true;
+}
 
     Future<bool> createUser(String email, String pw) async{
     try {
@@ -468,6 +562,44 @@ class _LoginPageState extends State<LoginPage>
       return false;
     }
     // authPersistence(); // 인증 영속
+            showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              //Dialog Main Title
+              title: Column(
+                children: <Widget>[
+                  new Text("환영합니다", style: TextStyle(color: Colors.indigoAccent),),
+                ],
+              ),
+              //
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "가입이 완료되었습니다.",
+                    style: TextStyle(color: Colors.black)
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                new ElevatedButton(
+                  child: new Text("확인"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorLibrary.textThemeColor
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          }
+        ); 
     return true;
   }
 }
