@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todayi/data/user.dart';
+import 'package:todayi/providers/user_provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -8,14 +12,26 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  UserProvider db = UserProvider();
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text('asdf')
-        ],
+    var userData = Provider.of<User?>(context);
+
+    return MultiProvider(
+      providers: [
+        StreamProvider<TUser>.value(
+          value: db.getUser(userData!.uid),
+          initialData: TUser(email: 'email', uid: 'uid', name:'name'),
+        ),
+      ],
+      child: Scaffold(
+        body: _buildBody(),
       ),
     );
   }
+    _buildBody() {
+    return Container();
+  }
 }
+  

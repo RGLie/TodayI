@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/providers/button_provider.dart';
 import 'package:todayi/utils/colors.dart';
@@ -345,7 +347,7 @@ class _LoginPageState extends State<LoginPage>
                           signTab: () {
                             FocusScope.of(context).requestFocus(new FocusNode());
                             if (_formUpKey.currentState!.validate()) {
-                              createUser(_upEmailController.text, _upPasswordController.text);
+                              createUser(_upEmailController.text, _upPasswordController.text, _upNameController.text);
                                 _upEmailController.clear();
                                 _upPasswordController.clear();
                                 _upNameController.clear();
@@ -467,12 +469,14 @@ class _LoginPageState extends State<LoginPage>
   return true;
 }
 
-    Future<bool> createUser(String email, String pw) async{
+  Future<bool> createUser(String email, String pw, String name) async{
     try {
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: pw,
       );
+      addUserData(email, name, credential.user!.uid);
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         //print('The password provided is too weak.');
@@ -600,6 +604,14 @@ class _LoginPageState extends State<LoginPage>
             );
           }
         ); 
+    
     return true;
   }
+
+  void addUserData(String EMAIL, String NAME, String UID){
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    TUser userModel = TUser(email: EMAIL, uid: UID, name: NAME);
+    users.doc(UID).set(userModel.toJson());
+  }
+
 }

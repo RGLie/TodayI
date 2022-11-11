@@ -26,4 +26,10 @@ class TUser {
       name: map['name'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'uid': uid,
+        'email': email,
+        'name': name,
+      };
 }
