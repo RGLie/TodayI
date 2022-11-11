@@ -8,11 +8,11 @@ class UserProvider {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   // User 1명의 데이터 읽기
-  Future<TUser> getUser(String uid) async {
+  Stream<TUser> getUser(String uid) async* {
     var snap = await _db.collection('user').doc(uid).get();
 
     Map<String, dynamic>? user_data = snap.data();
 
-    return TUser.fromMap(user_data);
+    yield TUser.fromMap(user_data);
   }
 }
