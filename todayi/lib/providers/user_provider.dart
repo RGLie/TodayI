@@ -9,7 +9,7 @@ class UserProvider {
 
   // User 1명의 데이터 읽기
   Stream<TUser> getUser(String uid) async* {
-    var snap = await _db.collection('user').doc(uid).get();
+    var snap = await _db.collection('users').doc(uid).get();
 
     Map<String, dynamic>? user_data = snap.data();
 

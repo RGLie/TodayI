@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/home_page.dart';
@@ -379,6 +380,10 @@ class _LoginPageState extends State<LoginPage>
         email: email,
         password: pw
     );
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    
+    users.doc(credential.user!.uid).update({'recentlogindate':DateFormat('yyyy/MM/dd-HH:mm:ss').format(DateTime.now())});
+
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       //logger.w('No user found for that email.');
@@ -475,7 +480,45 @@ class _LoginPageState extends State<LoginPage>
         email: email,
         password: pw,
       );
-      addUserData(email, name, credential.user!.uid);
+      addUserData(email, name, credential.user!.uid, DateFormat('yyyy/MM/dd-HH:mm:ss').format(DateTime.now()), DateFormat('yyyy/MM/dd-HH:mm:ss').format(DateTime.now()));
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              //Dialog Main Title
+              title: Column(
+                children: <Widget>[
+                  new Text("환영합니다", style: TextStyle(color: Colors.indigoAccent),),
+                ],
+              ),
+              //
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "가입이 완료되었습니다.",
+                    style: TextStyle(color: Colors.black)
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                new ElevatedButton(
+                  child: new Text("확인"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorLibrary.textThemeColor
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          }
+        ); 
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -566,51 +609,12 @@ class _LoginPageState extends State<LoginPage>
       return false;
     }
     // authPersistence(); // 인증 영속
-            showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              //Dialog Main Title
-              title: Column(
-                children: <Widget>[
-                  new Text("환영합니다", style: TextStyle(color: Colors.indigoAccent),),
-                ],
-              ),
-              //
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "가입이 완료되었습니다.",
-                    style: TextStyle(color: Colors.black)
-                  ),
-                ],
-              ),
-              actions: <Widget>[
-                new ElevatedButton(
-                  child: new Text("확인"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorLibrary.textThemeColor
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            );
-          }
-        ); 
-    
     return true;
   }
 
-  void addUserData(String EMAIL, String NAME, String UID){
+  void addUserData(String EMAIL, String NAME, String UID, String RDATE, String RLDATE){
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    TUser userModel = TUser(email: EMAIL, uid: UID, name: NAME);
+    TUser userModel = TUser(email: EMAIL, uid: UID, name: NAME, registerdate: RDATE, recentlogindate: RLDATE);
     users.doc(UID).set(userModel.toJson());
   }
 

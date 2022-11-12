@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
+import 'package:todayi/pages/main_home_page.dart';
 import 'package:todayi/providers/user_provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -22,16 +24,13 @@ class _MainPageState extends State<MainPage> {
       providers: [
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
-          initialData: TUser(email: 'email', uid: 'uid', name:'name'),
+          initialData: TUser(email: 'email', uid: 'uid', name:'name', registerdate: 'registerdate', recentlogindate: 'recentlogindate'),
         ),
       ],
       child: Scaffold(
-        body: _buildBody(),
+        body: MainHomePage(),
       ),
     );
-  }
-    _buildBody() {
-    return Container();
   }
 }
   
