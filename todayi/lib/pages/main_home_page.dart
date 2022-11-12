@@ -25,7 +25,7 @@ class _MainHomePageState extends State<MainHomePage> {
             children: [
               InkWell(
                 onTap: () {},
-                child: Text('노트', style: TextStyle(color: Colors.white, fontSize: 20),),
+                child: Text('노트', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),),
               ),
               
             ],
