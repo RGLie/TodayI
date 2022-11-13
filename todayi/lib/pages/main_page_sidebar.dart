@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/content_page_changer.dart';
+import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/main_home_page/account_bar.dart';
 
 class MainPageSideBar extends StatefulWidget {
   const MainPageSideBar({super.key});
@@ -31,8 +33,16 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
               children: [
                 Container(
                   padding: EdgeInsets.all(20),
-                  child: Text('Today I',
-                    style: TextStyle(color: Colors.white, fontSize: 45, fontWeight: FontWeight.w700),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
+                    child: Text('Today I',
+                      style: TextStyle(color: Colors.white, fontSize: 45, fontWeight: FontWeight.w700),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -91,6 +101,12 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                     ],
                   ),
                 ),
+                Container(
+                  width: double.infinity,
+                  height: 70,
+                  color: Color(0xff543209),
+                  child: AccountBar()
+                )
               ],
             ),
           ),
