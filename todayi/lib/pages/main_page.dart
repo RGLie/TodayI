@@ -27,9 +27,7 @@ class _MainPageState extends State<MainPage> {
           initialData: TUser(email: 'email', uid: 'uid', name:'name', registerdate: 'registerdate', recentlogindate: 'recentlogindate'),
         ),
       ],
-      child: Scaffold(
-        body: MainHomePage(),
-      ),
+      child: MainHomePage()
     );
   }
 }

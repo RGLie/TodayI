@@ -380,7 +380,7 @@ class _LoginPageState extends State<LoginPage>
         email: email,
         password: pw
     );
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    CollectionReference users = await FirebaseFirestore.instance.collection('users');
     
     users.doc(credential.user!.uid).update({'recentlogindate':DateFormat('yyyy/MM/dd-HH:mm:ss').format(DateTime.now())});
 
