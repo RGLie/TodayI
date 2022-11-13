@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
-import 'package:todayi/pages/main_home_page.dart';
+import 'package:todayi/pages/main_page_sidebar.dart';
+import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/providers/user_provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -26,8 +27,10 @@ class _MainPageState extends State<MainPage> {
           value: db.getUser(userData!.uid),
           initialData: TUser(email: 'email', uid: 'uid', name:'name', registerdate: 'registerdate', recentlogindate: 'recentlogindate'),
         ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => SideBarProvider()),
       ],
-      child: MainHomePage()
+      child: MainPageSideBar()
     );
   }
 }
