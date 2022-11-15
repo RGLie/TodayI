@@ -15,20 +15,21 @@ class _NoteState extends State<Note> {
     return Row(
       children: [
         Expanded(
-          child: Center(
-            child: Container(
-              padding: EdgeInsets.only(left: 200, right:200, top:50, bottom:50),
-              child: ShowNote(),
-            ),
-          )
-        ),
+            child: Center(
+          child: Container(
+            padding:
+                EdgeInsets.only(left: 200, right: 200, top: 30, bottom: 20),
+            child: ShowNote(),
+          ),
+        )),
         Container(
           width: MediaQuery.of(context).size.width * 0.25,
           height: double.infinity,
           color: Color(0xffFFE2B7),
           child: Container(
-            padding: EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-            child: EditNote()),
+              padding:
+                  EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
+              child: EditNote()),
         )
       ],
     );
