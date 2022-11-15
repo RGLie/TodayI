@@ -17,16 +17,18 @@ class _NoteState extends State<Note> {
         Expanded(
           child: Center(
             child: Container(
-              padding: EdgeInsets.only(left: 50, right:50, top:30, bottom:30),
+              padding: EdgeInsets.only(left: 200, right:200, top:50, bottom:50),
               child: ShowNote(),
             ),
           )
         ),
         Container(
-          width: MediaQuery.of(context).size.width * 0.22,
+          width: MediaQuery.of(context).size.width * 0.25,
           height: double.infinity,
           color: Color(0xffFFE2B7),
-          child: EditNote(),
+          child: Container(
+            padding: EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
+            child: EditNote()),
         )
       ],
     );
