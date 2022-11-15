@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/pages/content_page/note/note.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 
 class ContentPageChanger extends StatelessWidget {
@@ -16,6 +17,6 @@ class ContentPageChanger extends StatelessWidget {
       case 4:
         return Text('4');
     }
-    return Text('0');
+    return Note();
   }
 }

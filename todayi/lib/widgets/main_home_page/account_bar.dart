@@ -4,21 +4,15 @@ import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/home_page.dart';
 
-class AccountBar extends StatefulWidget {
-  const AccountBar({super.key});
-
-  @override
-  State<AccountBar> createState() => _AccountBarState();
-}
-
-class _AccountBarState extends State<AccountBar> {
+class AccountBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //var user_data = Provider.of<TUser>(context);
-    return Expanded(
+    var user_data = Provider.of<TUser>(context);
+    return Container(
+      padding: EdgeInsets.only(left: 20, right: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // SizedBox(
           //   width: 30,
@@ -28,7 +22,7 @@ class _AccountBarState extends State<AccountBar> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'user_data.name.toString()',
+                user_data.name,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -38,7 +32,7 @@ class _AccountBarState extends State<AccountBar> {
                 height: 3,
               ),
               Text(
-                'user_data.email.toString()',
+                user_data.email,
                 style: TextStyle(
                     color: Colors.white70,
                     fontSize: 14,

@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
       providers: [
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
-          initialData: TUser(email: 'email', uid: 'uid', name:'name', registerdate: 'registerdate', recentlogindate: 'recentlogindate'),
+          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: ''),
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => SideBarProvider()),
