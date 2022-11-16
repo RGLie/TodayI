@@ -45,17 +45,34 @@ class _EditNoteState extends State<EditNote> {
                 color: ColorLibrary.cardColor,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.25),
-                      blurRadius: 3,
-                      offset: Offset(2, 2), // Shadow position
-                    ),
-                  ],
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    blurRadius: 3,
+                    offset: Offset(2, 2), // Shadow position
+                  ),
+                ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('h'),
-                  Text('h'),
+                  Text('개발',
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black45)),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text('코드 추가',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black)),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [],
+                  )
                 ],
               ),
             )
