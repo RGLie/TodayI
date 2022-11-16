@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todayi/utils/colors.dart';
 
 class EditNote extends StatefulWidget {
   const EditNote({super.key});
@@ -14,10 +15,10 @@ class _EditNoteState extends State<EditNote> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Note Editor',
+        Text('노트 에디터',
             style: TextStyle(
                 fontSize: 40,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w800,
                 color: Colors.black)),
         SizedBox(height: 15),
         Container(
@@ -26,14 +27,40 @@ class _EditNoteState extends State<EditNote> {
           height: 1,
         ),
         SizedBox(height: 15),
-        Text('Add Contents',
+        Text('내용 추가하기',
             style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
                 color: Colors.black)),
         SizedBox(
           height: 15,
         ),
+        Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              height: 110,
+              width: 110,
+              decoration: BoxDecoration(
+                color: ColorLibrary.cardColor,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      blurRadius: 3,
+                      offset: Offset(2, 2), // Shadow position
+                    ),
+                  ],
+              ),
+              child: Column(
+                children: [
+                  Text('h'),
+                  Text('h'),
+                ],
+              ),
+            )
+          ],
+        )
       ],
     );
   }
