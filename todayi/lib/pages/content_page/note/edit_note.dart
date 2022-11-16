@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todayi/pages/content_page/note/add_content.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/note/edit_note/add_content_button.dart';
 
 class EditNote extends StatefulWidget {
   const EditNote({super.key});
@@ -35,49 +37,7 @@ class _EditNoteState extends State<EditNote> {
         SizedBox(
           height: 15,
         ),
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              height: 110,
-              width: 110,
-              decoration: BoxDecoration(
-                color: ColorLibrary.cardColor,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.25),
-                    blurRadius: 3,
-                    offset: Offset(2, 2), // Shadow position
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('개발',
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black45)),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text('코드 추가',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black)),
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [],
-                  )
-                ],
-              ),
-            )
-          ],
-        )
+        AddContent()
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/pages/content_page/note/note.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
+import 'package:todayi/providers/note/add_code_button_provider.dart';
 
 class ContentPageChanger extends StatelessWidget {
   @override
@@ -17,6 +18,12 @@ class ContentPageChanger extends StatelessWidget {
       case 4:
         return Text('4');
     }
-    return Note();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => AddCodeButtonProvider()),
+      ],
+      child: Note()
+    );
   }
 }

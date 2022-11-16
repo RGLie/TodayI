@@ -23,12 +23,12 @@ class _NoteState extends State<Note> {
           ),
         )),
         Container(
-          width: MediaQuery.of(context).size.width * 0.25,
+          width: 515,
           height: double.infinity,
           color: Color(0xffFFE2B7),
           child: Container(
               padding:
-                  EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
+                  EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
               child: EditNote()),
         )
       ],
