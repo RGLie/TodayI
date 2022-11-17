@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todayi/providers/note/add_code_button_provider.dart';
+import 'package:todayi/providers/note/add_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/edit_note/add_content_button.dart';
 
@@ -9,27 +9,27 @@ class AddContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _addCodeButtonProvider = Provider.of<AddCodeButtonProvider>(context);
+    var _addButtonProvider = Provider.of<AddButtonProvider>(context);
 
     return Row(
       children: [
         MouseRegion(
           onEnter: (PointerEvent details) {
-            _addCodeButtonProvider.isRegion();
+            _addButtonProvider.isCodeRegion();
           },
           onExit: (PointerEvent details) {
-            _addCodeButtonProvider.isnRegion();
+            _addButtonProvider.isnCodeRegion();
           },
           child: InkWell(
             onTap: () {
-              _addCodeButtonProvider.clicked();
+              _addButtonProvider.codeClicked();
             },
             child: AddContentButton(
                 txt: '코드 추가',
                 subtxt: '개발',
                 imgpath: 'assets/icons/code_icon.png',
                 boxdecoration: (() {
-                  if (_addCodeButtonProvider.mouse_state == 1) {
+                  if (_addButtonProvider.code_mouse_state == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColor,
                       borderRadius: BorderRadius.circular(10),
@@ -46,7 +46,7 @@ class AddContent extends StatelessWidget {
                       ],
                     );
                   }
-                  if (_addCodeButtonProvider.is_clicked == 1) {
+                  if (_addButtonProvider.is_code_clicked == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColor,
                       borderRadius: BorderRadius.circular(10),
@@ -67,64 +67,197 @@ class AddContent extends StatelessWidget {
                       ),
                     ],
                   );
-                })()),
+                })()
+              ),
           ),
         ),
+
+
         SizedBox(
           width: 15,
         ),
-        AddContentButton(
-          txt: '링크 추가',
-          subtxt: '북마크',
-          imgpath: 'assets/icons/badge_icon.png',
-          boxdecoration: BoxDecoration(
-            color: ColorLibrary.cardColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.25),
-                blurRadius: 3,
-                offset: Offset(2, 2), // Shadow position
-              ),
-            ],
+        MouseRegion(
+          onEnter: (PointerEvent details) {
+            _addButtonProvider.isLinkRegion();
+          },
+          onExit: (PointerEvent details) {
+            _addButtonProvider.isnLinkRegion();
+          },
+          child: InkWell(
+            onTap: () {
+              _addButtonProvider.linkClicked();
+            },
+            child: AddContentButton(
+              txt: '링크 추가',
+              subtxt: '북마크',
+              imgpath: 'assets/icons/badge_icon.png',
+              boxdecoration: (() {
+                  if (_addButtonProvider.link_mouse_state == 1) {
+                    return BoxDecoration(
+                      color: ColorLibrary.cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          width: 1.5,
+                          color: ColorLibrary.textThemeColor,
+                          strokeAlign: BorderSide.strokeAlignOutside),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.25),
+                          blurRadius: 3,
+                          offset: Offset(2, 2), // Shadow position
+                        ),
+                      ],
+                    );
+                  }
+                  if (_addButtonProvider.is_link_clicked == 1) {
+                    return BoxDecoration(
+                      color: ColorLibrary.cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          width: 1.5,
+                          color: ColorLibrary.textThemeColor,
+                          strokeAlign: BorderSide.strokeAlignOutside),
+                    );
+                  }
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                })(),
+            ),
           ),
         ),
+
+
         SizedBox(
           width: 15,
         ),
-        AddContentButton(
-          txt: '속성 추가',
-          subtxt: '배운점, 잘한점 ...',
-          imgpath: 'assets/icons/email_at_icon.png',
-          boxdecoration: BoxDecoration(
-            color: ColorLibrary.cardColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.25),
-                blurRadius: 3,
-                offset: Offset(2, 2), // Shadow position
-              ),
-            ],
+        MouseRegion(
+          onEnter: (PointerEvent details) {
+            _addButtonProvider.isPropertyRegion();
+          },
+          onExit: (PointerEvent details) {
+            _addButtonProvider.isnPropertyRegion();
+          },
+          child: InkWell(
+            onTap: () {
+              _addButtonProvider.propertyClicked();
+            },
+            child: AddContentButton(
+              txt: '속성 추가',
+              subtxt: '배운점, 잘한점 ...',
+              imgpath: 'assets/icons/email_at_icon.png',
+              boxdecoration: (() {
+                if (_addButtonProvider.property_mouse_state == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 1.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
+                if (_addButtonProvider.is_property_clicked == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 1.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                  );
+                }
+                return BoxDecoration(
+                  color: ColorLibrary.cardColor,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      blurRadius: 3,
+                      offset: Offset(2, 2), // Shadow position
+                    ),
+                  ],
+                );
+              })(),
+            ),
           ),
         ),
+
+
         SizedBox(
           width: 15,
         ),
-        AddContentButton(
-          txt: '태그 추가',
-          subtxt: '서브',
-          imgpath: 'assets/icons/tag_icon.png',
-          boxdecoration: BoxDecoration(
-            color: ColorLibrary.cardColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.25),
-                blurRadius: 3,
-                offset: Offset(2, 2), // Shadow position
-              ),
-            ],
+        MouseRegion(
+          onEnter: (PointerEvent details) {
+            _addButtonProvider.isTagRegion();
+          },
+          onExit: (PointerEvent details) {
+            _addButtonProvider.isnTagRegion();
+          },
+          child: InkWell(
+            onTap: () {
+              _addButtonProvider.tagClicked();
+            },
+            child: AddContentButton(
+              txt: '태그 추가',
+              subtxt: '서브',
+              imgpath: 'assets/icons/tag_icon.png',
+              boxdecoration: (() {
+                if (_addButtonProvider.tag_mouse_state == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 1.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
+                if (_addButtonProvider.is_tag_clicked == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 1.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                  );
+                }
+                return BoxDecoration(
+                  color: ColorLibrary.cardColor,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      blurRadius: 3,
+                      offset: Offset(2, 2), // Shadow position
+                    ),
+                  ],
+                );
+              })(),
+            ),
           ),
         ),
       ],
