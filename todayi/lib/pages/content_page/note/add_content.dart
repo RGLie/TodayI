@@ -34,7 +34,7 @@ class AddContent extends StatelessWidget {
                       color: ColorLibrary.cardColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          width: 1.5,
+                          width: 2.5,
                           color: ColorLibrary.textThemeColor,
                           strokeAlign: BorderSide.strokeAlignOutside),
                       boxShadow: [
@@ -51,7 +51,7 @@ class AddContent extends StatelessWidget {
                       color: ColorLibrary.cardColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          width: 1.5,
+                          width: 2.5,
                           color: ColorLibrary.textThemeColor,
                           strokeAlign: BorderSide.strokeAlignOutside),
                     );
@@ -97,7 +97,7 @@ class AddContent extends StatelessWidget {
                       color: ColorLibrary.cardColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          width: 1.5,
+                          width: 2.5,
                           color: ColorLibrary.textThemeColor,
                           strokeAlign: BorderSide.strokeAlignOutside),
                       boxShadow: [
@@ -114,7 +114,7 @@ class AddContent extends StatelessWidget {
                       color: ColorLibrary.cardColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          width: 1.5,
+                          width: 2.5,
                           color: ColorLibrary.textThemeColor,
                           strokeAlign: BorderSide.strokeAlignOutside),
                     );
@@ -160,7 +160,7 @@ class AddContent extends StatelessWidget {
                     color: ColorLibrary.cardColor,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                        width: 1.5,
+                        width: 2.5,
                         color: ColorLibrary.textThemeColor,
                         strokeAlign: BorderSide.strokeAlignOutside),
                     boxShadow: [
@@ -177,7 +177,7 @@ class AddContent extends StatelessWidget {
                     color: ColorLibrary.cardColor,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                        width: 1.5,
+                        width: 2.5,
                         color: ColorLibrary.textThemeColor,
                         strokeAlign: BorderSide.strokeAlignOutside),
                   );
@@ -223,7 +223,7 @@ class AddContent extends StatelessWidget {
                     color: ColorLibrary.cardColor,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                        width: 1.5,
+                        width: 2.5,
                         color: ColorLibrary.textThemeColor,
                         strokeAlign: BorderSide.strokeAlignOutside),
                     boxShadow: [
@@ -240,7 +240,7 @@ class AddContent extends StatelessWidget {
                     color: ColorLibrary.cardColor,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                        width: 1.5,
+                        width: 2.5,
                         color: ColorLibrary.textThemeColor,
                         strokeAlign: BorderSide.strokeAlignOutside),
                   );
