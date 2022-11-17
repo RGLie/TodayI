@@ -24,20 +24,24 @@ class _TextContentState extends State<TextContent> {
         children: [
           Container(
             margin: EdgeInsets.all(10),
-            color: ColorLibrary.cardColor,
+            //color: ColorLibrary.cardColor,
             child: TextFormField(
               controller: _textController,
-              keyboardType: TextInputType.text,
+              minLines: 4,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
               cursorColor: ColorLibrary.textThemeColor,
               decoration: InputDecoration(
-                //border: OutlineInputBorder(),
-                hintText: '노트를 입력하세요.',
-                //labelText: '노트를 입력하세요',
-                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-                // focusedBorder: OutlineInputBorder(
-                //   borderSide: BorderSide(color: ColorLibrary.textThemeColor),
-                // )
-              ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  hintText: '노트를 입력하세요.',
+                  //labelText: '노트를 입력하세요',
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorLibrary.textThemeColor),
+                  )
+                ),
               validator: (value) {
                 if (value!.isEmpty) {
                   return '빈칸입니다.';
