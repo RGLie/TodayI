@@ -169,40 +169,7 @@ class _TextContentState extends State<TextContent> {
             SizedBox(
               height: 15,
             ),
-            TextFormField(
-              controller: _linkController,
-              minLines: 1,
-              maxLines: 1,
-              keyboardType: TextInputType.multiline,
-              cursorColor: ColorLibrary.textThemeColor,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500
-              ),
-              decoration: InputDecoration(
-                fillColor: ColorLibrary.cardColor,
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10),),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.cardColor, width: 0),
-                ),
-                hintText: '링크를 입력하세요.',
-                //labelText: '노트를 입력하세요',
-                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.textThemeColor, width: 2.5),
-                )
-              ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return '빈칸입니다.';
-                }
-                return null;
-              },
-            )
+            
           ]
         ],
       ),
