@@ -40,7 +40,7 @@ class _EditNoteState extends State<EditNote> {
         ),
         AddContent(),
         SizedBox(
-          height: 20,
+          height: 15,
         ),
         TextContent()
       ],
