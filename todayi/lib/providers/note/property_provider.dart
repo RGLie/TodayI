@@ -1,93 +1,114 @@
 import 'package:flutter/material.dart';
 
 class PropertyProvider extends ChangeNotifier {
-  int _code_mouse_state = 0;
-  int _is_code_clicked = 0;
-  int get code_mouse_state => _code_mouse_state;
-  int get is_code_clicked => _is_code_clicked;
+  //A: 잘함
+  //B: 배움
+  //C: 개선
+  //D: 어려움
+  //E: 계획
+  
+  int _typeA_mouse_state = 0;
+  int _is_typeA_clicked = 0;
+  int get typeA_mouse_state => _typeA_mouse_state;
+  int get is_typeA_clicked => _is_typeA_clicked;
 
-  int _link_mouse_state = 0;
-  int _is_link_clicked = 0;
-  int get link_mouse_state => _link_mouse_state;
-  int get is_link_clicked => _is_link_clicked;
+  int _typeB_mouse_state = 0;
+  int _is_typeB_clicked = 0;
+  int get typeB_mouse_state => _typeB_mouse_state;
+  int get is_typeB_clicked => _is_typeB_clicked;
 
-  int _property_mouse_state = 0;
-  int _is_property_clicked = 0;
-  int get property_mouse_state => _property_mouse_state;
-  int get is_property_clicked => _is_property_clicked;
+  int _typeC_mouse_state = 0;
+  int _is_typeC_clicked = 0;
+  int get typeC_mouse_state => _typeC_mouse_state;
+  int get is_typeC_clicked => _is_typeC_clicked;
 
-  int _tag_mouse_state = 0;
-  int _is_tag_clicked = 0;
-  int get tag_mouse_state => _tag_mouse_state;
-  int get is_tag_clicked => _is_tag_clicked;
+  int _typeD_mouse_state = 0;
+  int _is_typeD_clicked = 0;
+  int get typeD_mouse_state => _typeD_mouse_state;
+  int get is_typeD_clicked => _is_typeD_clicked;
 
+  int _typeE_mouse_state = 0;
+  int _is_typeE_clicked = 0;
+  int get typeE_mouse_state => _typeE_mouse_state;
+  int get is_typeE_clicked => _is_typeE_clicked;
   //is mouse region : 1
   //button clicked : 2
   //else : 0
-  void codeClicked() {
-    _code_mouse_state = 2;
-    _is_code_clicked = (_is_code_clicked + 1) % 2;
+  void typeAClicked() {
+    _is_typeA_clicked = (_is_typeA_clicked + 1) % 2;
     notifyListeners();
   }
 
-  void isCodeRegion() {
-    _code_mouse_state = 1;
+  void istypeARegion() {
+    _typeA_mouse_state = 1;
     notifyListeners();
   }
 
-  void isnCodeRegion() {
-    _code_mouse_state = 0;
-    notifyListeners();
-  }
-
-
-  void linkClicked() {
-    _link_mouse_state = 2;
-    _is_link_clicked = (_is_link_clicked + 1) % 2;
-    notifyListeners();
-  }
-
-  void isLinkRegion() {
-    _link_mouse_state = 1;
-    notifyListeners();
-  }
-
-  void isnLinkRegion() {
-    _link_mouse_state = 0;
+  void isntypeARegion() {
+    _typeA_mouse_state = 0;
     notifyListeners();
   }
 
 
-  void propertyClicked() {
-    _property_mouse_state = 2;
-    _is_property_clicked = (_is_property_clicked + 1) % 2;
+  void typeBClicked() {
+    _is_typeB_clicked = (_is_typeB_clicked + 1) % 2;
     notifyListeners();
   }
 
-  void isPropertyRegion() {
-    _property_mouse_state = 1;
+  void istypeBRegion() {
+    _typeB_mouse_state = 1;
     notifyListeners();
   }
 
-  void isnPropertyRegion() {
-    _property_mouse_state = 0;
+  void isntypeBRegion() {
+    _typeB_mouse_state = 0;
     notifyListeners();
   }
 
 
-  void tagClicked() {
-    _tag_mouse_state = 2;
-    _is_tag_clicked = (_is_tag_clicked + 1) % 2;
+  void typeCClicked() {
+    _is_typeC_clicked = (_is_typeC_clicked + 1) % 2;
     notifyListeners();
   }
 
-  void isTagRegion() {
-    _tag_mouse_state = 1;
+  void istypeCRegion() {
+    _typeC_mouse_state = 1;
     notifyListeners();
   }
 
-  void isnTagRegion() {
-    _tag_mouse_state = 0;
+  void isntypeCRegion() {
+    _typeC_mouse_state = 0;
+    notifyListeners();
+  }
+
+
+  void typeDClicked() {
+    _is_typeD_clicked = (_is_typeD_clicked + 1) % 2;
+    notifyListeners();
+  }
+
+  void istypeDRegion() {
+    _typeD_mouse_state = 1;
+    notifyListeners();
+  }
+
+  void isntypeDRegion() {
+    _typeD_mouse_state = 0;
+    notifyListeners();
+  }
+
+  void typeEClicked() {
+    _is_typeE_clicked = (_is_typeE_clicked + 1) % 2;
+    notifyListeners();
+  }
+
+  void istypeERegion() {
+    _typeE_mouse_state = 1;
+    notifyListeners();
+  }
+
+  void isntypeERegion() {
+    _typeE_mouse_state = 0;
     notifyListeners();
   }
 }

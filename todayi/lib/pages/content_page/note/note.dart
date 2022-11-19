@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todayi/pages/content_page/note/edit_note.dart';
 import 'package:todayi/pages/content_page/note/show_note.dart';
+import 'package:todayi/utils/colors.dart';
 
 class Note extends StatefulWidget {
   const Note({super.key});
@@ -25,7 +26,7 @@ class _NoteState extends State<Note> {
         Container(
           width: 515,
           height: double.infinity,
-          color: Color(0xffFFE2B7),
+          color: ColorLibrary.editnoteColor,
           child: Container(
               padding:
                   EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),

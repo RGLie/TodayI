@@ -25,7 +25,6 @@ class AddButtonProvider extends ChangeNotifier {
   //button clicked : 2
   //else : 0
   void codeClicked() {
-    _code_mouse_state = 2;
     _is_code_clicked = (_is_code_clicked + 1) % 2;
     notifyListeners();
   }
@@ -42,7 +41,6 @@ class AddButtonProvider extends ChangeNotifier {
 
 
   void linkClicked() {
-    _link_mouse_state = 2;
     _is_link_clicked = (_is_link_clicked + 1) % 2;
     notifyListeners();
   }
@@ -59,7 +57,6 @@ class AddButtonProvider extends ChangeNotifier {
 
 
   void propertyClicked() {
-    _property_mouse_state = 2;
     _is_property_clicked = (_is_property_clicked + 1) % 2;
     notifyListeners();
   }
@@ -76,7 +73,6 @@ class AddButtonProvider extends ChangeNotifier {
 
 
   void tagClicked() {
-    _tag_mouse_state = 2;
     _is_tag_clicked = (_is_tag_clicked + 1) % 2;
     notifyListeners();
   }

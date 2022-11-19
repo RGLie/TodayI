@@ -12,13 +12,15 @@ class PropertyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 35,
+      padding: EdgeInsets.only(left: 12, right:12),
       decoration: boxdecoration,
       child: Center(
         child: Text('@ ${text}',
           style: TextStyle(
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 20
+            fontSize: 15
           ),
         )
       ),
