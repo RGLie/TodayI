@@ -42,8 +42,8 @@ class NoteCard extends StatelessWidget {
                   Text('# Today I',
                     style: TextStyle(
                       color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 25
+                      fontWeight: FontWeight.w700,
+                      fontSize: 28
                     )
                   ),
                   SizedBox(
@@ -60,6 +60,18 @@ class NoteCard extends StatelessWidget {
               )
             ],
           ),
+          SizedBox(
+            height: 15,
+          ),
+          Container(
+            color: ColorLibrary.textThemeColor,
+            width: double.infinity,
+            height: 2,
+          ),
+          SizedBox(
+            height: 15,
+          ),
+
         ],
       ),
     );

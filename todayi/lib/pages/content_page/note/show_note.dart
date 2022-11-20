@@ -49,7 +49,7 @@ class _ShowNoteState extends State<ShowNote> {
           ],
         ),
         SizedBox(
-          height: 15,
+          height: 20,
         ),
 
         NoteCard()
