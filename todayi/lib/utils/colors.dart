@@ -7,4 +7,6 @@ class ColorLibrary {
   static Color cardColorRegioned = Color(0xffFFF3C4);
   static Color codeCardColor = Color(0xffE4DBCE);
   static Color editnoteColor = Color.fromARGB(255, 243, 226, 187);
+  static Color cardContentColor = Color(0xffE5DDD1);
+  static Color cardSubTagColor = Color(0xffC6BFB4);
 }
