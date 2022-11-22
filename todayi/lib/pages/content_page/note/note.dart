@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todayi/pages/content_page/note/edit_note.dart';
-import 'package:todayi/pages/content_page/note/show_note.dart';
+import 'package:todayi/pages/content_page/note/edit_note/edit_note.dart';
+import 'package:todayi/pages/content_page/note/show_note/show_note.dart';
 import 'package:todayi/utils/colors.dart';
 
 class Note extends StatefulWidget {

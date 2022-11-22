@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todayi/providers/note/add_button_provider.dart';
+import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/edit_note/add_content_button.dart';
 
