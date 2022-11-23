@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/note/show_note/content_note.dart';
+import 'package:todayi/widgets/note/show_note/link_note.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key});
@@ -93,37 +95,15 @@ class NoteCard extends StatelessWidget {
               width: double.infinity,
               height: 2,
             ),
-            SizedBox(
-              height: 15,
+            ContentNote(
+              content: 'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
             ),
-            Container(
-              padding: EdgeInsets.all(15),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: ColorLibrary.cardContentColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text('Provider를 이용해 Note Card 구현 완료',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17)),
+            ContentNote(
+              content: 'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
             ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: ColorLibrary.cardContentColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text('Edit Note 색상 및 디자인 일부 변경',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17)),
+            LinkNote(
+              link: 'https://pub.dev/',
+              content:'링크 노트 위젯 생성\n라이브러리 추가'
             ),
             SizedBox(
               height: 15,

@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage>
                                 suffixIcon: Icon(Icons.mail),
                                 suffixIconColor: ColorLibrary.textThemeColor,
                                 border: OutlineInputBorder(),
-                                labelText: 'Email',
+                                labelText: '이메일',
                                 labelStyle: TextStyle(
                                     color: ColorLibrary.textThemeColor),
                                 focusedBorder: OutlineInputBorder(
@@ -188,7 +188,7 @@ class _LoginPageState extends State<LoginPage>
                                 suffixIcon: Icon(Icons.lock),
                                 suffixIconColor: ColorLibrary.textThemeColor,
                                 border: OutlineInputBorder(),
-                                labelText: 'Password',
+                                labelText: '패스워드',
                                 labelStyle: TextStyle(
                                     color: ColorLibrary.textThemeColor),
                                 focusedBorder: OutlineInputBorder(
@@ -197,7 +197,7 @@ class _LoginPageState extends State<LoginPage>
                                 )),
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return '비밀번호를 입력하세요.';
+                                return '패스워드를 입력하세요.';
                               }
                               return null;
                             },
@@ -238,7 +238,7 @@ class _LoginPageState extends State<LoginPage>
                                   suffixIcon: Icon(Icons.mail),
                                   suffixIconColor: ColorLibrary.textThemeColor,
                                   border: OutlineInputBorder(),
-                                  labelText: 'Email',
+                                  labelText: '이메일',
                                   labelStyle: TextStyle(
                                       color: ColorLibrary.textThemeColor),
                                   focusedBorder: OutlineInputBorder(
@@ -271,7 +271,7 @@ class _LoginPageState extends State<LoginPage>
                                   suffixIcon: Icon(Icons.lock),
                                   suffixIconColor: ColorLibrary.textThemeColor,
                                   border: OutlineInputBorder(),
-                                  labelText: 'Password',
+                                  labelText: '패스워드',
                                   labelStyle: TextStyle(
                                       color: ColorLibrary.textThemeColor),
                                   focusedBorder: OutlineInputBorder(
@@ -280,7 +280,7 @@ class _LoginPageState extends State<LoginPage>
                                   )),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return '비밀번호를 입력하세요.';
+                                  return '패스워드를 입력하세요.';
                                 }
                                 return null;
                               },
@@ -299,7 +299,7 @@ class _LoginPageState extends State<LoginPage>
                                   suffixIcon: Icon(Icons.lock),
                                   suffixIconColor: ColorLibrary.textThemeColor,
                                   border: OutlineInputBorder(),
-                                  labelText: 'Password Check',
+                                  labelText: '패스워드 확인',
                                   labelStyle: TextStyle(
                                       color: ColorLibrary.textThemeColor),
                                   focusedBorder: OutlineInputBorder(
@@ -308,7 +308,7 @@ class _LoginPageState extends State<LoginPage>
                                   )),
                               validator: (value) {
                                 if (value !=_upPasswordController.text){
-                                  return "비밀번호가 일치하지 않습니다";
+                                  return "패스워드가 일치하지 않습니다";
                                 }
                                 return null;
                               },
@@ -326,7 +326,7 @@ class _LoginPageState extends State<LoginPage>
                                   suffixIcon: Icon(Icons.person),
                                   suffixIconColor: ColorLibrary.textThemeColor,
                                   border: OutlineInputBorder(),
-                                  labelText: 'Name',
+                                  labelText: '닉네임',
                                   labelStyle: TextStyle(
                                       color: ColorLibrary.textThemeColor),
                                   focusedBorder: OutlineInputBorder(
@@ -335,7 +335,7 @@ class _LoginPageState extends State<LoginPage>
                                   )),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return '이름을 입력하세요.';
+                                  return '닉네임을 입력하세요.';
                                 }
                                 return null;
                               },
