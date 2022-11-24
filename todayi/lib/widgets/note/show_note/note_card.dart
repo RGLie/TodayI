@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/show_note/content_note.dart';
 import 'package:todayi/widgets/note/show_note/link_note.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+      String data = '''
+# 헤드 head 1
+## 헤드 head 2
+### 헤드 head 3
+#### 헤드 head 4
+가나다라 abcd ABCD aaaaaaaaaaaaaaaaaaaayvuyvuy
+**Bold 볼드**aaaaaaaaaaaaaaaaaaaaaaayvuvuy
+''';
     var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     return Container(
       padding: EdgeInsets.all(15),
@@ -96,21 +107,28 @@ class NoteCard extends StatelessWidget {
               height: 2,
             ),
             ContentNote(
-              content: 'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
+              content: data,
             ),
             ContentNote(
               content: 'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
             ),
+          //   MarkdownBody(
+          //   onTapLink: (text, href, title) {
+          //     href != null ? launchUrl( Uri.parse(href)) : null;
+          //   },
+          //   selectable: true,
+          //   data: '''Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경''',
+          // ),
             LinkNote(
               link: 'https://pub.dev/',
-              content:'링크 노트 위젯 생성\n라이브러리 추가'
+              content:data
             ),
             SizedBox(
               height: 15,
             ),
+
             Container(
-                padding:
-                    EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
+                padding: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: ColorLibrary.cardContentColor,
@@ -119,30 +137,15 @@ class NoteCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            '# 에러',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 19),
-                          ),
-                        ),
-                        Material(
-                          color: ColorLibrary.cardContentColor,
-                          child: IconButton(
-                              splashRadius: 20,
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.expand_more,
-                                color: Colors.black54,
-                              )),
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text(
+                        '# 에러',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 19),
+                      ),
                     ),
                     SizedBox(
                       height: 15,

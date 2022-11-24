@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myTheme = Theme.of(context).textTheme.apply(
-        bodyColor: ColorLibrary.textThemeColor,
+        // bodyColor: ColorLibrary.textThemeColor,
+        bodyColor: Colors.black,
         displayColor: ColorLibrary.textThemeColor,
         fontFamily: 'Pretendard');
 

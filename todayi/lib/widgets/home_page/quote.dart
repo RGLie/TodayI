@@ -26,6 +26,7 @@ class QuoteWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 30,
+                color: ColorLibrary.textThemeColor,
                 fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.italic),
           ),
@@ -37,6 +38,7 @@ class QuoteWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 25,
+              color: ColorLibrary.textThemeColor,
               fontWeight: FontWeight.w300,
             ),
           ),

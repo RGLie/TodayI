@@ -86,6 +86,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text('Today I',
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
+                              color: ColorLibrary.textThemeColor,
                               fontSize: 105,
                               fontFamily: 'NotoSansKR')),
                     ),
