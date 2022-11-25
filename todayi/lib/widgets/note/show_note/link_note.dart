@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,7 +22,7 @@ class LinkNote extends StatelessWidget {
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only(left:15, right:15, bottom:4, top: 15),
+          padding: EdgeInsets.only(left:15, right:15,  top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
             color: ColorLibrary.cardContentColor,
@@ -65,6 +66,10 @@ class LinkNote extends StatelessWidget {
                   ),
                   
                 ),
+                key: const Key("defaultmarkdownformatter"),
+                builders: {
+                  'code': CodeElementBuilder(),
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -81,8 +86,6 @@ class LinkNote extends StatelessWidget {
                       size: 22,
                     )
                   ),
-                  
-                  SizedBox(width: 5,),
                   IconButton(
                     onPressed: () {
                       launchUrl(
@@ -95,7 +98,6 @@ class LinkNote extends StatelessWidget {
                       size: 18,
                     )
                   ),
-                  SizedBox(width: 5,),
                   IconButton(
                     onPressed: () {
                       launchUrl(

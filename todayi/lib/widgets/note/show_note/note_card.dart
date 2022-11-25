@@ -3,22 +3,31 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/note/show_note/code_note.dart';
 import 'package:todayi/widgets/note/show_note/content_note.dart';
 import 'package:todayi/widgets/note/show_note/link_note.dart';
+import 'package:todayi/widgets/note/show_note/link_property_note.dart';
 import 'package:todayi/widgets/note/show_note/property_note.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-      String data = '''
+    String data = '''
 # 헤드 head 1
 ## 헤드 head 2
-가나다라 abcd ABCD aaaaaaaaaaaaaaaaaaaayvuyvuy
 **Bold 볼드**aaaaaaaaaaaaaaaaaaaaaaayvuvuy
+```dart
+String hello = 'HELLO World!';
+print(hello);
+```
+''';
+    String coding = '''
+SizedBox(
+  height: 15,
+),
 ''';
     var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     return Container(
@@ -109,29 +118,33 @@ class NoteCard extends StatelessWidget {
               content: data,
             ),
             PropertyNote(
-              content:'안녕하세요'
+              content: '안녕하세요',
+              property1: true,
+              property4: true,
             ),
             ContentNote(
-              content: 'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
+              content:
+                  'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
             ),
-          //   MarkdownBody(
-          //   onTapLink: (text, href, title) {
-          //     href != null ? launchUrl( Uri.parse(href)) : null;
-          //   },
-          //   selectable: true,
-          //   data: '''Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경''',
-          // ),
-            
-            LinkNote(
+            LinkPropertyNote(
+              content: 'Pub Dev 패키지',
               link: 'https://pub.dev/',
-              content:data
+              property1: true,
+              property2: true,
+              property3: true,
+            ),
+            LinkNote(link: 'https://pub.dev/', content: data),
+            CodeNote(
+              content: 'dart 코드 입니다',
+              code: coding,
+              language: 'dart',
             ),
             SizedBox(
               height: 15,
             ),
-
             Container(
-                padding: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
+                padding:
+                    EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: ColorLibrary.cardContentColor,
