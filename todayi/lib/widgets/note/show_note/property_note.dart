@@ -3,10 +3,10 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContentNote extends StatelessWidget {
+class PropertyNote extends StatelessWidget {
   String content;
   
-  ContentNote({super.key,
+  PropertyNote({super.key,
     required this.content,
   });
 
@@ -63,31 +63,43 @@ class ContentNote extends StatelessWidget {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      
-                    },
-                    icon: Icon(
-                      Icons.content_copy_outlined,
+                  Text('@ 배움',
+                    style: TextStyle(
                       color: ColorLibrary.textThemeColor,
-                      size: 18,
-                    )
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14
+                    ),
                   ),
-                  SizedBox(width: 5,),
-                  IconButton(
-                    onPressed: () {
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          
+                        },
+                        icon: Icon(
+                          Icons.content_copy_outlined,
+                          color: ColorLibrary.textThemeColor,
+                          size: 18,
+                        )
+                      ),
+                      SizedBox(width: 5,),
+                      IconButton(
+                        onPressed: () {
+                          
+                        },
+                        icon: Icon(
+                          Icons.delete_outline,
+                          color: ColorLibrary.textThemeColor,
+                          size: 22,
+                        )
+                      ),
                       
-                    },
-                    icon: Icon(
-                      Icons.delete_outline,
-                      color: ColorLibrary.textThemeColor,
-                      size: 22,
-                    )
+                      
+                    ],
                   ),
-                  
-                  
                 ],
               ),
             ],

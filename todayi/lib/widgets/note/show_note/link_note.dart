@@ -21,7 +21,7 @@ class LinkNote extends StatelessWidget {
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only(left:15, right:15, bottom:15, top: 5),
+          padding: EdgeInsets.only(left:15, right:15, bottom:4, top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
             color: ColorLibrary.cardContentColor,
@@ -30,17 +30,7 @@ class LinkNote extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                  //splashRadius: 20,
-                  onPressed: () {
-                    launchUrl(
-                      Uri.parse(link),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.link,
-                    color: Colors.brown,
-                  )),
+              
               MarkdownBody(
                 onTapLink: (text, href, title) {
                   href != null ? launchUrl( Uri.parse(href)) : null;
@@ -75,6 +65,52 @@ class LinkNote extends StatelessWidget {
                   ),
                   
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse(link),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.link,
+                      color: ColorLibrary.textThemeColor,
+                      size: 22,
+                    )
+                  ),
+                  
+                  SizedBox(width: 5,),
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse(link),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.content_copy_outlined,
+                      color: ColorLibrary.textThemeColor,
+                      size: 18,
+                    )
+                  ),
+                  SizedBox(width: 5,),
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse(link),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.delete_outline,
+                      color: ColorLibrary.textThemeColor,
+                      size: 22,
+                    )
+                  ),
+                  
+                  
+                ],
               ),
             ],
           ),

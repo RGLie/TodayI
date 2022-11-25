@@ -5,6 +5,7 @@ import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/show_note/content_note.dart';
 import 'package:todayi/widgets/note/show_note/link_note.dart';
+import 'package:todayi/widgets/note/show_note/property_note.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoteCard extends StatelessWidget {
@@ -16,8 +17,6 @@ class NoteCard extends StatelessWidget {
       String data = '''
 # 헤드 head 1
 ## 헤드 head 2
-### 헤드 head 3
-#### 헤드 head 4
 가나다라 abcd ABCD aaaaaaaaaaaaaaaaaaaayvuyvuy
 **Bold 볼드**aaaaaaaaaaaaaaaaaaaaaaayvuvuy
 ''';
@@ -109,6 +108,9 @@ class NoteCard extends StatelessWidget {
             ContentNote(
               content: data,
             ),
+            PropertyNote(
+              content:'안녕하세요'
+            ),
             ContentNote(
               content: 'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
             ),
@@ -119,6 +121,7 @@ class NoteCard extends StatelessWidget {
           //   selectable: true,
           //   data: '''Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경''',
           // ),
+            
             LinkNote(
               link: 'https://pub.dev/',
               content:data

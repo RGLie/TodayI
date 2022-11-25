@@ -13,49 +13,58 @@ class ShowNote extends StatefulWidget {
 class _ShowNoteState extends State<ShowNote> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                width: 70,
-                image: AssetImage('assets/icons/calendar_icon.png'),
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              Text(DateFormat('yyyy년 MM월 dd일').format(DateTime.now()),
-                  style: TextStyle(fontSize: 55, fontWeight: FontWeight.w600, color: Colors.black)),
-              SizedBox(
-                width: 30,
-              ),
-            ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Row(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              width: 70,
+              image: AssetImage('assets/icons/calendar_icon.png'),
+            ),
+            SizedBox(
+              width: 30,
+            ),
+            Text(DateFormat('yyyy년 MM월 dd일').format(DateTime.now()),
+                style: TextStyle(fontSize: 55, fontWeight: FontWeight.w600, color: Colors.black)),
+            SizedBox(
+              width: 30,
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Container(
+          color: ColorLibrary.textThemeColor,
+          width: double.infinity,
+          height: 4,
+          constraints: BoxConstraints(
+            maxWidth: 1000,
           ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            color: ColorLibrary.textThemeColor,
-            width: double.infinity,
-            height: 4,
-            constraints: BoxConstraints(
-              maxWidth: 1000,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+    
+        Expanded(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  NoteCard(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  NoteCard(),
+                ],
+              ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
-    
-          Column(
-            children: [
-              NoteCard(),
-            ],
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }
