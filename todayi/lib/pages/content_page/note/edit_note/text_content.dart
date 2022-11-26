@@ -15,6 +15,7 @@ class TextContent extends StatefulWidget {
 class _TextContentState extends State<TextContent> {
   final _textController = TextEditingController();
   final _codeController = TextEditingController();
+  final _lanController = TextEditingController();
   final _linkController = TextEditingController();
   final _tagController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -131,6 +132,37 @@ class _TextContentState extends State<TextContent> {
               height: 15,
             ),
             TextFormField(
+              controller: _lanController,
+              minLines: 1,
+              maxLines: 1,
+              keyboardType: TextInputType.multiline,
+              cursorColor: ColorLibrary.textThemeColor,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500
+              ),
+              decoration: InputDecoration(
+                fillColor: ColorLibrary.codeCardColor,
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10),),
+                  borderSide: BorderSide(
+                      color: ColorLibrary.codeCardColor, width: 0),
+                ),
+                hintText: '코드 언어를 입력하세요.',
+                //labelText: '노트를 입력하세요',
+                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderSide: BorderSide(
+                      color: ColorLibrary.textThemeColor, width: 2.5),
+                )
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            TextFormField(
               controller: _codeController,
               minLines: 6,
               maxLines: 6,
@@ -163,7 +195,8 @@ class _TextContentState extends State<TextContent> {
                 }
                 return null;
               },
-            )
+            ),
+            
           ],
 
           

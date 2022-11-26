@@ -4,21 +4,48 @@ import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CodeNote extends StatelessWidget {
+class CodePropertyNote extends StatelessWidget {
   String content;
   String code;
   String language;
+  bool property1;
+  bool property2;
+  bool property3;
+  bool property4;
+  bool property5;
 
-  CodeNote({
+  CodePropertyNote({
     super.key,
     required this.content,
     required this.code,
     this.language='dart',
+    this.property1 = false,
+    this.property2 = false,
+    this.property3 = false,
+    this.property4 = false,
+    this.property5 = false,
   });
 
   @override
   Widget build(BuildContext context) {
     String codeblock = '```$language\n$code```';
+    String txt = '';
+
+    if (property1) {
+      txt = txt + '@ 잘함   ';
+    }
+    if (property2) {
+      txt = txt + '@ 배움   ';
+    }
+    if (property3) {
+      txt = txt + '@ 개선   ';
+    }
+    if (property4) {
+      txt = txt + '@ 아쉬움   ';
+    }
+    if (property5) {
+      txt = txt + '@ 계획   ';
+    }
     
     return Column(
       children: [
@@ -146,22 +173,35 @@ class CodeNote extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.content_copy_outlined,
+                    Text(
+                      txt,
+                      style: TextStyle(
                           color: ColorLibrary.textThemeColor,
-                          size: 18,
-                        )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.delete_outline,
-                          color: ColorLibrary.textThemeColor,
-                          size: 22,
-                        )),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.content_copy_outlined,
+                              color: ColorLibrary.textThemeColor,
+                              size: 18,
+                            )),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.delete_outline,
+                              color: ColorLibrary.textThemeColor,
+                              size: 22,
+                            )),
+                      ],
+                    ),
                   ],
                 ),
               ),

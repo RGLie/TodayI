@@ -3,7 +3,10 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/note/show_note/code_link_note.dart';
+import 'package:todayi/widgets/note/show_note/code_link_property.dart';
 import 'package:todayi/widgets/note/show_note/code_note.dart';
+import 'package:todayi/widgets/note/show_note/code_property.dart';
 import 'package:todayi/widgets/note/show_note/content_note.dart';
 import 'package:todayi/widgets/note/show_note/link_note.dart';
 import 'package:todayi/widgets/note/show_note/link_property_note.dart';
@@ -138,6 +141,24 @@ SizedBox(
               content: 'dart 코드 입니다',
               code: coding,
               language: 'dart',
+            ),
+            CodePropertyNote(
+              content: 'dart property 코드 입니다',
+              code: coding,
+              property5: true,
+            ),
+            CodeLinkNote(
+              content: 'dart link 코드 입니다',
+              code: coding,
+              link: 'https://www.naver.com',
+              language: 'dart',
+            ),
+            CodePropertyLinkNote(
+              content: 'dart link property 코드 입니다',
+              code: coding,
+              link: 'https://www.naver.com',
+              language: 'dart',
+              property5: true,
             ),
             SizedBox(
               height: 15,

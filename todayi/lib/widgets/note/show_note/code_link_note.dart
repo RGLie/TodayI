@@ -4,15 +4,17 @@ import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CodeNote extends StatelessWidget {
+class CodeLinkNote extends StatelessWidget {
   String content;
   String code;
   String language;
+  String link;
 
-  CodeNote({
+  CodeLinkNote({
     super.key,
     required this.content,
     required this.code,
+    required this.link,
     this.language='dart',
   });
 
@@ -148,6 +150,18 @@ class CodeNote extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    IconButton(
+                      onPressed: () {
+                        launchUrl(
+                          Uri.parse(link),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.link,
+                        color: ColorLibrary.textThemeColor,
+                        size: 22,
+                      )
+                    ),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(
