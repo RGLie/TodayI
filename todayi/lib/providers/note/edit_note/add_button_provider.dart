@@ -21,6 +21,11 @@ class AddButtonProvider extends ChangeNotifier {
   int get tag_mouse_state => _tag_mouse_state;
   int get is_tag_clicked => _is_tag_clicked;
 
+  int _enter_mouse_state = 0;
+  int _is_enter_clicked = 0;
+  int get enter_mouse_state => _enter_mouse_state;
+  int get is_enter_clicked => _is_enter_clicked;
+
   //is mouse region : 1
   //button clicked : 2
   //else : 0
@@ -86,4 +91,23 @@ class AddButtonProvider extends ChangeNotifier {
     _tag_mouse_state = 0;
     notifyListeners();
   }
+
+  void enterClicked() {
+    _is_enter_clicked = (_is_enter_clicked + 1) % 2;
+    notifyListeners();
+  }
+
+  void isEnterRegion() {
+    _enter_mouse_state = 1;
+    notifyListeners();
+  }
+
+  void isnEnterRegion() {
+    _enter_mouse_state = 0;
+    notifyListeners();
+  }
 }
+
+
+
+

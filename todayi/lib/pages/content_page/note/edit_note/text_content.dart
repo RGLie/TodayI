@@ -445,10 +445,73 @@ class _TextContentState extends State<TextContent> {
 
                 
 
-
               ],
             ),
-          ]
+          ],
+          SizedBox(
+            height: 15,
+          ),
+          MouseRegion(
+            onEnter: (PointerEvent details) {
+              _addButtonProvider.isEnterRegion();
+            },
+            onExit: (PointerEvent details) {
+              _addButtonProvider.isnEnterRegion();
+            },
+            child: InkWell(
+              onTap: () {
+                _addButtonProvider.enterClicked();
+                FocusScope.of(context).requestFocus(new FocusNode());
+                if (_formKey.currentState!.validate()) {
+                  //_codeContoller.text
+                  
+                }
+
+              },
+              child: (() {
+                switch (_addButtonProvider.enter_mouse_state) {
+                  case 1:
+                    return Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: ColorLibrary.textThemeColor,
+                        //boxShadow: boxShadows,
+                      ),
+                      child: Center(
+                          child: Text(
+                        '완료',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: 'NotoSansKR',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      )),
+                    );
+                }
+                return Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    border:
+                        Border.all(width: 2.5, color: ColorLibrary.textThemeColor),
+                    borderRadius: BorderRadius.circular(10),
+                    //boxShadow: boxShadows,
+                  ),
+                  child: Center(
+                      child: Text(
+                    '완료',
+                    style: TextStyle(
+                      fontSize: 15, 
+                      fontFamily: 'NotoSansKR',
+                      fontWeight: FontWeight.w700,
+                    ),
+                  )),
+                );
+              })(),
+            ),
+          )
         ],
       ),
     );
