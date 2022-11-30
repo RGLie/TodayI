@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/show_note/code_link_note.dart';
@@ -11,10 +12,14 @@ import 'package:todayi/widgets/note/show_note/content_note.dart';
 import 'package:todayi/widgets/note/show_note/link_note.dart';
 import 'package:todayi/widgets/note/show_note/link_property_note.dart';
 import 'package:todayi/widgets/note/show_note/property_note.dart';
+import 'package:todayi/widgets/note/show_note/subtag/subtag_note.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key});
+  int index;
+  NoteCard({super.key,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,8 @@ SizedBox(
   height: 15,
 ),
 ''';
-    var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
+    //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
+    var card_provider = Provider.of<NoteProvider>(context);
     return Container(
       padding: EdgeInsets.all(15),
       width: double.infinity,
@@ -91,10 +97,10 @@ SizedBox(
                 child: IconButton(
                     splashRadius: 20,
                     onPressed: () {
-                      hide_button_provider.changeHide();
+                      card_provider.changeHide(index);
                     },
                     icon: (() {
-                      if (!hide_button_provider.is_hide) {
+                      if (!card_provider.getHide(index)) {
                         return Icon(
                           Icons.expand_less,
                           color: Colors.black54,
@@ -108,7 +114,7 @@ SizedBox(
               )
             ],
           ),
-          if (!hide_button_provider.is_hide) ...[
+          if (!card_provider.getHide(index)) ...[
             SizedBox(
               height: 15,
             ),
@@ -163,6 +169,15 @@ SizedBox(
             SizedBox(
               height: 15,
             ),
+            SubtagNote(
+              tagtext: '에러',
+              cardchild: [
+                ContentNote(
+                  content: '에러 내용은 이거',
+                  cardcolor: ColorLibrary.cardSubTagColor,
+                )
+              ]
+            )
             
           ]
         ],
