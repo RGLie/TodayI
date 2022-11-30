@@ -4,6 +4,7 @@ import 'package:todayi/pages/content_page/note/note.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/providers/note/edit_note/property_provider.dart';
+import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 
 class ContentPageChanger extends StatelessWidget {
@@ -28,6 +29,8 @@ class ContentPageChanger extends StatelessWidget {
           create: (BuildContext context) => PropertyProvider()),
         ChangeNotifierProvider(
           create: (BuildContext context) => CardNoteButtonProvider()),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => NoteProvider()),
       ],
       child: Note()
     );
