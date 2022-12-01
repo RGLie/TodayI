@@ -11,6 +11,7 @@ class PropertyNote extends StatelessWidget {
   bool property3;
   bool property4;
   bool property5;
+  Color cardcolor;
 
   PropertyNote({
     super.key,
@@ -20,6 +21,7 @@ class PropertyNote extends StatelessWidget {
     this.property3 = false,
     this.property4 = false,
     this.property5 = false,
+    this.cardcolor = const Color(0xffE5DDD1)
   });
 
   @override
@@ -48,10 +50,10 @@ class PropertyNote extends StatelessWidget {
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only(left: 15, right: 15,  top: 15),
+          padding: EdgeInsets.only(left: 15, right: 15, top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorLibrary.cardContentColor,
+            color: cardcolor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(

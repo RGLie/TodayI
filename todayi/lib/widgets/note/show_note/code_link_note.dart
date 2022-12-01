@@ -9,6 +9,7 @@ class CodeLinkNote extends StatelessWidget {
   String code;
   String language;
   String link;
+  Color cardcolor;
 
   CodeLinkNote({
     super.key,
@@ -16,6 +17,7 @@ class CodeLinkNote extends StatelessWidget {
     required this.code,
     required this.link,
     this.language='dart',
+    this.cardcolor = const Color(0xffE5DDD1)
   });
 
   @override
@@ -31,7 +33,7 @@ class CodeLinkNote extends StatelessWidget {
           padding: EdgeInsets.only( top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorLibrary.cardContentColor,
+            color: cardcolor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(

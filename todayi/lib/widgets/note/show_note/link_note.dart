@@ -8,10 +8,12 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkNote extends StatelessWidget {
   String content;
   String link;
+  Color cardcolor;
 
   LinkNote({super.key,
     required this.content,
     required this.link,
+    this.cardcolor = const Color(0xffE5DDD1)
   });
 
   @override
@@ -25,7 +27,7 @@ class LinkNote extends StatelessWidget {
           padding: EdgeInsets.only(left:15, right:15,  top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorLibrary.cardContentColor,
+            color: cardcolor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(

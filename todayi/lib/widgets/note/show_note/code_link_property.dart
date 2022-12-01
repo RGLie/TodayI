@@ -14,6 +14,7 @@ class CodePropertyLinkNote extends StatelessWidget {
   bool property3;
   bool property4;
   bool property5;
+  Color cardcolor;
 
   CodePropertyLinkNote({
     super.key,
@@ -26,6 +27,7 @@ class CodePropertyLinkNote extends StatelessWidget {
     this.property3 = false,
     this.property4 = false,
     this.property5 = false,
+    this.cardcolor = const Color(0xffE5DDD1)
   });
 
   @override
@@ -58,7 +60,7 @@ class CodePropertyLinkNote extends StatelessWidget {
           padding: EdgeInsets.only( top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorLibrary.cardContentColor,
+            color: cardcolor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(

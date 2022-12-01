@@ -13,17 +13,19 @@ class CodePropertyNote extends StatelessWidget {
   bool property3;
   bool property4;
   bool property5;
+  Color cardcolor;
 
   CodePropertyNote({
     super.key,
     required this.content,
     required this.code,
-    this.language='dart',
+    this.language = 'dart',
     this.property1 = false,
     this.property2 = false,
     this.property3 = false,
     this.property4 = false,
     this.property5 = false,
+    this.cardcolor = const Color(0xffE5DDD1)
   });
 
   @override
@@ -46,17 +48,17 @@ class CodePropertyNote extends StatelessWidget {
     if (property5) {
       txt = txt + '@ 계획   ';
     }
-    
+
     return Column(
       children: [
         SizedBox(
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only( top: 15),
+          padding: EdgeInsets.only(top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorLibrary.cardContentColor,
+            color: cardcolor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -95,7 +97,7 @@ class CodePropertyNote extends StatelessWidget {
                       //   backgroundColor: Colors.black,
                       //   color: Colors.white,
                       //   fontSize: 16
-              
+
                       // )
                     ),
                     key: const Key("defaultmarkdownformatter"),
@@ -106,25 +108,22 @@ class CodePropertyNote extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 15),
                 child: Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
                   color: Color(0xff32363b),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('dart',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15
-                        ),
+                      Text(
+                        'dart',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                       InkWell(
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                         child: Icon(
-                            Icons.content_copy_outlined,
-                            color: Colors.white,
-                            size: 15,
+                          Icons.content_copy_outlined,
+                          color: Colors.white,
+                          size: 15,
                         ),
                       )
                     ],
@@ -162,14 +161,13 @@ class CodePropertyNote extends StatelessWidget {
                     //   backgroundColor: Colors.black,
                     //   color: Colors.white,
                     //   fontSize: 16
-              
+
                     // )
                   ),
                   key: const Key("defaultmarkdownformatter"),
                   builders: {
                     'code': CodeElementBuilder(),
-                  }
-                ),
+                  }),
               Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Row(
@@ -185,7 +183,6 @@ class CodePropertyNote extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        
                         IconButton(
                             onPressed: () {},
                             icon: Icon(

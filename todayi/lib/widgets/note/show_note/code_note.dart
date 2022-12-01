@@ -8,28 +8,29 @@ class CodeNote extends StatelessWidget {
   String content;
   String code;
   String language;
+  Color cardcolor;
 
-  CodeNote({
-    super.key,
-    required this.content,
-    required this.code,
-    this.language='dart',
-  });
+  CodeNote(
+      {super.key,
+      required this.content,
+      required this.code,
+      this.language = 'dart',
+      this.cardcolor = const Color(0xffE5DDD1)});
 
   @override
   Widget build(BuildContext context) {
     String codeblock = '```$language\n$code```';
-    
+
     return Column(
       children: [
         SizedBox(
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only( top: 15),
+          padding: EdgeInsets.only(top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorLibrary.cardContentColor,
+            color: cardcolor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -68,7 +69,7 @@ class CodeNote extends StatelessWidget {
                       //   backgroundColor: Colors.black,
                       //   color: Colors.white,
                       //   fontSize: 16
-              
+
                       // )
                     ),
                     key: const Key("defaultmarkdownformatter"),
@@ -79,25 +80,22 @@ class CodeNote extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 15),
                 child: Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
                   color: Color(0xff32363b),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('dart',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15
-                        ),
+                      Text(
+                        'dart',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                       InkWell(
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                         child: Icon(
-                            Icons.content_copy_outlined,
-                            color: Colors.white,
-                            size: 15,
+                          Icons.content_copy_outlined,
+                          color: Colors.white,
+                          size: 15,
                         ),
                       )
                     ],
@@ -135,14 +133,13 @@ class CodeNote extends StatelessWidget {
                     //   backgroundColor: Colors.black,
                     //   color: Colors.white,
                     //   fontSize: 16
-              
+
                     // )
                   ),
                   key: const Key("defaultmarkdownformatter"),
                   builders: {
                     'code': CodeElementBuilder(),
-                  }
-                ),
+                  }),
               Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Row(
