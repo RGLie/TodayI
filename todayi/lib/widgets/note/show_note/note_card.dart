@@ -17,7 +17,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NoteCard extends StatelessWidget {
   int index;
-  NoteCard({super.key,
+  NoteCard({
+    super.key,
     required this.index,
   });
 
@@ -39,148 +40,169 @@ SizedBox(
 ''';
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
-    return Container(
-      padding: EdgeInsets.all(15),
-      width: double.infinity,
-      //height: 100,
-      constraints: BoxConstraints(
-        maxWidth: 1000,
-      ),
-      decoration: BoxDecoration(
-        color: ColorLibrary.cardColor,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.25),
-            blurRadius: 5,
-            offset: Offset(3, 3), // Shadow position
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Image(
-                      height: 60,
-                      width: 60,
-                      image: AssetImage('assets/icons/write_icon.png')),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('# Today I',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 30)),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text('Today I 개발일지',
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15)),
-                    ],
-                  ),
-                ],
-              ),
-              Material(
-                color: ColorLibrary.cardColor,
-                child: IconButton(
-                    splashRadius: 20,
-                    onPressed: () {
-                      card_provider.changeHide(index);
-                    },
-                    icon: (() {
-                      if (!card_provider.getHide(index)) {
+    return InkWell(
+      onTap: () {
+        if (!card_provider.is_checked) {
+          card_provider.checked();
+          card_provider.checkedTagIdx(index);
+        }
+        else{
+          if(card_provider.checked_tag == index){
+            card_provider.checked();
+          }
+          else{
+            card_provider.checkedTagIdx(index);
+          }
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.all(15),
+        width: double.infinity,
+        //height: 100,
+        constraints: BoxConstraints(
+          maxWidth: 1000,
+        ),
+        decoration: BoxDecoration(
+          color: ColorLibrary.cardColor,
+          borderRadius: BorderRadius.circular(10),
+          border: (() {
+            if (card_provider.is_checked &&
+                card_provider.checked_tag == index) {
+              return Border.all(
+                  width: 3,
+                  color: ColorLibrary.textThemeColor,
+                  strokeAlign: BorderSide.strokeAlignOutside);
+            }
+          })(),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.25),
+              blurRadius: 5,
+              offset: Offset(3, 3), // Shadow position
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Image(
+                        height: 60,
+                        width: 60,
+                        image: AssetImage('assets/icons/write_icon.png')),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('# Today I',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 30)),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text('Today I 개발일지',
+                            style: TextStyle(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15)),
+                      ],
+                    ),
+                  ],
+                ),
+                Material(
+                  color: ColorLibrary.cardColor,
+                  child: IconButton(
+                      splashRadius: 20,
+                      onPressed: () {
+                        card_provider.changeHide(index);
+                      },
+                      icon: (() {
+                        if (!card_provider.getHide(index)) {
+                          return Icon(
+                            Icons.expand_less,
+                            color: Colors.black54,
+                          );
+                        }
                         return Icon(
-                          Icons.expand_less,
+                          Icons.expand_more,
                           color: Colors.black54,
                         );
-                      }
-                      return Icon(
-                        Icons.expand_more,
-                        color: Colors.black54,
-                      );
-                    })()),
-              )
-            ],
-          ),
-          if (!card_provider.getHide(index)) ...[
-            SizedBox(
-              height: 15,
+                      })()),
+                )
+              ],
             ),
-            Container(
-              color: ColorLibrary.textThemeColor,
-              width: double.infinity,
-              height: 2,
-            ),
-            ContentNote(
-              content: data,
-            ),
-            PropertyNote(
-              content: '안녕하세요',
-              property1: true,
-              property4: true,
-            ),
-            ContentNote(
-              content:
-                  'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
-            ),
-            LinkPropertyNote(
-              content: 'Pub Dev 패키지',
-              link: 'https://pub.dev/',
-              property1: true,
-              property2: true,
-              property3: true,
-            ),
-            LinkNote(link: 'https://pub.dev/', content: data),
-            CodeNote(
-              content: 'dart 코드 입니다',
-              code: coding,
-              language: 'dart',
-            ),
-            CodePropertyNote(
-              content: 'dart property 코드 입니다',
-              code: coding,
-              property5: true,
-            ),
-            CodeLinkNote(
-              content: 'dart link 코드 입니다',
-              code: coding,
-              link: 'https://www.naver.com',
-              language: 'dart',
-            ),
-            CodePropertyLinkNote(
-              content: 'dart link property 코드 입니다',
-              code: coding,
-              link: 'https://www.naver.com',
-              language: 'dart',
-              property5: true,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            SubtagNote(
-              tagtext: '에러',
-              cardchild: [
+            if (!card_provider.getHide(index)) ...[
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                color: ColorLibrary.textThemeColor,
+                width: double.infinity,
+                height: 2,
+              ),
+              ContentNote(
+                content: data,
+              ),
+              PropertyNote(
+                content: '안녕하세요',
+                property1: true,
+                property4: true,
+              ),
+              ContentNote(
+                content:
+                    'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
+              ),
+              LinkPropertyNote(
+                content: 'Pub Dev 패키지',
+                link: 'https://pub.dev/',
+                property1: true,
+                property2: true,
+                property3: true,
+              ),
+              LinkNote(link: 'https://pub.dev/', content: data),
+              CodeNote(
+                content: 'dart 코드 입니다',
+                code: coding,
+                language: 'dart',
+              ),
+              CodePropertyNote(
+                content: 'dart property 코드 입니다',
+                code: coding,
+                property5: true,
+              ),
+              CodeLinkNote(
+                content: 'dart link 코드 입니다',
+                code: coding,
+                link: 'https://www.naver.com',
+                language: 'dart',
+              ),
+              CodePropertyLinkNote(
+                content: 'dart link property 코드 입니다',
+                code: coding,
+                link: 'https://www.naver.com',
+                language: 'dart',
+                property5: true,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SubtagNote(tagtext: '에러', cardchild: [
                 ContentNote(
                   content: '에러 내용은 이거',
                   cardcolor: ColorLibrary.cardSubTagColor,
                 )
-              ]
-            )
-            
-          ]
-        ],
+              ])
+            ]
+          ],
+        ),
       ),
     );
   }

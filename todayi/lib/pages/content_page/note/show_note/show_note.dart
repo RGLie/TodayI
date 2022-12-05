@@ -16,7 +16,7 @@ class _ShowNoteState extends State<ShowNote> {
   @override
   Widget build(BuildContext context) {
     var card_provider = Provider.of<NoteProvider>(context);
-    card_provider.setIdx(2);
+    card_provider.setNumIdx(2);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

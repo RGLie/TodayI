@@ -75,12 +75,7 @@ class _TextContentState extends State<TextContent> {
                             color: ColorLibrary.textThemeColor, width: 2.5),
                       )
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return '빈칸입니다.';
-                      }
-                      return null;
-                    },
+                    
                   ),
                 ),
               ],
@@ -117,12 +112,7 @@ class _TextContentState extends State<TextContent> {
                     color: ColorLibrary.textThemeColor, width: 2.5),
               )
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return '빈칸입니다.';
-              }
-              return null;
-            },
+            
           ),
 
           
@@ -189,12 +179,7 @@ class _TextContentState extends State<TextContent> {
                       color: ColorLibrary.textThemeColor, width: 2.5),
                 )
               ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return '빈칸입니다.';
-                }
-                return null;
-              },
+              
             ),
             
           ],
@@ -232,12 +217,7 @@ class _TextContentState extends State<TextContent> {
                       color: ColorLibrary.textThemeColor, width: 2.5),
                 )
               ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return '빈칸입니다.';
-                }
-                return null;
-              },
+              
             )
           ],
 
