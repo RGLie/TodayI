@@ -10,6 +10,8 @@ class Note {
   String icon;
   bool issubtag;
   List<String> subtaglist = [];
+  bool isdate;
+  List<String> datelist = [];
 
   Note({
     required this.uid,
@@ -19,7 +21,9 @@ class Note {
     required this.description,
     required this.icon,
     required this.issubtag,
-    required this.subtaglist
+    required this.subtaglist,
+    required this.isdate,
+    required this.datelist,
   });
 
   Map<String, dynamic> toMap() {
@@ -31,7 +35,9 @@ class Note {
       'description': description,
       'icon': icon,
       'issubtag':issubtag,
-      'subtaglist': subtaglist
+      'subtaglist': subtaglist,
+      'isdate':isdate,
+      'datelist': datelist
     };
   }
 
@@ -44,7 +50,9 @@ class Note {
         description: map['description'],
         icon: map['icon'],
         issubtag: map['issubtag'],
-        subtaglist: map['subtaglist']
+        subtaglist: map['subtaglist'],
+        isdate: map['isdate'],
+        datelist: map['datelist']
         );
   }
 
@@ -56,6 +64,8 @@ class Note {
         'description': description,
         'icon': icon,
         'issubtag':issubtag,
-        'subtaglist': subtaglist
+        'subtaglist': subtaglist,
+        'isdate':isdate,
+        'datelist': datelist
       };
 }
