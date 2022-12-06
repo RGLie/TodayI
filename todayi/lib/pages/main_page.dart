@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -25,10 +26,11 @@ class _MainPageState extends State<MainPage> {
       providers: [
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
-          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: ''),
+          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false, taglist: ['']),
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => SideBarProvider()),
+        
       ],
       child: MainPageSideBar()
     );
