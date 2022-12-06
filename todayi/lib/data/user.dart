@@ -8,7 +8,7 @@ class TUser {
   String registerdate;
   String recentlogindate;
   bool istag;
-  List<String> taglist = [];
+  //List<String> taglist = [];
 
   TUser({
     required this.uid,
@@ -17,7 +17,7 @@ class TUser {
     required this.registerdate,
     required this.recentlogindate,
     required this.istag,
-    required this.taglist,
+    //required this.taglist,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,7 +28,7 @@ class TUser {
       'registerdate': registerdate,
       'recentlogindate': recentlogindate,
       'istag':istag,
-      'taglist': taglist,
+      //'taglist': taglist,
     };
   }
 
@@ -40,7 +40,7 @@ class TUser {
         registerdate: map['registerdate'],
         recentlogindate: map['recentlogindate'],
         istag: map['istag'],
-        taglist: map['taglist'],
+        //taglist: map['taglist'],
         );
   }
 
@@ -51,6 +51,6 @@ class TUser {
         'registerdate': registerdate,
         'recentlogindate': recentlogindate,
         'istag':istag,
-        'taglist': taglist,
+        //'taglist': taglist,
       };
 }

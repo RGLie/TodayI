@@ -8,14 +8,7 @@ import 'package:todayi/pages/main_page_sidebar.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/providers/user_provider.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
-
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
+class MainPage extends StatelessWidget {
   UserProvider db = UserProvider();
   
   @override
@@ -26,7 +19,7 @@ class _MainPageState extends State<MainPage> {
       providers: [
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
-          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false, taglist: ['']),
+          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false,),
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => SideBarProvider()),

@@ -8,8 +8,6 @@ import 'package:todayi/pages/main_page.dart';
 import 'package:todayi/providers/user_provider.dart';
 
 class RootPage extends StatelessWidget {
-  UserProvider db = UserProvider();
-
   @override
   Widget build(BuildContext context) {
     var userData = Provider.of<User?>(context);
