@@ -42,17 +42,22 @@ class Note {
   }
 
   factory Note.fromMap(Map<String, dynamic>? map) {
+    List<String> subtags = [];
+    List<String> dates = [];
+    subtags.addAll(List.from(map!['subtaglist']));
+    dates.addAll(List.from(map['datelist']));
+
     return Note(
-        uid: map!['uid'],
+        uid: map['uid'],
         username: map['username'],
         tagname: map['tagname'],
         createdate: map['createdate'],
         description: map['description'],
         icon: map['icon'],
         issubtag: map['issubtag'],
-        subtaglist: map['subtaglist'],
+        subtaglist: subtags,
         isdate: map['isdate'],
-        datelist: map['datelist']
+        datelist: dates
         );
   }
 
