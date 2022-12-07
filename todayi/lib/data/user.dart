@@ -8,7 +8,7 @@ class TUser {
   String registerdate;
   String recentlogindate;
   bool istag;
-  //List<String> taglist = [];
+  List<String> taglist = [];
 
   TUser({
     required this.uid,
@@ -17,7 +17,7 @@ class TUser {
     required this.registerdate,
     required this.recentlogindate,
     required this.istag,
-    //required this.taglist,
+    required this.taglist,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,21 +27,23 @@ class TUser {
       'name': name,
       'registerdate': registerdate,
       'recentlogindate': recentlogindate,
-      'istag':istag,
-      //'taglist': taglist,
+      'istag': istag,
+      'taglist': taglist,
     };
   }
 
   factory TUser.fromMap(Map<String, dynamic>? map) {
+    List<String> tags = [];
+    tags.addAll(List.from(map!['taglist']));
     return TUser(
-        uid: map!['uid'],
-        email: map['email'],
-        name: map['name'],
-        registerdate: map['registerdate'],
-        recentlogindate: map['recentlogindate'],
-        istag: map['istag'],
-        //taglist: map['taglist'],
-        );
+      uid: map['uid'],
+      email: map['email'],
+      name: map['name'],
+      registerdate: map['registerdate'],
+      recentlogindate: map['recentlogindate'],
+      istag: map['istag'],
+      taglist: tags,
+    );
   }
 
   Map<String, dynamic> toJson() => {
@@ -50,7 +52,7 @@ class TUser {
         'name': name,
         'registerdate': registerdate,
         'recentlogindate': recentlogindate,
-        'istag':istag,
-        //'taglist': taglist,
+        'istag': istag,
+        'taglist': taglist,
       };
 }

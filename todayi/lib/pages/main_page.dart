@@ -19,7 +19,7 @@ class MainPage extends StatelessWidget {
       providers: [
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
-          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false,),
+          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false, taglist:['index']),
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => SideBarProvider()),
