@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/note.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/show_note/note_card.dart';
@@ -15,6 +16,7 @@ class ShowNote extends StatefulWidget {
 class _ShowNoteState extends State<ShowNote> {
   @override
   Widget build(BuildContext context) {
+    var noteDataList = Provider.of<List<Note>>(context);
     var card_provider = Provider.of<NoteProvider>(context);
     card_provider.setNumIdx(2);
 

@@ -5,7 +5,7 @@ import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/pages/login_page.dart';
 import 'package:todayi/pages/main_page.dart';
-import 'package:todayi/providers/user_provider.dart';
+import 'package:todayi/providers/data_provider.dart';
 
 class RootPage extends StatelessWidget {
   @override
