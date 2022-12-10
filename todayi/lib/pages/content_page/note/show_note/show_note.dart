@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todayi/data/note.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/widgets/note/addtag.dart';
 import 'package:todayi/widgets/note/show_note/note_card.dart';
 
 class ShowNote extends StatefulWidget {
@@ -18,7 +19,21 @@ class _ShowNoteState extends State<ShowNote> {
   Widget build(BuildContext context) {
     var noteDataList = Provider.of<List<Note>>(context);
     var card_provider = Provider.of<NoteProvider>(context);
-    card_provider.setNumIdx(2);
+    List<Widget> noteCardList = [];
+
+    card_provider.setNumIdx(noteDataList.length);
+
+    for (int i = 0; i < noteDataList.length; i++) {
+      noteCardList.add(NoteCard(
+        index: i,
+        tagname: noteDataList[i].tagname,
+        description: noteDataList[i].description,
+        icon: noteDataList[i].icon,
+      ));
+      noteCardList.add(SizedBox(
+        height: 20,
+      ));
+    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -55,24 +70,20 @@ class _ShowNoteState extends State<ShowNote> {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
+        ),
+
+        AddTag(),
+
+        SizedBox(
+          height: 15,
         ),
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                children: [
-                  NoteCard(
-                    index: 0,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  NoteCard(
-                    index: 1,
-                  ),
-                ],
+                children: noteCardList
               ),
             ),
           ),

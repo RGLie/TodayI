@@ -17,9 +17,17 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NoteCard extends StatelessWidget {
   int index;
+  String tagname;
+  String description;
+  String icon;
+
   NoteCard({
     super.key,
     required this.index,
+    required this.tagname,
+    required this.description,
+    required this.icon,
+
   });
 
   @override
@@ -45,12 +53,10 @@ SizedBox(
         if (!card_provider.is_checked) {
           card_provider.checked();
           card_provider.checkedTagIdx(index);
-        }
-        else{
-          if(card_provider.checked_tag == index){
+        } else {
+          if (card_provider.checked_tag == index) {
             card_provider.checked();
-          }
-          else{
+          } else {
             card_provider.checkedTagIdx(index);
           }
         }
@@ -93,14 +99,14 @@ SizedBox(
                     Image(
                         height: 60,
                         width: 60,
-                        image: AssetImage('assets/icons/write_icon.png')),
+                        image: AssetImage(icon)),
                     SizedBox(
                       width: 20,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('# Today I',
+                        Text('# $tagname',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -108,7 +114,7 @@ SizedBox(
                         SizedBox(
                           height: 5,
                         ),
-                        Text('Today I 개발일지',
+                        Text(description,
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontWeight: FontWeight.w500,

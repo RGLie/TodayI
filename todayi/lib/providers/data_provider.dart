@@ -18,7 +18,7 @@ class DataProvider {
   }
 
   Stream<List<Note>> getNotes(String uid) {
-    return _db.collection('user').doc(uid).collection('tags').snapshots()
+    return _db.collection('users').doc(uid).collection('tags').snapshots()
     .map((list) =>
         list.docs.map((doc) => Note.fromMap(doc.data())).toList());
   }
