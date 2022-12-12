@@ -12,6 +12,11 @@ class AddTag extends StatelessWidget {
     List<Widget> addTagWidgetList = [];
     for (var tag in user_data.taglist) {
       addTagWidgetList.add(
+        SizedBox(
+          width:10
+        )
+      );
+      addTagWidgetList.add(
         InkWell(
           onTap:(){
             
@@ -41,6 +46,7 @@ class AddTag extends StatelessWidget {
           ),
         ),
       );
+      
     }
 
     return Row(
@@ -48,7 +54,7 @@ class AddTag extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-
+            
           },
           child: Container(
             height: 35,

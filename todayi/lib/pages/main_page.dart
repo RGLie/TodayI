@@ -21,10 +21,12 @@ class MainPage extends StatelessWidget {
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
           initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false, taglist:['index']),
+          updateShouldNotify: (_, __) => true,
         ),
         StreamProvider<List<Note>>.value(
           value: db.getNotes(userData.uid),
           initialData: [],
+          updateShouldNotify: ListEquality<Note>().equals,
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => SideBarProvider()),
