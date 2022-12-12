@@ -3,9 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/utils/colors.dart';
 
-class AddTag extends StatelessWidget {
+class AddTag extends StatefulWidget {
   const AddTag({super.key});
 
+  @override
+  State<AddTag> createState() => _AddTagState();
+}
+
+class _AddTagState extends State<AddTag> {
   @override
   Widget build(BuildContext context) {
     var user_data = Provider.of<TUser>(context);
@@ -49,43 +54,39 @@ class AddTag extends StatelessWidget {
       
     }
 
-    return Consumer<TUser>(
-      builder: (context, model, child) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () {
-                
-              },
-              child: Container(
-                height: 35,
-                padding: EdgeInsets.only(left: 12, right: 12),
-                decoration: BoxDecoration(
-                  color: ColorLibrary.cardColor,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.25),
-                      blurRadius: 3,
-                      offset: Offset(2, 2), // Shadow position
-                    ),
-                  ],
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        InkWell(
+          onTap: () {
+            
+          },
+          child: Container(
+            height: 35,
+            padding: EdgeInsets.only(left: 12, right: 12),
+            decoration: BoxDecoration(
+              color: ColorLibrary.cardColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.25),
+                  blurRadius: 3,
+                  offset: Offset(2, 2), // Shadow position
                 ),
-                child: Center(
-                    child: Text(
-                  '${model.name}태그 생성',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.black, fontSize: 15),
-                )),
-              ),
+              ],
             ),
-            Row(
-              children: addTagWidgetList
-            )
-          ],
-        );
-      }
+            child: Center(
+                child: Text(
+              '태그 생성',
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, color: Colors.black, fontSize: 15),
+            )),
+          ),
+        ),
+        Row(
+          children: addTagWidgetList
+        )
+      ],
     );
   }
 }

@@ -26,7 +26,6 @@ class MainPage extends StatelessWidget {
         StreamProvider<List<Note>>.value(
           value: db.getNotes(userData.uid),
           initialData: [],
-          updateShouldNotify: ListEquality<Note>().equals,
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => SideBarProvider()),
