@@ -10,29 +10,32 @@ import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/providers/data_provider.dart';
 
 class MainPage extends StatelessWidget {
+  User? userData;
+  MainPage(this.userData);
   DataProvider db = DataProvider();
-  
+
   @override
   Widget build(BuildContext context) {
-    var userData = Provider.of<User?>(context);
-
     return MultiProvider(
       providers: [
         StreamProvider<TUser>.value(
           value: db.getUser(userData!.uid),
-          initialData: TUser(email: '', uid: '', name:'', registerdate: '', recentlogindate: '', istag: false, taglist:['index']),
-          updateShouldNotify: (_, __) => true,
+          initialData: TUser(
+              email: '',
+              uid: '',
+              name: '',
+              registerdate: '',
+              recentlogindate: '',
+              istag: false,
+              taglist: ['index']),
         ),
         StreamProvider<List<Note>>.value(
-          value: db.getNotes(userData.uid),
+          value: db.getNotes(userData!.uid),
           initialData: [],
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) => SideBarProvider()),
-        
-      ],
-      child: MainPageSideBar()
-    );
+            create: (BuildContext context) => SideBarProvider()),
+      ], 
+      child: MainPageSideBar());
   }
 }
-  

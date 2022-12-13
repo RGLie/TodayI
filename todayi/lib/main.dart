@@ -34,10 +34,10 @@ class MyApp extends StatelessWidget {
               create: (BuildContext context) => StartButtonProvider()),
           ChangeNotifierProvider(
               create: (BuildContext context) => ButtonProvider()),
-          StreamProvider<User?>.value(
-            value: FirebaseAuth.instance.authStateChanges(),
-            initialData: null,
-          ),
+          // StreamProvider<User?>.value(
+          //   value: FirebaseAuth.instance.authStateChanges(),
+          //   initialData: null,
+          // ),
         ],
         child: MaterialApp(
           title: 'Today I',

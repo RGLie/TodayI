@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/pages/auth_state_controll.dart';
 import 'package:todayi/pages/root_page.dart';
 import 'package:todayi/providers/start_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
@@ -63,7 +64,7 @@ class _StartButtonState extends State<StartButton> {
             _startButtonProvider.clicked();
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => RootPage()),
+              MaterialPageRoute(builder: (context) => AuthControllPage()),
             );
           },
           child: (() {

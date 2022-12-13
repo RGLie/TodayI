@@ -11,12 +11,12 @@ class DataProvider extends ChangeNotifier {
   
 
   // User 1명의 데이터 읽기
-  Stream<TUser> getUser(String uid) async* {
-    var snap = await _db.collection('users').doc(uid).get();
+  Stream<TUser> getUser(String uid) {
+    //var snap =  _db.collection('users').doc(uid).snapshots();
+    //Map<String, dynamic>? user_data = snap.data;
 
-    Map<String, dynamic>? user_data = snap.data();
-
-    yield TUser.fromMap(user_data);
+    // return TUser.fromMap(user_data);
+    return FirebaseFirestore.instance.collection('users').doc(uid).snapshots().map((doc) => TUser.fromMap(doc.data()));
   }
 
   Stream<List<Note>> getNotes(String uid) {

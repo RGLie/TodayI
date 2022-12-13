@@ -28,7 +28,7 @@ class RootPage extends StatelessWidget {
     //   })()
     // );
     if(isLogIn){
-      return MainPage();
+      //return MainPage();
     }
     return LoginPage();
   }
