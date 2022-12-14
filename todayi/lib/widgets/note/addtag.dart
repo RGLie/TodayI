@@ -41,7 +41,7 @@ class _AddTagState extends State<AddTag> {
             ),
             child: Center(
                 child: Text(
-              user_data.taglist[i].length>8?user_data.taglist[i].substring(0,8)+'...':user_data.taglist[i],
+               '# '+(user_data.taglist[i].length>8?user_data.taglist[i].substring(0,8)+'...':user_data.taglist[i]),
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   fontWeight: FontWeight.w600,
@@ -57,7 +57,46 @@ class _AddTagState extends State<AddTag> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  //Dialog Main Title
+                  title: Column(
+                    children: <Widget>[
+                      new Text("노트 태그 추가하기", style: TextStyle(color: ColorLibrary.textThemeColor),),
+                    ],
+                  ),
+                  //
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "가입이 완료되었습니다.",
+                        style: TextStyle(color: Colors.black)
+                      ),
+                    ],
+                  ),
+                  actions: <Widget>[
+                    new ElevatedButton(
+                      child: new Text("확인"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorLibrary.textThemeColor
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              }
+            ); 
+          },
           child: Container(
             height: 35,
             padding: EdgeInsets.only(left: 12, right: 12),
@@ -74,7 +113,7 @@ class _AddTagState extends State<AddTag> {
             ),
             child: Center(
                 child: Text(
-              '태그 생성',
+              '태그 추가',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
