@@ -18,22 +18,29 @@ class _ShowNoteState extends State<ShowNote> {
   @override
   Widget build(BuildContext context) {
     var noteDataList = Provider.of<List<Note>>(context);
-    var card_provider = Provider.of<NoteProvider>(context);
+    var today_note = Provider.of<NoteProvider>(context);
+    int todaynum = 0;
     List<Widget> noteCardList = [];
 
-    card_provider.setNumIdx(noteDataList.length);
+    
 
     for (int i = 0; i < noteDataList.length; i++) {
-      noteCardList.add(NoteCard(
-        index: i,
-        tagname: noteDataList[i].tagname,
-        description: noteDataList[i].description,
-        icon: noteDataList[i].icon,
-      ));
-      noteCardList.add(SizedBox(
-        height: 20,
-      ));
+      for (var j = 0; j < noteDataList[i].datelist.length; j++) {
+        if (noteDataList[i].datelist[j] == today_note.today_date) {
+          noteCardList.add(NoteCard(
+            index: i,
+            tagname: noteDataList[i].tagname,
+            description: noteDataList[i].description,
+            icon: noteDataList[i].icon,
+          ));
+          noteCardList.add(SizedBox(
+            height: 20,
+          ));
+          todaynum+=1;
+        }
+      }
     }
+    today_note.setNumIdx(todaynum);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -72,9 +79,7 @@ class _ShowNoteState extends State<ShowNote> {
         SizedBox(
           height: 10,
         ),
-
         AddTag(),
-
         SizedBox(
           height: 15,
         ),
@@ -82,9 +87,7 @@ class _ShowNoteState extends State<ShowNote> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: noteCardList
-              ),
+              child: Column(children: noteCardList),
             ),
           ),
         )

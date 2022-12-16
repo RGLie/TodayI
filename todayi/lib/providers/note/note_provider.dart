@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:todayi/data/note.dart';
 
 class NoteProvider extends ChangeNotifier {
   int _checked_tag = 0;
@@ -6,7 +8,22 @@ class NoteProvider extends ChangeNotifier {
   int get checked_tag => _checked_tag;
   bool get is_checked => _is_checked;
 
+  String _today_date = DateFormat('yyyy.MM.dd').format(DateTime.now());
+  String get today_date => _today_date;
   List<bool> _is_hide = [];
+  List<Note> _tag_list = [];
+  List<Note> get tag_list => _tag_list;
+  void changeDate(String d) {
+    _is_hide = [];
+    _tag_list = [];
+    _today_date = d;
+    notifyListeners();
+  }
+
+  void addTag(Note tag) {
+    _tag_list.add(tag);
+    notifyListeners();
+  }
 
   void checked() {
     _is_checked = !_is_checked;
@@ -19,6 +36,9 @@ class NoteProvider extends ChangeNotifier {
   }
 
   void setNumIdx(int n) {
+    // _checked_tag = 0;
+    // _is_checked = false;
+    // _is_hide = [];
     for (int i = 0; i < n; i++) {
       _is_hide.add(true);
     }
