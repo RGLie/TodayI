@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/date.dart';
 import 'package:todayi/data/note.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/note_provider.dart';
@@ -64,6 +65,7 @@ class _AddTagState extends State<AddTag> {
     for (var i in user_data.taglist) {
       dialogTag.add(InkWell(
         onTap: () {
+          print(note_tags.length);
           for (var j = 0; j < note_tags.length; j++) {
             if (note_tags[j].tagname == i) {
               CollectionReference selectTag = FirebaseFirestore.instance
@@ -77,19 +79,25 @@ class _AddTagState extends State<AddTag> {
 
               bool flag = false;
               for (var k in note_tags[j].datelist) {
-                if (k ==
-                    DateFormat('yyyy.MM.dd')
-                        .format(DateTime.now())
-                        .toString()) {
+                if (k == today_note.today_date) {
                   flag = true;
                 }
               }
               if (!flag) {
                 selectTag.doc(i).update({
-                  'datelist': FieldValue.arrayUnion([
-                    DateFormat('yyyy.MM.dd').format(DateTime.now()).toString()
-                  ])
+                  'datelist': FieldValue.arrayUnion([today_note.today_date])
                 });
+
+                CollectionReference dateCollection = FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(user_data.uid)
+                    .collection('tags')
+                    .doc(i)
+                    .collection('date');
+                NoteDate newdate =
+                    NoteDate(iscontent: false, issubtag: false, subtaglist: []);
+                dateCollection.doc(today_note.today_date).set(newdate.toJson());
+
                 today_note.addTag(note_tags[j]);
                 //today_note.setNumIdx(today_note.tag_list.length);
               }

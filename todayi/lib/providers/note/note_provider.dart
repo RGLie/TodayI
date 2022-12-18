@@ -8,9 +8,10 @@ class NoteProvider extends ChangeNotifier {
   int get checked_tag => _checked_tag;
   bool get is_checked => _is_checked;
 
-  String _today_date = DateFormat('yyyy.MM.dd').format(DateTime.now());
+  String _today_date = DateFormat('yyyy.MM.dd.').format(DateTime.now());
   String get today_date => _today_date;
-  List<bool> _is_hide = [];
+  //_is_hide number of index could make some index error
+  List<bool> _is_hide = [true,true,true,true,true,true,true,true,true,true,true,true,];
   List<Note> _tag_list = [];
   List<Note> get tag_list => _tag_list;
   void changeDate(String d) {
@@ -35,15 +36,15 @@ class NoteProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setNumIdx(int n) {
-    // _checked_tag = 0;
-    // _is_checked = false;
-    // _is_hide = [];
-    for (int i = 0; i < n; i++) {
-      _is_hide.add(true);
-    }
-    notifyListeners();
-  }
+  // void setNumIdx(int n) {
+  //   // _checked_tag = 0;
+  //   // _is_checked = false;
+  //   // _is_hide = [];
+  //   for (int i = 0; i < n; i++) {
+  //     _is_hide.add(true);
+  //   }
+  //   notifyListeners();
+  // }
 
   bool getHide(int idx) {
     return _is_hide[idx];

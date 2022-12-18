@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/date.dart';
 import 'package:todayi/data/note.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/data_provider.dart';
@@ -30,24 +32,33 @@ class _ShowNoteState extends State<ShowNote> {
       for (var j = 0; j < noteDataList[i].datelist.length; j++) {
         if (noteDataList[i].datelist[j] == today_note.today_date) {
           noteCardList.add(
-            StreamProvider.value(
-              value: db.getDateCollection(userData.uid, noteDataList[i].tagname, noteDataList[i].datelist[j]),
-              initialData: null,
-              child: NoteCard(
-                index: i,
-                tagname: noteDataList[i].tagname,
-                description: noteDataList[i].description,
-                icon: noteDataList[i].icon,
-              ),
-          ));
+              // stream: FirebaseFirestore.instance
+              //     .collection('users')
+              //     .doc(userData.uid)
+              //     .collection('tags')
+              //     .doc(noteDataList[i].tagname)
+              //     .collection('date')
+              //     .doc(noteDataList[i].datelist[j])
+              //     .snapshots(),
+              StreamProvider<NoteDate>.value(
+                value: db.getDateCollection(userData.uid, noteDataList[i].tagname, noteDataList[i].datelist[j] ),
+                initialData: NoteDate(iscontent: false, issubtag: false, subtaglist: []),
+                child: NoteCard(
+                    index: i,
+                    tagname: Provider.of<NoteDate>(context).iscontent ? 'adf' : noteDataList[i].tagname,
+                    description: noteDataList[i].description,
+                    icon: noteDataList[i].icon,
+                  ),
+              )
+              );
           noteCardList.add(SizedBox(
             height: 20,
           ));
-          todaynum += 1;
+          //todaynum += 1;
         }
       }
     }
-    today_note.setNumIdx(todaynum);
+    //today_note.setNumIdx(todaynum);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
