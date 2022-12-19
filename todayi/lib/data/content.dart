@@ -2,8 +2,9 @@ import 'dart:core';
 import 'package:intl/intl.dart';
 
 class NoteContent {
-  String uid= '';
+  String uid = '';
   String contentid = '';
+  String tag = '';
   String createdate = '';
   String lastupdatedate = '';
   String content = '';
@@ -21,8 +22,9 @@ class NoteContent {
   bool property5 = false;
 
   NoteContent({
-    this.uid= '',
+    this.uid = '',
     this.contentid = '',
+    this.tag = '',
     this.createdate = '',
     this.lastupdatedate = '',
     this.content = '',
@@ -38,13 +40,13 @@ class NoteContent {
     this.property3 = false,
     this.property4 = false,
     this.property5 = false,
-
   });
 
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
       'contentid': contentid,
+      'tag': tag,
       'createdate': createdate,
       'lastupdatedate': lastupdatedate,
       'content': content,
@@ -64,45 +66,46 @@ class NoteContent {
   }
 
   factory NoteContent.fromMap(Map<String, dynamic>? map) {
-
     return NoteContent(
-        uid: map!['uid'],
-        contentid: map['contentid'],
-        createdate: map['createdate'],
-        lastupdatedate: map['lastupdatedate'],
-        content: map['content'],
-        iscode: map['iscode'],
-        islink: map['islink'],
-        isproperty: map['isproperty'],
-        issubtag: map['issubtag'],
-        code: map['code'],
-        link: map['link'],
-        subtag: map['subtag'],
-        property1: map['proeprty1'],
-        property2: map['property2'],
-        property3: map['property3'],
-        property4: map['property4'],
-        property5: map['property5'],
-        );
+      uid: map!['uid'],
+      contentid: map['contentid'],
+      tag: map['tag'],
+      createdate: map['createdate'],
+      lastupdatedate: map['lastupdatedate'],
+      content: map['content'],
+      iscode: map['iscode'],
+      islink: map['islink'],
+      isproperty: map['isproperty'],
+      issubtag: map['issubtag'],
+      code: map['code'],
+      link: map['link'],
+      subtag: map['subtag'],
+      property1: map['proeprty1'],
+      property2: map['property2'],
+      property3: map['property3'],
+      property4: map['property4'],
+      property5: map['property5'],
+    );
   }
 
   Map<String, dynamic> toJson() => {
-      'uid': uid,
-      'contentid': contentid,
-      'createdate': createdate,
-      'lastupdatedate': lastupdatedate,
-      'content': content,
-      'iscode': iscode,
-      'islink': islink,
-      'isproperty': isproperty,
-      'issubtag': issubtag,
-      'code': code,
-      'link': link,
-      'subtag': subtag,
-      'proeprty1': property1,
-      'property2': property2,
-      'property3': property3,
-      'property4': property4,
-      'property5': property5,
+        'uid': uid,
+        'contentid': contentid,
+        'tag': tag,
+        'createdate': createdate,
+        'lastupdatedate': lastupdatedate,
+        'content': content,
+        'iscode': iscode,
+        'islink': islink,
+        'isproperty': isproperty,
+        'issubtag': issubtag,
+        'code': code,
+        'link': link,
+        'subtag': subtag,
+        'proeprty1': property1,
+        'property2': property2,
+        'property3': property3,
+        'property4': property4,
+        'property5': property5,
       };
 }
