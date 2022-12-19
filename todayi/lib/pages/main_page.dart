@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/content.dart';
 import 'package:todayi/data/tag.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/main_page_sidebar.dart';
@@ -31,6 +32,10 @@ class MainPage extends StatelessWidget {
         ),
         StreamProvider<List<Tag>>.value(
           value: db.getNotes(userData!.uid),
+          initialData: [],
+        ),
+        StreamProvider<List<NoteContent>>.value(
+          value: db.getNoteContents(userData!.uid),
           initialData: [],
         ),
         ChangeNotifierProvider(
