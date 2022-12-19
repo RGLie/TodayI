@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/date.dart';
-import 'package:todayi/data/note.dart';
+import 'package:todayi/data/tag.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/data_provider.dart';
 import 'package:todayi/providers/note/note_provider.dart';
@@ -22,7 +22,7 @@ class _ShowNoteState extends State<ShowNote> {
   DataProvider db = DataProvider();
   @override
   Widget build(BuildContext context) {
-    var noteDataList = Provider.of<List<Note>>(context);
+    var noteDataList = Provider.of<List<Tag>>(context);
     var today_note = Provider.of<NoteProvider>(context);
     var userData = Provider.of<TUser>(context);
     int todaynum = 0;

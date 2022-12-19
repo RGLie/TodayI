@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:todayi/data/note.dart';
+import 'package:todayi/data/tag.dart';
 
 class NoteProvider extends ChangeNotifier {
   int _checked_tag = 0;
@@ -12,8 +12,8 @@ class NoteProvider extends ChangeNotifier {
   String get today_date => _today_date;
   //_is_hide number of index could make some index error
   List<bool> _is_hide = [true,true,true,true,true,true,true,true,true,true,true,true,];
-  List<Note> _tag_list = [];
-  List<Note> get tag_list => _tag_list;
+  List<Tag> _tag_list = [];
+  List<Tag> get tag_list => _tag_list;
   void changeDate(String d) {
     _is_hide = [];
     _tag_list = [];
@@ -21,7 +21,7 @@ class NoteProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addTag(Note tag) {
+  void addTag(Tag tag) {
     _tag_list.add(tag);
     notifyListeners();
   }

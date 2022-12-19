@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todayi/data/date.dart';
-import 'package:todayi/data/note.dart';
+import 'package:todayi/data/tag.dart';
 import 'package:todayi/data/user.dart';
 
 class DataProvider extends ChangeNotifier {
@@ -20,10 +20,10 @@ class DataProvider extends ChangeNotifier {
     return FirebaseFirestore.instance.collection('users').doc(uid).snapshots().map((doc) => TUser.fromMap(doc.data()));
   }
 
-  Stream<List<Note>> getNotes(String uid) {
+  Stream<List<Tag>> getNotes(String uid) {
     return FirebaseFirestore.instance.collection('users').doc(uid).collection('tags').snapshots()
     .map((list) =>
-        list.docs.map((doc) => Note.fromMap(doc.data())).toList());
+        list.docs.map((doc) => Tag.fromMap(doc.data())).toList());
   }
 
   Stream<NoteDate> getDateCollection(String uid, String tag, String date) {

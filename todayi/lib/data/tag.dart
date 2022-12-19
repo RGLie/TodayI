@@ -1,7 +1,7 @@
 import 'dart:core';
 import 'package:intl/intl.dart';
 
-class Note {
+class Tag {
   String uid;
   String username;
   String tagname;
@@ -13,7 +13,7 @@ class Note {
   bool isdate;
   List<String> datelist = [];
 
-  Note({
+  Tag({
     required this.uid,
     required this.username,
     required this.tagname,
@@ -41,13 +41,13 @@ class Note {
     };
   }
 
-  factory Note.fromMap(Map<String, dynamic>? map) {
+  factory Tag.fromMap(Map<String, dynamic>? map) {
     List<String> subtags = [];
     List<String> dates = [];
     subtags.addAll(List.from(map!['subtaglist']));
     dates.addAll(List.from(map['datelist']));
 
-    return Note(
+    return Tag(
         uid: map['uid'],
         username: map['username'],
         tagname: map['tagname'],

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/date.dart';
-import 'package:todayi/data/note.dart';
+import 'package:todayi/data/tag.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
@@ -22,7 +22,7 @@ class _AddTagState extends State<AddTag> {
   @override
   Widget build(BuildContext context) {
     var user_data = Provider.of<TUser>(context);
-    var note_tags = Provider.of<List<Note>>(context);
+    var note_tags = Provider.of<List<Tag>>(context);
     var today_note = Provider.of<NoteProvider>(context);
     List<Widget> addTagWidgetList = [];
     List<Widget> dialogTag = [];
