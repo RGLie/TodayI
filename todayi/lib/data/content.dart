@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 class NoteContent {
   String uid = '';
   String contentid = '';
+  int count = 0;
   String tag = '';
-  String createdate = '';
+  String contentdate = '';
   String lastupdatedate = '';
   String content = '';
   bool iscode = false;
@@ -24,8 +25,9 @@ class NoteContent {
   NoteContent({
     this.uid = '',
     this.contentid = '',
+    this.count = 0,
     this.tag = '',
-    this.createdate = '',
+    this.contentdate = '',
     this.lastupdatedate = '',
     this.content = '',
     this.iscode = false,
@@ -46,8 +48,9 @@ class NoteContent {
     return {
       'uid': uid,
       'contentid': contentid,
+      'count': count,
       'tag': tag,
-      'createdate': createdate,
+      'contentdate': contentdate,
       'lastupdatedate': lastupdatedate,
       'content': content,
       'iscode': iscode,
@@ -69,8 +72,9 @@ class NoteContent {
     return NoteContent(
       uid: map!['uid'],
       contentid: map['contentid'],
+      count: map['count'],
       tag: map['tag'],
-      createdate: map['createdate'],
+      contentdate: map['contentdate'],
       lastupdatedate: map['lastupdatedate'],
       content: map['content'],
       iscode: map['iscode'],
@@ -91,8 +95,9 @@ class NoteContent {
   Map<String, dynamic> toJson() => {
         'uid': uid,
         'contentid': contentid,
+        'count':count,
         'tag': tag,
-        'createdate': createdate,
+        'contentdate': contentdate,
         'lastupdatedate': lastupdatedate,
         'content': content,
         'iscode': iscode,

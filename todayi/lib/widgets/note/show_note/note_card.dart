@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/content.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
@@ -20,6 +21,7 @@ class NoteCard extends StatelessWidget {
   String tagname;
   String description;
   String icon;
+  List<NoteContent> notecontent;
 
   NoteCard({
     super.key,
@@ -27,7 +29,7 @@ class NoteCard extends StatelessWidget {
     required this.tagname,
     required this.description,
     required this.icon,
-
+    required this.notecontent,
   });
 
   @override
@@ -96,10 +98,7 @@ SizedBox(
               children: [
                 Row(
                   children: [
-                    Image(
-                        height: 60,
-                        width: 60,
-                        image: AssetImage(icon)),
+                    Image(height: 60, width: 60, image: AssetImage(icon)),
                     SizedBox(
                       width: 20,
                     ),

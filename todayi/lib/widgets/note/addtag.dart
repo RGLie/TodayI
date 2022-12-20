@@ -88,15 +88,7 @@ class _AddTagState extends State<AddTag> {
                   'datelist': FieldValue.arrayUnion([today_note.today_date])
                 });
 
-                CollectionReference dateCollection = FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(user_data.uid)
-                    .collection('tags')
-                    .doc(i)
-                    .collection('date');
-                NoteDate newdate =
-                    NoteDate(iscontent: false, issubtag: false, subtaglist: []);
-                dateCollection.doc(today_note.today_date).set(newdate.toJson());
+                
 
                 today_note.addTag(note_tags[j]);
                 //today_note.setNumIdx(today_note.tag_list.length);

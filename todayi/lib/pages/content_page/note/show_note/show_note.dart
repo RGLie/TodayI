@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/content.dart';
 import 'package:todayi/data/date.dart';
 import 'package:todayi/data/tag.dart';
 import 'package:todayi/data/user.dart';
@@ -25,32 +26,30 @@ class _ShowNoteState extends State<ShowNote> {
     var noteDataList = Provider.of<List<Tag>>(context);
     var today_note = Provider.of<NoteProvider>(context);
     var userData = Provider.of<TUser>(context);
+    var noteContentList = Provider.of<List<NoteContent>>(context);
+
     int todaynum = 0;
     List<Widget> noteCardList = [];
 
     for (int i = 0; i < noteDataList.length; i++) {
       for (var j = 0; j < noteDataList[i].datelist.length; j++) {
         if (noteDataList[i].datelist[j] == today_note.today_date) {
+          List<NoteContent> todayTagContentList = [];
+          for (var k = 0; k < noteContentList.length; k++) {
+            if (noteContentList[k].contentdate == today_note.today_date) {
+              todayTagContentList.add(noteContentList[k]);
+            }
+          }
+          today_note.addTag(noteDataList[i]);
           noteCardList.add(
-              // stream: FirebaseFirestore.instance
-              //     .collection('users')
-              //     .doc(userData.uid)
-              //     .collection('tags')
-              //     .doc(noteDataList[i].tagname)
-              //     .collection('date')
-              //     .doc(noteDataList[i].datelist[j])
-              //     .snapshots(),
-              StreamProvider<NoteDate>.value(
-                value: db.getDateCollection(userData.uid, noteDataList[i].tagname, noteDataList[i].datelist[j] ),
-                initialData: NoteDate(iscontent: false, issubtag: false, subtaglist: []),
-                child: NoteCard(
-                    index: i,
-                    tagname: Provider.of<NoteDate>(context).iscontent ? 'adf' : noteDataList[i].tagname,
-                    description: noteDataList[i].description,
-                    icon: noteDataList[i].icon,
-                  ),
-              )
-              );
+            NoteCard(
+              index: i,
+              tagname: noteDataList[i].tagname,
+              description: noteDataList[i].description,
+              icon: noteDataList[i].icon,
+              notecontent: todayTagContentList,
+            ),
+          );
           noteCardList.add(SizedBox(
             height: 20,
           ));
