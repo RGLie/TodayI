@@ -34,6 +34,197 @@ class NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> contentWidgetList = [];
+    List<Widget> contentSubtagWidgetList = [];
+
+    for(var i = 0; i<notecontent.length; i++){
+      if (!notecontent[i].issubtag) {
+        if(getContentType(notecontent[i])=='content'){
+          contentWidgetList.add(
+            ContentNote(
+              content: notecontent[i].content,
+            ),
+          );
+        }
+        else if(getContentType(notecontent[i])=='code'){
+          contentWidgetList.add(
+            CodeNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='link'){
+          contentWidgetList.add(
+            LinkNote(
+              content: notecontent[i].content,
+              link: notecontent[i].link,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='property'){
+          contentWidgetList.add(
+            PropertyNote(
+              content: notecontent[i].content,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='code-link'){
+          contentWidgetList.add(
+            CodeLinkNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+              link: notecontent[i].link,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='code-property'){
+          contentWidgetList.add(
+            CodePropertyNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='link-property'){
+          contentWidgetList.add(
+            LinkPropertyNote(
+              content: notecontent[i].content,
+              link: notecontent[i].link,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='code-link-property'){
+          contentWidgetList.add(
+            CodePropertyLinkNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+              link: notecontent[i].link,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+      }
+
+      
+      else{
+        if(getContentType(notecontent[i])=='subtag-content'){
+          contentSubtagWidgetList.add(
+            ContentNote(
+              content: notecontent[i].content,
+            ),
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-code'){
+          contentSubtagWidgetList.add(
+            CodeNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-link'){
+          contentSubtagWidgetList.add(
+            LinkNote(
+              content: notecontent[i].content,
+              link: notecontent[i].link,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-property'){
+          contentSubtagWidgetList.add(
+            PropertyNote(
+              content: notecontent[i].content,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-code-link'){
+          contentSubtagWidgetList.add(
+            CodeLinkNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+              link: notecontent[i].link,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-code-property'){
+          contentSubtagWidgetList.add(
+            CodePropertyNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-link-property'){
+          contentSubtagWidgetList.add(
+            LinkPropertyNote(
+              content: notecontent[i].content,
+              link: notecontent[i].link,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+        else if(getContentType(notecontent[i])=='subtag-code-link-property'){
+          contentSubtagWidgetList.add(
+            CodePropertyLinkNote(
+              content: notecontent[i].content,
+              code: notecontent[i].code,
+              language: notecontent[i].language,
+              link: notecontent[i].link,
+              property1: notecontent[i].property1,
+              property2: notecontent[i].property2,
+              property3: notecontent[i].property3,
+              property4: notecontent[i].property4,
+              property5: notecontent[i].property5,
+            )
+          );
+        }
+      }
+
+
+
+    }
+
     String data = '''
 # 헤드 head 1
 ## 헤드 head 2
@@ -48,6 +239,8 @@ SizedBox(
   height: 15,
 ),
 ''';
+
+    
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
     return InkWell(
@@ -153,6 +346,8 @@ SizedBox(
                 width: double.infinity,
                 height: 2,
               ),
+
+
               ContentNote(
                 content: data,
               ),
@@ -210,5 +405,61 @@ SizedBox(
         ),
       ),
     );
+  }
+
+  String getContentType(NoteContent note){
+    if(!note.issubtag){
+      if(!note.iscode && !note.islink && !note.isproperty){
+        return 'content';
+      }
+      else if(note.iscode && !note.islink && !note.isproperty){
+        return 'code';
+      }
+      else if(!note.iscode && note.islink && !note.isproperty){
+        return 'link';
+      }
+      else if(!note.iscode && !note.islink && note.isproperty){
+        return 'property';
+      }
+      else if(note.iscode && note.islink && !note.isproperty){
+        return 'code-link';
+      }
+      else if(note.iscode && !note.islink && note.isproperty){
+        return 'code-property';
+      }
+      else if(!note.iscode && note.islink && note.isproperty){
+        return 'link-property';
+      }
+      else if(note.iscode && note.islink && note.isproperty){
+        return 'code-link-property';
+      }
+    }
+
+    if(!note.iscode && !note.islink && !note.isproperty){
+      return 'subtag-content';
+    }
+    else if(note.iscode && !note.islink && !note.isproperty){
+      return 'subtag-code';
+    }
+    else if(!note.iscode && note.islink && !note.isproperty){
+      return 'subtag-link';
+    }
+    else if(!note.iscode && !note.islink && note.isproperty){
+      return 'subtag-property';
+    }
+    else if(note.iscode && note.islink && !note.isproperty){
+      return 'subtag-code-link';
+    }
+    else if(note.iscode && !note.islink && note.isproperty){
+      return 'subtag-code-property';
+    }
+    else if(!note.iscode && note.islink && note.isproperty){
+      return 'subtag-link-property';
+    }
+    else{
+      return 'subtag-code-link-property';
+    }
+
+    
   }
 }

@@ -14,6 +14,7 @@ class NoteContent {
   bool isproperty = false;
   bool issubtag = false;
   String code = '';
+  String language = '';
   String link = '';
   String subtag = '';
   bool property1 = false;
@@ -35,6 +36,7 @@ class NoteContent {
     this.isproperty = false,
     this.issubtag = false,
     this.code = '',
+    this.language = '',
     this.link = '',
     this.subtag = '',
     this.property1 = false,
@@ -58,6 +60,7 @@ class NoteContent {
       'isproperty': isproperty,
       'issubtag': issubtag,
       'code': code,
+      'language': language,
       'link': link,
       'subtag': subtag,
       'property1': property1,
@@ -82,6 +85,7 @@ class NoteContent {
       isproperty: map['isproperty'],
       issubtag: map['issubtag'],
       code: map['code'],
+      language: map['language'],
       link: map['link'],
       subtag: map['subtag'],
       property1: map['proeprty1'],
@@ -105,6 +109,7 @@ class NoteContent {
         'isproperty': isproperty,
         'issubtag': issubtag,
         'code': code,
+        'language': language,
         'link': link,
         'subtag': subtag,
         'proeprty1': property1,
