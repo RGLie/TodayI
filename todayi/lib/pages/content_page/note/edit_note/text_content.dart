@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/content.dart';
+import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/providers/note/edit_note/property_provider.dart';
+import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/edit_note/property_button.dart';
 
@@ -24,6 +28,9 @@ class _TextContentState extends State<TextContent> {
   Widget build(BuildContext context) {
     var _addButtonProvider = Provider.of<AddButtonProvider>(context);
     var _propertyProvider = Provider.of<PropertyProvider>(context);
+
+    var today_note = Provider.of<NoteProvider>(context);
+    var userData = Provider.of<TUser>(context);
 
     return Form(
       key: _formKey,
@@ -444,7 +451,12 @@ class _TextContentState extends State<TextContent> {
                 FocusScope.of(context).requestFocus(new FocusNode());
                 if (_formKey.currentState!.validate()) {
                   //_codeContoller.text
-                  
+                  CollectionReference contents = FirebaseFirestore.instance.collection('users').doc(userData.uid).collection('contents');
+                  NoteContent newcontent = NoteContent(
+
+                  );
+                  contents.doc('a').set(newcontent.toJson());
+                  today_note.plusCount();
                 }
 
               },

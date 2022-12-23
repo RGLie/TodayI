@@ -35,7 +35,14 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> contentWidgetList = [];
-    List<Widget> contentSubtagWidgetList = [];
+    
+    Map<String, dynamic> subtagWidgets = {};
+
+    for(var i = 0; i<notecontent.length; i++){
+      if (notecontent[i].issubtag) {
+        subtagWidgets[notecontent[i].subtag]=[];
+      }
+    }
 
     for(var i = 0; i<notecontent.length; i++){
       if (!notecontent[i].issubtag) {
@@ -140,7 +147,7 @@ class NoteCard extends StatelessWidget {
 
       else{
         if(getContentType(notecontent[i])=='subtag-content'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             ContentNote(
               content: notecontent[i].content,
               cardcolor: ColorLibrary.cardSubTagColor,
@@ -149,7 +156,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-code'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             CodeNote(
               content: notecontent[i].content,
               code: notecontent[i].code,
@@ -160,7 +167,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-link'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             LinkNote(
               content: notecontent[i].content,
               link: notecontent[i].link,
@@ -170,7 +177,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-property'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             PropertyNote(
               content: notecontent[i].content,
               property1: notecontent[i].property1,
@@ -184,7 +191,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-code-link'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             CodeLinkNote(
               content: notecontent[i].content,
               code: notecontent[i].code,
@@ -196,7 +203,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-code-property'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             CodePropertyNote(
               content: notecontent[i].content,
               code: notecontent[i].code,
@@ -212,7 +219,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-link-property'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             LinkPropertyNote(
               content: notecontent[i].content,
               link: notecontent[i].link,
@@ -227,7 +234,7 @@ class NoteCard extends StatelessWidget {
           );
         }
         else if(getContentType(notecontent[i])=='subtag-code-link-property'){
-          contentSubtagWidgetList.add(
+          subtagWidgets[notecontent[i].subtag].add(
             CodePropertyLinkNote(
               content: notecontent[i].content,
               code: notecontent[i].code,
@@ -246,22 +253,24 @@ class NoteCard extends StatelessWidget {
       }
     }
 
-    
+    List<Widget> contentSubtagWidgetList = [];
+    List<Widget> subtagContents = [];
+    for(var i in subtagWidgets.keys){
+      subtagContents = [];
+      if(subtagWidgets[i].length != 0){
+        for(var j in subtagWidgets[i]){
+          subtagContents.add(j);
+        }
+        contentSubtagWidgetList.add(
+          SizedBox(height:15)
+        );
+        contentSubtagWidgetList.add(
+          SubtagNote(cardchild: subtagContents, tagtext: i)
+        );
+      }
+    }
 
-    String data = '''
-# 헤드 head 1
-## 헤드 head 2
-**Bold 볼드**aaaaaaaaaaaaaaaaaaaaaaayvuvuy
-```dart
-String hello = 'HELLO World!';
-print(hello);
-```
-''';
-    String coding = '''
-SizedBox(
-  height: 15,
-),
-''';
+    
 
     
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
@@ -369,8 +378,9 @@ SizedBox(
                 width: double.infinity,
                 height: 2,
               ),
-
-
+              Column(
+                children: contentSubtagWidgetList,
+              )
               // ContentNote(
               //   content: data,
               // ),
@@ -414,15 +424,15 @@ SizedBox(
               //   language: 'dart',
               //   property5: true,
               // ),
-              SizedBox(
-                height: 15,
-              ),
-              SubtagNote(tagtext: '에러', cardchild: [
-                // ContentNote(
-                //   content: '에러 내용은 이거',
-                //   cardcolor: ColorLibrary.cardSubTagColor,
-                // )
-              ])
+              // SizedBox(
+              //   height: 15,
+              // ),
+              // SubtagNote(tagtext: '에러', cardchild: [
+              //   // ContentNote(
+              //   //   content: '에러 내용은 이거',
+              //   //   cardcolor: ColorLibrary.cardSubTagColor,
+              //   // )
+              // ])
             ]
           ],
         ),
