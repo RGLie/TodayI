@@ -8,12 +8,14 @@ class CodeNote extends StatelessWidget {
   String content;
   String code;
   String language;
+  int count;
   Color cardcolor;
 
   CodeNote(
       {super.key,
       required this.content,
       required this.code,
+      required this.count,
       this.language = 'dart',
       this.cardcolor = const Color(0xffE5DDD1)});
 

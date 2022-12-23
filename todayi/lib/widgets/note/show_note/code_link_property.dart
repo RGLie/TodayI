@@ -9,6 +9,7 @@ class CodePropertyLinkNote extends StatelessWidget {
   String code;
   String language;
   String link;
+  int count;
   bool property1;
   bool property2;
   bool property3;
@@ -21,6 +22,7 @@ class CodePropertyLinkNote extends StatelessWidget {
     required this.content,
     required this.code,
     required this.link,
+    required this.count,
     this.language='dart',
     this.property1 = false,
     this.property2 = false,

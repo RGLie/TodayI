@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkPropertyNote extends StatelessWidget {
   String content;
   String link;
+  int count;
   bool property1;
   bool property2;
   bool property3;
@@ -18,6 +19,7 @@ class LinkPropertyNote extends StatelessWidget {
     super.key,
     required this.content,
     required this.link,
+    required this.count,
     this.property1 = false,
     this.property2 = false,
     this.property3 = false,

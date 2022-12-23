@@ -10,12 +10,14 @@ class CodeLinkNote extends StatelessWidget {
   String language;
   String link;
   Color cardcolor;
+  int count;
 
   CodeLinkNote({
     super.key,
     required this.content,
     required this.code,
     required this.link,
+    required this.count,
     this.language='dart',
     this.cardcolor = const Color(0xffE5DDD1)
   });

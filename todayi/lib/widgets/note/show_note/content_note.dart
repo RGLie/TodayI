@@ -7,10 +7,12 @@ import 'package:url_launcher/url_launcher.dart';
 class ContentNote extends StatelessWidget {
   String content;
   Color cardcolor;
+  int count;
 
   ContentNote({
     super.key,
     required this.content,
+    required this.count,
     this.cardcolor = const Color(0xffE5DDD1)
   });
 

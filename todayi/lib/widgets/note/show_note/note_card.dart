@@ -43,6 +43,7 @@ class NoteCard extends StatelessWidget {
           contentWidgetList.add(
             ContentNote(
               content: notecontent[i].content,
+              count: notecontent[i].count,
             ),
           );
         }
@@ -52,6 +53,7 @@ class NoteCard extends StatelessWidget {
               content: notecontent[i].content,
               code: notecontent[i].code,
               language: notecontent[i].language,
+              count: notecontent[i].count,
             )
           );
         }
@@ -60,6 +62,7 @@ class NoteCard extends StatelessWidget {
             LinkNote(
               content: notecontent[i].content,
               link: notecontent[i].link,
+              count: notecontent[i].count,
             )
           );
         }
@@ -72,6 +75,7 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              count: notecontent[i].count,
             )
           );
         }
@@ -82,6 +86,7 @@ class NoteCard extends StatelessWidget {
               code: notecontent[i].code,
               language: notecontent[i].language,
               link: notecontent[i].link,
+              count: notecontent[i].count,
             )
           );
         }
@@ -96,6 +101,7 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              count: notecontent[i].count,
             )
           );
         }
@@ -109,6 +115,7 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              count: notecontent[i].count,
             )
           );
         }
@@ -124,17 +131,20 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              count: notecontent[i].count,
             )
           );
         }
       }
 
-      
+
       else{
         if(getContentType(notecontent[i])=='subtag-content'){
           contentSubtagWidgetList.add(
             ContentNote(
               content: notecontent[i].content,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             ),
           );
         }
@@ -144,6 +154,8 @@ class NoteCard extends StatelessWidget {
               content: notecontent[i].content,
               code: notecontent[i].code,
               language: notecontent[i].language,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
@@ -152,6 +164,8 @@ class NoteCard extends StatelessWidget {
             LinkNote(
               content: notecontent[i].content,
               link: notecontent[i].link,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
@@ -164,6 +178,8 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
@@ -174,6 +190,8 @@ class NoteCard extends StatelessWidget {
               code: notecontent[i].code,
               language: notecontent[i].language,
               link: notecontent[i].link,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
@@ -188,6 +206,8 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
@@ -201,6 +221,8 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
@@ -216,14 +238,15 @@ class NoteCard extends StatelessWidget {
               property3: notecontent[i].property3,
               property4: notecontent[i].property4,
               property5: notecontent[i].property5,
+              cardcolor: ColorLibrary.cardSubTagColor,
+              count: notecontent[i].count,
             )
           );
         }
       }
-
-
-
     }
+
+    
 
     String data = '''
 # 헤드 head 1
@@ -348,57 +371,57 @@ SizedBox(
               ),
 
 
-              ContentNote(
-                content: data,
-              ),
-              PropertyNote(
-                content: '안녕하세요',
-                property1: true,
-                property4: true,
-              ),
-              ContentNote(
-                content:
-                    'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
-              ),
-              LinkPropertyNote(
-                content: 'Pub Dev 패키지',
-                link: 'https://pub.dev/',
-                property1: true,
-                property2: true,
-                property3: true,
-              ),
-              LinkNote(link: 'https://pub.dev/', content: data),
-              CodeNote(
-                content: 'dart 코드 입니다',
-                code: coding,
-                language: 'dart',
-              ),
-              CodePropertyNote(
-                content: 'dart property 코드 입니다',
-                code: coding,
-                property5: true,
-              ),
-              CodeLinkNote(
-                content: 'dart link 코드 입니다',
-                code: coding,
-                link: 'https://www.naver.com',
-                language: 'dart',
-              ),
-              CodePropertyLinkNote(
-                content: 'dart link property 코드 입니다',
-                code: coding,
-                link: 'https://www.naver.com',
-                language: 'dart',
-                property5: true,
-              ),
+              // ContentNote(
+              //   content: data,
+              // ),
+              // PropertyNote(
+              //   content: '안녕하세요',
+              //   property1: true,
+              //   property4: true,
+              // ),
+              // ContentNote(
+              //   content:
+              //       'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
+              // ),
+              // LinkPropertyNote(
+              //   content: 'Pub Dev 패키지',
+              //   link: 'https://pub.dev/',
+              //   property1: true,
+              //   property2: true,
+              //   property3: true,
+              // ),
+              // LinkNote(link: 'https://pub.dev/', content: data),
+              // CodeNote(
+              //   content: 'dart 코드 입니다',
+              //   code: coding,
+              //   language: 'dart',
+              // ),
+              // CodePropertyNote(
+              //   content: 'dart property 코드 입니다',
+              //   code: coding,
+              //   property5: true,
+              // ),
+              // CodeLinkNote(
+              //   content: 'dart link 코드 입니다',
+              //   code: coding,
+              //   link: 'https://www.naver.com',
+              //   language: 'dart',
+              // ),
+              // CodePropertyLinkNote(
+              //   content: 'dart link property 코드 입니다',
+              //   code: coding,
+              //   link: 'https://www.naver.com',
+              //   language: 'dart',
+              //   property5: true,
+              // ),
               SizedBox(
                 height: 15,
               ),
               SubtagNote(tagtext: '에러', cardchild: [
-                ContentNote(
-                  content: '에러 내용은 이거',
-                  cardcolor: ColorLibrary.cardSubTagColor,
-                )
+                // ContentNote(
+                //   content: '에러 내용은 이거',
+                //   cardcolor: ColorLibrary.cardSubTagColor,
+                // )
               ])
             ]
           ],

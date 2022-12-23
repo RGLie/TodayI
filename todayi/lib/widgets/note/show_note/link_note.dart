@@ -8,11 +8,13 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkNote extends StatelessWidget {
   String content;
   String link;
+  int count;
   Color cardcolor;
 
   LinkNote({super.key,
     required this.content,
     required this.link,
+    required this.count,
     this.cardcolor = const Color(0xffE5DDD1)
   });
 
