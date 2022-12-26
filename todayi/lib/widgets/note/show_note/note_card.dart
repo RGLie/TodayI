@@ -379,6 +379,9 @@ class NoteCard extends StatelessWidget {
                 height: 2,
               ),
               Column(
+                children: contentWidgetList
+              ),
+              Column(
                 children: contentSubtagWidgetList,
               )
               // ContentNote(

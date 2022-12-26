@@ -452,6 +452,12 @@ class _TextContentState extends State<TextContent> {
                       'issubtag': true
                     });
                   }
+                  _textController.clear();
+                  _tagController.clear();
+                  _codeController.clear();
+                  _linkController.clear();
+                  _lanController.clear();
+
 
                 }
               },

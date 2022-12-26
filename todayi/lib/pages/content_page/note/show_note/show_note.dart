@@ -44,7 +44,7 @@ class _ShowNoteState extends State<ShowNote> {
           noteCardList.add(
             NoteCard(
               index: i,
-              tagname: noteDataList[i].tagname+noteContentList.length.toString(),
+              tagname: noteDataList[i].tagname,
               description: noteDataList[i].description,
               icon: noteDataList[i].icon,
               notecontent: todayTagContentList,
