@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
+import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/edit_note/add_content_button.dart';
 
@@ -10,6 +11,7 @@ class AddContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _addButtonProvider = Provider.of<AddButtonProvider>(context);
+    var today_note = Provider.of<NoteProvider>(context);
 
     return Row(
       children: [
@@ -23,13 +25,15 @@ class AddContent extends StatelessWidget {
           child: InkWell(
             onTap: () {
               _addButtonProvider.codeClicked();
+              //today_note.setIsCode(true);
             },
             child: AddContentButton(
                 txt: '코드 추가',
                 subtxt: '개발',
                 imgpath: 'assets/icons/code_icon.png',
                 boxdecoration: (() {
-                  if(_addButtonProvider.code_mouse_state == 1 && _addButtonProvider.is_code_clicked == 1){
+                  if (_addButtonProvider.code_mouse_state == 1 &&
+                      _addButtonProvider.is_code_clicked == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColorRegioned,
                       borderRadius: BorderRadius.circular(10),
@@ -63,7 +67,7 @@ class AddContent extends StatelessWidget {
                       ],
                     );
                   }
-                  
+
                   if (_addButtonProvider.is_code_clicked == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColor,
@@ -85,12 +89,9 @@ class AddContent extends StatelessWidget {
                       ),
                     ],
                   );
-                })()
-              ),
+                })()),
           ),
         ),
-
-
         SizedBox(
           width: 15,
         ),
@@ -110,53 +111,15 @@ class AddContent extends StatelessWidget {
               subtxt: '북마크',
               imgpath: 'assets/icons/badge_icon.png',
               boxdecoration: (() {
-                  if(_addButtonProvider.link_mouse_state == 1 && _addButtonProvider.is_link_clicked == 1){
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          width: 2.5,
-                          color: ColorLibrary.textThemeColor,
-                          strokeAlign: BorderSide.strokeAlignOutside),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 3,
-                          offset: Offset(2, 2), // Shadow position
-                        ),
-                      ],
-                    );
-                  }
-                  if (_addButtonProvider.link_mouse_state == 1) {
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
-                      // border: Border.all(
-                      //     width: 2.5,
-                      //     color: ColorLibrary.textThemeColor,
-                      //     strokeAlign: BorderSide.strokeAlignOutside),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 3,
-                          offset: Offset(2, 2), // Shadow position
-                        ),
-                      ],
-                    );
-                  }
-                  if (_addButtonProvider.is_link_clicked == 1) {
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColor,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          width: 2.5,
-                          color: ColorLibrary.textThemeColor,
-                          strokeAlign: BorderSide.strokeAlignOutside),
-                    );
-                  }
+                if (_addButtonProvider.link_mouse_state == 1 &&
+                    _addButtonProvider.is_link_clicked == 1) {
                   return BoxDecoration(
-                    color: ColorLibrary.cardColor,
+                    color: ColorLibrary.cardColorRegioned,
                     borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 2.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
                     boxShadow: [
                       BoxShadow(
                         color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -165,12 +128,49 @@ class AddContent extends StatelessWidget {
                       ),
                     ],
                   );
-                })(),
+                }
+                if (_addButtonProvider.link_mouse_state == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColorRegioned,
+                    borderRadius: BorderRadius.circular(10),
+                    // border: Border.all(
+                    //     width: 2.5,
+                    //     color: ColorLibrary.textThemeColor,
+                    //     strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
+                if (_addButtonProvider.is_link_clicked == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 2.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                  );
+                }
+                return BoxDecoration(
+                  color: ColorLibrary.cardColor,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      blurRadius: 3,
+                      offset: Offset(2, 2), // Shadow position
+                    ),
+                  ],
+                );
+              })(),
             ),
           ),
         ),
-
-
         SizedBox(
           width: 15,
         ),
@@ -190,40 +190,41 @@ class AddContent extends StatelessWidget {
               subtxt: '배운점, 잘한점 ...',
               imgpath: 'assets/icons/email_at_icon.png',
               boxdecoration: (() {
-                if(_addButtonProvider.property_mouse_state == 1 && _addButtonProvider.is_property_clicked == 1){
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          width: 2.5,
-                          color: ColorLibrary.textThemeColor,
-                          strokeAlign: BorderSide.strokeAlignOutside),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 3,
-                          offset: Offset(2, 2), // Shadow position
-                        ),
-                      ],
-                    );
-                  }
-                  if (_addButtonProvider.property_mouse_state == 1) {
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
-                      // border: Border.all(
-                      //     width: 2.5,
-                      //     color: ColorLibrary.textThemeColor,
-                      //     strokeAlign: BorderSide.strokeAlignOutside),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 3,
-                          offset: Offset(2, 2), // Shadow position
-                        ),
-                      ],
-                    );
-                  }
+                if (_addButtonProvider.property_mouse_state == 1 &&
+                    _addButtonProvider.is_property_clicked == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColorRegioned,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 2.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
+                if (_addButtonProvider.property_mouse_state == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColorRegioned,
+                    borderRadius: BorderRadius.circular(10),
+                    // border: Border.all(
+                    //     width: 2.5,
+                    //     color: ColorLibrary.textThemeColor,
+                    //     strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
                 if (_addButtonProvider.is_property_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColor,
@@ -249,8 +250,6 @@ class AddContent extends StatelessWidget {
             ),
           ),
         ),
-
-
         SizedBox(
           width: 15,
         ),
@@ -270,40 +269,41 @@ class AddContent extends StatelessWidget {
               subtxt: '서브',
               imgpath: 'assets/icons/tag_icon.png',
               boxdecoration: (() {
-                if(_addButtonProvider.tag_mouse_state == 1 && _addButtonProvider.is_tag_clicked == 1){
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          width: 2.5,
-                          color: ColorLibrary.textThemeColor,
-                          strokeAlign: BorderSide.strokeAlignOutside),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 3,
-                          offset: Offset(2, 2), // Shadow position
-                        ),
-                      ],
-                    );
-                  }
-                  if (_addButtonProvider.tag_mouse_state == 1) {
-                    return BoxDecoration(
-                      color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
-                      // border: Border.all(
-                      //     width: 2.5,
-                      //     color: ColorLibrary.textThemeColor,
-                      //     strokeAlign: BorderSide.strokeAlignOutside),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 3,
-                          offset: Offset(2, 2), // Shadow position
-                        ),
-                      ],
-                    );
-                  }
+                if (_addButtonProvider.tag_mouse_state == 1 &&
+                    _addButtonProvider.is_tag_clicked == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColorRegioned,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 2.5,
+                        color: ColorLibrary.textThemeColor,
+                        strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
+                if (_addButtonProvider.tag_mouse_state == 1) {
+                  return BoxDecoration(
+                    color: ColorLibrary.cardColorRegioned,
+                    borderRadius: BorderRadius.circular(10),
+                    // border: Border.all(
+                    //     width: 2.5,
+                    //     color: ColorLibrary.textThemeColor,
+                    //     strokeAlign: BorderSide.strokeAlignOutside),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 3,
+                        offset: Offset(2, 2), // Shadow position
+                      ),
+                    ],
+                  );
+                }
                 if (_addButtonProvider.is_tag_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColor,

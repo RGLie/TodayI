@@ -59,10 +59,10 @@ class NoteProvider extends ChangeNotifier {
   bool _property5 = false;
   bool get property5 => _property5;
 
-
   void changeDate(String d) {
     _checked_tag = 0;
     _is_checked = false;
+    _count = 1;
     _is_hide = [];
     _tag_list = [];
     _today_date = d;
@@ -104,44 +104,63 @@ class NoteProvider extends ChangeNotifier {
   }
 
   Tag getChekcedTag() {
-    if(_is_checked){
+    if (_is_checked) {
       return _tag_list[_checked_tag];
     }
-    return Tag(uid: '', username: '', tagname: '', createdate: '', description: '', icon: '', issubtag: false, subtaglist: [], isdate: false, datelist: []);
+    return Tag(
+        uid: '',
+        username: '',
+        tagname: '',
+        createdate: '',
+        description: '',
+        icon: '',
+        issubtag: false,
+        subtaglist: [],
+        isdate: false,
+        datelist: []);
   }
 
-  void setCount(int num){
+  void setCount(int num) {
     _count = num;
   }
-  void plusCount(){
-    _count+=1;
+
+  void plusCount() {
+    _count += 1;
   }
-  void setIsCode(bool s){
+
+  void setIsCode(bool s) {
     _iscode = s;
   }
-  void setIsLink(bool s){
+
+  void setIsLink(bool s) {
     _islink = s;
   }
-  void setIsProperty(bool s){
+
+  void setIsProperty(bool s) {
     _isproperty = s;
   }
-  void setIsSubtag(bool s){
+
+  void setIsSubtag(bool s) {
     _issubtag = s;
   }
-  void setProperty1(bool s){
+
+  void setProperty1(bool s) {
     _property1 = s;
   }
-  void setProperty2(bool s){
+
+  void setProperty2(bool s) {
     _property2 = s;
   }
-  void setProperty3(bool s){
+
+  void setProperty3(bool s) {
     _property3 = s;
   }
-  void setProperty4(bool s){
+
+  void setProperty4(bool s) {
     _property4 = s;
   }
-  void setProperty5(bool s){
+
+  void setProperty5(bool s) {
     _property5 = s;
   }
-  
 }

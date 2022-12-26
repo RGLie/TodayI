@@ -14,6 +14,7 @@ class MainPage extends StatelessWidget {
   User? userData;
   MainPage(this.userData);
   DataProvider db = DataProvider();
+  DataProvider db2 = DataProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class MainPage extends StatelessWidget {
           initialData: [],
         ),
         StreamProvider<List<NoteContent>>.value(
-          value: db.getNoteContents(userData!.uid),
+          value: db2.getNoteContents(userData!.uid),
           initialData: [],
         ),
         ChangeNotifierProvider(

@@ -28,7 +28,6 @@ class _TextContentState extends State<TextContent> {
   Widget build(BuildContext context) {
     var _addButtonProvider = Provider.of<AddButtonProvider>(context);
     var _propertyProvider = Provider.of<PropertyProvider>(context);
-
     var today_note = Provider.of<NoteProvider>(context);
     var userData = Provider.of<TUser>(context);
 
@@ -36,19 +35,17 @@ class _TextContentState extends State<TextContent> {
       key: _formKey,
       child: Column(
         children: [
-          if(_addButtonProvider.is_tag_clicked==1)...[
+          if (_addButtonProvider.is_tag_clicked == 1) ...[
             Row(
               children: [
                 SizedBox(
                   width: 10,
                 ),
                 Text('#',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 30
-                  )
-                ),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 30)),
                 SizedBox(
                   width: 15,
                 ),
@@ -62,27 +59,26 @@ class _TextContentState extends State<TextContent> {
                     keyboardType: TextInputType.multiline,
                     cursorColor: ColorLibrary.textThemeColor,
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500
-                    ),
+                        color: Colors.black, fontWeight: FontWeight.w500),
                     decoration: InputDecoration(
-                      fillColor: ColorLibrary.cardColor,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10),),
-                        borderSide: BorderSide(
-                            color: ColorLibrary.cardColor, width: 0),
-                      ),
-                      hintText: '태그를 입력하세요.',
-                      //labelText: '노트를 입력하세요',
-                      labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(
-                            color: ColorLibrary.textThemeColor, width: 2.5),
-                      )
-                    ),
-                    
+                        fillColor: ColorLibrary.cardColor,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          borderSide: BorderSide(
+                              color: ColorLibrary.cardColor, width: 0),
+                        ),
+                        hintText: '태그를 입력하세요.',
+                        //labelText: '노트를 입력하세요',
+                        labelStyle:
+                            TextStyle(color: ColorLibrary.textThemeColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide: BorderSide(
+                              color: ColorLibrary.textThemeColor, width: 2.5),
+                        )),
                   ),
                 ),
               ],
@@ -91,40 +87,33 @@ class _TextContentState extends State<TextContent> {
               height: 15,
             ),
           ],
-
           TextFormField(
             controller: _textController,
             minLines: 4,
             maxLines: 4,
             keyboardType: TextInputType.multiline,
             cursorColor: ColorLibrary.textThemeColor,
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500
-            ),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
             decoration: InputDecoration(
-              fillColor: ColorLibrary.cardColor,
-              filled: true,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10),),
-                borderSide: BorderSide(
-                    color: ColorLibrary.cardColor, width: 0),
-              ),
-              hintText: '노트를 입력하세요.',
-              //labelText: '노트를 입력하세요',
-              labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                borderSide: BorderSide(
-                    color: ColorLibrary.textThemeColor, width: 2.5),
-              )
-            ),
-            
+                fillColor: ColorLibrary.cardColor,
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  borderSide:
+                      BorderSide(color: ColorLibrary.cardColor, width: 0),
+                ),
+                hintText: '노트를 입력하세요.',
+                //labelText: '노트를 입력하세요',
+                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderSide: BorderSide(
+                      color: ColorLibrary.textThemeColor, width: 2.5),
+                )),
           ),
-
-          
-
-          if(_addButtonProvider.is_code_clicked==1)...[
+          if (_addButtonProvider.is_code_clicked == 1) ...[
             SizedBox(
               height: 15,
             ),
@@ -134,27 +123,26 @@ class _TextContentState extends State<TextContent> {
               maxLines: 1,
               keyboardType: TextInputType.multiline,
               cursorColor: ColorLibrary.textThemeColor,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500
-              ),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               decoration: InputDecoration(
-                fillColor: ColorLibrary.codeCardColor,
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10),),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.codeCardColor, width: 0),
-                ),
-                hintText: '코드 언어를 입력하세요.',
-                //labelText: '노트를 입력하세요',
-                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.textThemeColor, width: 2.5),
-                )
-              ),
+                  fillColor: ColorLibrary.codeCardColor,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    borderSide:
+                        BorderSide(color: ColorLibrary.codeCardColor, width: 0),
+                  ),
+                  hintText: '코드 언어를 입력하세요.',
+                  //labelText: '노트를 입력하세요',
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(
+                        color: ColorLibrary.textThemeColor, width: 2.5),
+                  )),
             ),
             SizedBox(
               height: 15,
@@ -165,35 +153,29 @@ class _TextContentState extends State<TextContent> {
               maxLines: 6,
               keyboardType: TextInputType.multiline,
               cursorColor: ColorLibrary.textThemeColor,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500
-              ),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               decoration: InputDecoration(
-                fillColor: ColorLibrary.codeCardColor,
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10),),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.codeCardColor, width: 0),
-                ),
-                hintText: '코드를 입력하세요.',
-                //labelText: '노트를 입력하세요',
-                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.textThemeColor, width: 2.5),
-                )
-              ),
-              
+                  fillColor: ColorLibrary.codeCardColor,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    borderSide:
+                        BorderSide(color: ColorLibrary.codeCardColor, width: 0),
+                  ),
+                  hintText: '코드를 입력하세요.',
+                  //labelText: '노트를 입력하세요',
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(
+                        color: ColorLibrary.textThemeColor, width: 2.5),
+                  )),
             ),
-            
           ],
-
-          
-
-          if(_addButtonProvider.is_link_clicked==1)...[
+          if (_addButtonProvider.is_link_clicked == 1) ...[
             SizedBox(
               height: 15,
             ),
@@ -203,32 +185,29 @@ class _TextContentState extends State<TextContent> {
               maxLines: 1,
               keyboardType: TextInputType.url,
               cursorColor: ColorLibrary.textThemeColor,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500
-              ),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
               decoration: InputDecoration(
-                fillColor: ColorLibrary.cardColor,
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10),),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.cardColor, width: 0),
-                ),
-                hintText: '링크를 입력하세요.',
-                //labelText: '노트를 입력하세요',
-                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  borderSide: BorderSide(
-                      color: ColorLibrary.textThemeColor, width: 2.5),
-                )
-              ),
-              
+                  fillColor: ColorLibrary.cardColor,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    borderSide:
+                        BorderSide(color: ColorLibrary.cardColor, width: 0),
+                  ),
+                  hintText: '링크를 입력하세요.',
+                  //labelText: '노트를 입력하세요',
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(
+                        color: ColorLibrary.textThemeColor, width: 2.5),
+                  )),
             )
           ],
-
-          if(_addButtonProvider.is_property_clicked==1)...[
+          if (_addButtonProvider.is_property_clicked == 1) ...[
             SizedBox(
               height: 15,
             ),
@@ -246,30 +225,26 @@ class _TextContentState extends State<TextContent> {
                       _propertyProvider.typeAClicked();
                     },
                     child: PropertyButton(
-                      text: '잘함',
-                      boxdecoration: BoxDecoration(
-                        color: (() {
-                          if (_propertyProvider.typeA_mouse_state == 1) {
-                            return ColorLibrary.cardColorRegioned;
-                          }
-                          return ColorLibrary.cardColor;
-                        })(),
-                        borderRadius: BorderRadius.circular(20),
-                        border: (() {
-                          if (_propertyProvider.is_typeA_clicked == 1) {
-                            return Border.all(
-                            width: 2.5,
-                            color: ColorLibrary.textThemeColor,
-                            strokeAlign: BorderSide.strokeAlignOutside);
-                          }
-                          return null;
-                        })()
-                        
-                      )
-                    ),
+                        text: '잘함',
+                        boxdecoration: BoxDecoration(
+                            color: (() {
+                              if (_propertyProvider.typeA_mouse_state == 1) {
+                                return ColorLibrary.cardColorRegioned;
+                              }
+                              return ColorLibrary.cardColor;
+                            })(),
+                            borderRadius: BorderRadius.circular(20),
+                            border: (() {
+                              if (_propertyProvider.is_typeA_clicked == 1) {
+                                return Border.all(
+                                    width: 2.5,
+                                    color: ColorLibrary.textThemeColor,
+                                    strokeAlign: BorderSide.strokeAlignOutside);
+                              }
+                              return null;
+                            })())),
                   ),
                 ),
-
                 SizedBox(
                   width: 15,
                 ),
@@ -285,34 +260,29 @@ class _TextContentState extends State<TextContent> {
                       _propertyProvider.typeBClicked();
                     },
                     child: PropertyButton(
-                      text: '배움',
-                      boxdecoration: BoxDecoration(
-                        color: (() {
-                          if (_propertyProvider.typeB_mouse_state == 1) {
-                            return ColorLibrary.cardColorRegioned;
-                          }
-                          return ColorLibrary.cardColor;
-                        })(),
-                        borderRadius: BorderRadius.circular(20),
-                        border: (() {
-                          if (_propertyProvider.is_typeB_clicked == 1) {
-                            return Border.all(
-                            width: 2.5,
-                            color: ColorLibrary.textThemeColor,
-                            strokeAlign: BorderSide.strokeAlignOutside);
-                          }
-                          return null;
-                        })()
-                        
-                      )
-                    ),
+                        text: '배움',
+                        boxdecoration: BoxDecoration(
+                            color: (() {
+                              if (_propertyProvider.typeB_mouse_state == 1) {
+                                return ColorLibrary.cardColorRegioned;
+                              }
+                              return ColorLibrary.cardColor;
+                            })(),
+                            borderRadius: BorderRadius.circular(20),
+                            border: (() {
+                              if (_propertyProvider.is_typeB_clicked == 1) {
+                                return Border.all(
+                                    width: 2.5,
+                                    color: ColorLibrary.textThemeColor,
+                                    strokeAlign: BorderSide.strokeAlignOutside);
+                              }
+                              return null;
+                            })())),
                   ),
                 ),
                 SizedBox(
                   width: 15,
                 ),
-
-
                 MouseRegion(
                   onEnter: (PointerEvent details) {
                     _propertyProvider.istypeCRegion();
@@ -325,34 +295,29 @@ class _TextContentState extends State<TextContent> {
                       _propertyProvider.typeCClicked();
                     },
                     child: PropertyButton(
-                      text: '개선',
-                      boxdecoration: BoxDecoration(
-                        color: (() {
-                          if (_propertyProvider.typeC_mouse_state == 1) {
-                            return ColorLibrary.cardColorRegioned;
-                          }
-                          return ColorLibrary.cardColor;
-                        })(),
-                        borderRadius: BorderRadius.circular(20),
-                        border: (() {
-                          if (_propertyProvider.is_typeC_clicked == 1) {
-                            return Border.all(
-                            width: 2.5,
-                            color: ColorLibrary.textThemeColor,
-                            strokeAlign: BorderSide.strokeAlignOutside);
-                          }
-                          return null;
-                        })()
-                        
-                      )
-                    ),
+                        text: '개선',
+                        boxdecoration: BoxDecoration(
+                            color: (() {
+                              if (_propertyProvider.typeC_mouse_state == 1) {
+                                return ColorLibrary.cardColorRegioned;
+                              }
+                              return ColorLibrary.cardColor;
+                            })(),
+                            borderRadius: BorderRadius.circular(20),
+                            border: (() {
+                              if (_propertyProvider.is_typeC_clicked == 1) {
+                                return Border.all(
+                                    width: 2.5,
+                                    color: ColorLibrary.textThemeColor,
+                                    strokeAlign: BorderSide.strokeAlignOutside);
+                              }
+                              return null;
+                            })())),
                   ),
                 ),
                 SizedBox(
                   width: 15,
                 ),
-
-
                 MouseRegion(
                   onEnter: (PointerEvent details) {
                     _propertyProvider.istypeDRegion();
@@ -365,35 +330,29 @@ class _TextContentState extends State<TextContent> {
                       _propertyProvider.typeDClicked();
                     },
                     child: PropertyButton(
-                      text: '아쉬움',
-                      boxdecoration: BoxDecoration(
-                        color: (() {
-                          if (_propertyProvider.typeD_mouse_state == 1) {
-                            return ColorLibrary.cardColorRegioned;
-                          }
-                          return ColorLibrary.cardColor;
-                        })(),
-                        borderRadius: BorderRadius.circular(20),
-                        border: (() {
-                          if (_propertyProvider.is_typeD_clicked == 1) {
-                            return Border.all(
-                            width: 2.5,
-                            color: ColorLibrary.textThemeColor,
-                            strokeAlign: BorderSide.strokeAlignOutside);
-                          }
-                          return null;
-                        })()
-                        
-                      )
-                    ),
+                        text: '아쉬움',
+                        boxdecoration: BoxDecoration(
+                            color: (() {
+                              if (_propertyProvider.typeD_mouse_state == 1) {
+                                return ColorLibrary.cardColorRegioned;
+                              }
+                              return ColorLibrary.cardColor;
+                            })(),
+                            borderRadius: BorderRadius.circular(20),
+                            border: (() {
+                              if (_propertyProvider.is_typeD_clicked == 1) {
+                                return Border.all(
+                                    width: 2.5,
+                                    color: ColorLibrary.textThemeColor,
+                                    strokeAlign: BorderSide.strokeAlignOutside);
+                              }
+                              return null;
+                            })())),
                   ),
                 ),
                 SizedBox(
                   width: 15,
                 ),
-
-
-
                 MouseRegion(
                   onEnter: (PointerEvent details) {
                     _propertyProvider.istypeERegion();
@@ -406,32 +365,26 @@ class _TextContentState extends State<TextContent> {
                       _propertyProvider.typeEClicked();
                     },
                     child: PropertyButton(
-                      text: '계획',
-                      boxdecoration: BoxDecoration(
-                        color: (() {
-                          if (_propertyProvider.typeE_mouse_state == 1) {
-                            return ColorLibrary.cardColorRegioned;
-                          }
-                          return ColorLibrary.cardColor;
-                        })(),
-                        borderRadius: BorderRadius.circular(20),
-                        border: (() {
-                          if (_propertyProvider.is_typeE_clicked == 1) {
-                            return Border.all(
-                            width: 2.5,
-                            color: ColorLibrary.textThemeColor,
-                            strokeAlign: BorderSide.strokeAlignOutside);
-                          }
-                          return null;
-                        })()
-                        
-                      )
-                    ),
+                        text: '계획',
+                        boxdecoration: BoxDecoration(
+                            color: (() {
+                              if (_propertyProvider.typeE_mouse_state == 1) {
+                                return ColorLibrary.cardColorRegioned;
+                              }
+                              return ColorLibrary.cardColor;
+                            })(),
+                            borderRadius: BorderRadius.circular(20),
+                            border: (() {
+                              if (_propertyProvider.is_typeE_clicked == 1) {
+                                return Border.all(
+                                    width: 2.5,
+                                    color: ColorLibrary.textThemeColor,
+                                    strokeAlign: BorderSide.strokeAlignOutside);
+                              }
+                              return null;
+                            })())),
                   ),
                 ),
-
-                
-
               ],
             ),
           ],
@@ -450,15 +403,57 @@ class _TextContentState extends State<TextContent> {
                 _addButtonProvider.enterClicked();
                 FocusScope.of(context).requestFocus(new FocusNode());
                 if (_formKey.currentState!.validate()) {
+                  String ContentID = _addButtonProvider.is_tag_clicked==1 ?
+                    today_note.getChekcedTag().tagname+'.'+_tagController.text 
+                    + '?' + today_note.today_date 
+                    + '?' + today_note.count.toString() :
+                    today_note.getChekcedTag().tagname 
+                    + '?' + today_note.today_date 
+                    + '?' + today_note.count.toString();
                   //_codeContoller.text
-                  CollectionReference contents = FirebaseFirestore.instance.collection('users').doc(userData.uid).collection('contents');
+                  CollectionReference contents = FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(userData.uid)
+                      .collection('contents');
                   NoteContent newcontent = NoteContent(
-
+                    uid: userData.uid,
+                    tag: today_note.getChekcedTag().tagname,
+                    contentdate: today_note.today_date,
+                    lastupdatedate: today_note.today_date,
+                    iscode: _addButtonProvider.is_code_clicked==1,
+                    islink: _addButtonProvider.is_link_clicked==1,
+                    isproperty: _addButtonProvider.is_property_clicked==1,
+                    issubtag: _addButtonProvider.is_tag_clicked==1,
+                    property1: _propertyProvider.is_typeA_clicked==1,
+                    property2: _propertyProvider.is_typeB_clicked==1,
+                    property3: _propertyProvider.is_typeC_clicked==1,
+                    property4: _propertyProvider.is_typeD_clicked==1,
+                    property5: _propertyProvider.is_typeE_clicked==1,
+                    content: _textController.text,
+                    code: _addButtonProvider.is_code_clicked==1?_codeController.text:'',
+                    language: _addButtonProvider.is_code_clicked==1?_lanController.text:'',
+                    link: _addButtonProvider.is_link_clicked==1?_linkController.text:'',
+                    subtag: _addButtonProvider.is_tag_clicked==1?_tagController.text:'',
+                    count: today_note.count,
+                    contentid: ContentID
                   );
-                  contents.doc('a').set(newcontent.toJson());
+                  contents.doc(ContentID).set(newcontent.toJson());
                   today_note.plusCount();
-                }
 
+                  if(_addButtonProvider.is_tag_clicked==1){
+                    CollectionReference selectTag = FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(userData.uid)
+                      .collection('tags');
+                    selectTag.doc(today_note.getChekcedTag().tagname).update({
+                      'subtaglist': FieldValue.arrayUnion([_tagController.text])
+                    });
+                    selectTag.doc(today_note.getChekcedTag().tagname).update({
+                      'issubtag': true
+                    });
+                  }
+
+                }
               },
               child: (() {
                 switch (_addButtonProvider.enter_mouse_state) {
@@ -486,8 +481,8 @@ class _TextContentState extends State<TextContent> {
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    border:
-                        Border.all(width: 2.5, color: ColorLibrary.textThemeColor),
+                    border: Border.all(
+                        width: 2.5, color: ColorLibrary.textThemeColor),
                     borderRadius: BorderRadius.circular(10),
                     //boxShadow: boxShadows,
                   ),
@@ -495,7 +490,7 @@ class _TextContentState extends State<TextContent> {
                       child: Text(
                     '완료',
                     style: TextStyle(
-                      fontSize: 15, 
+                      fontSize: 15,
                       fontFamily: 'NotoSansKR',
                       fontWeight: FontWeight.w700,
                     ),
@@ -509,6 +504,3 @@ class _TextContentState extends State<TextContent> {
     );
   }
 }
-
-
-

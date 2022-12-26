@@ -20,7 +20,7 @@ class ShowNote extends StatefulWidget {
 }
 
 class _ShowNoteState extends State<ShowNote> {
-  DataProvider db = DataProvider();
+  //DataProvider db = DataProvider();
   @override
   Widget build(BuildContext context) {
     var noteDataList = Provider.of<List<Tag>>(context);
@@ -44,7 +44,7 @@ class _ShowNoteState extends State<ShowNote> {
           noteCardList.add(
             NoteCard(
               index: i,
-              tagname: noteDataList[i].tagname,
+              tagname: noteDataList[i].tagname+noteContentList.length.toString(),
               description: noteDataList[i].description,
               icon: noteDataList[i].icon,
               notecontent: todayTagContentList,
