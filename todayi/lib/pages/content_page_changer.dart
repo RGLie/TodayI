@@ -11,7 +11,7 @@ class ContentPageChanger extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sidebar_provider = Provider.of<SideBarProvider>(context);
-    switch(sidebar_provider.side_bar_index){
+    switch (sidebar_provider.side_bar_index) {
       case 1:
         return Text('1');
       case 2:
@@ -21,18 +21,6 @@ class ContentPageChanger extends StatelessWidget {
       case 4:
         return Text('4');
     }
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (BuildContext context) => AddButtonProvider()),
-        ChangeNotifierProvider(
-          create: (BuildContext context) => PropertyProvider()),
-        ChangeNotifierProvider(
-          create: (BuildContext context) => CardNoteButtonProvider()),
-        ChangeNotifierProvider(
-          create: (BuildContext context) => NoteProvider()),
-      ],
-      child: Note()
-    );
+    return Note();
   }
 }

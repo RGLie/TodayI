@@ -21,6 +21,8 @@ class ShowNote extends StatefulWidget {
 
 class _ShowNoteState extends State<ShowNote> {
   //DataProvider db = DataProvider();
+
+
   @override
   Widget build(BuildContext context) {
     var noteDataList = Provider.of<List<Tag>>(context);
@@ -36,11 +38,16 @@ class _ShowNoteState extends State<ShowNote> {
         if (noteDataList[i].datelist[j] == today_note.today_date) {
           List<NoteContent> todayTagContentList = [];
           for (var k = 0; k < noteContentList.length; k++) {
-            if (noteContentList[k].contentdate == today_note.today_date) {
+            if (noteContentList[k].contentdate == today_note.today_date &&
+                noteContentList[k].tag == noteDataList[i].tagname) {
               todayTagContentList.add(noteContentList[k]);
             }
           }
-          today_note.addTag(noteDataList[i]);
+          //today_note.addTag(noteDataList[i]);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            var today_note2 = Provider.of<NoteProvider>(context);
+              today_note2.addTag(noteDataList[i]);
+          });
           noteCardList.add(
             NoteCard(
               index: i,

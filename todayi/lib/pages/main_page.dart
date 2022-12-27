@@ -9,6 +9,10 @@ import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/main_page_sidebar.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/providers/data_provider.dart';
+import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
+import 'package:todayi/providers/note/edit_note/property_provider.dart';
+import 'package:todayi/providers/note/note_provider.dart';
+import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 
 class MainPage extends StatelessWidget {
   User? userData;
@@ -41,6 +45,15 @@ class MainPage extends StatelessWidget {
         ),
         ChangeNotifierProvider(
             create: (BuildContext context) => SideBarProvider()),
+
+        ChangeNotifierProvider(
+          create: (BuildContext context) => AddButtonProvider()),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => PropertyProvider()),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => CardNoteButtonProvider()),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => NoteProvider()),
       ], 
       child: MainPageSideBar());
   }

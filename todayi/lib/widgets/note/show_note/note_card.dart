@@ -16,7 +16,7 @@ import 'package:todayi/widgets/note/show_note/property_note.dart';
 import 'package:todayi/widgets/note/show_note/subtag/subtag_note.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NoteCard extends StatelessWidget {
+class NoteCard extends StatefulWidget {
   int index;
   String tagname;
   String description;
@@ -33,258 +33,217 @@ class NoteCard extends StatelessWidget {
   });
 
   @override
+  State<NoteCard> createState() => _NoteCardState();
+}
+
+class _NoteCardState extends State<NoteCard> {
+  @override
   Widget build(BuildContext context) {
     List<Widget> contentWidgetList = [];
-    
+
     Map<String, dynamic> subtagWidgets = {};
 
-    for(var i = 0; i<notecontent.length; i++){
-      if (notecontent[i].issubtag) {
-        subtagWidgets[notecontent[i].subtag]=[];
+    for (var i = 0; i < widget.notecontent.length; i++) {
+      if (widget.notecontent[i].issubtag) {
+        subtagWidgets[widget.notecontent[i].subtag] = [];
       }
     }
 
-    for(var i = 0; i<notecontent.length; i++){
-      if (!notecontent[i].issubtag) {
-        if(getContentType(notecontent[i])=='content'){
+    for (var i = 0; i < widget.notecontent.length; i++) {
+      if (!widget.notecontent[i].issubtag) {
+        if (getContentType(widget.notecontent[i]) == 'content') {
           contentWidgetList.add(
             ContentNote(
-              content: notecontent[i].content,
-              count: notecontent[i].count,
+              content: widget.notecontent[i].content,
+              count: widget.notecontent[i].count,
             ),
           );
+        } else if (getContentType(widget.notecontent[i]) == 'code') {
+          contentWidgetList.add(CodeNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'link') {
+          contentWidgetList.add(LinkNote(
+            content: widget.notecontent[i].content,
+            link: widget.notecontent[i].link,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'property') {
+          contentWidgetList.add(PropertyNote(
+            content: widget.notecontent[i].content,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'code-link') {
+          contentWidgetList.add(CodeLinkNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            link: widget.notecontent[i].link,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'code-property') {
+          contentWidgetList.add(CodePropertyNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'link-property') {
+          contentWidgetList.add(LinkPropertyNote(
+            content: widget.notecontent[i].content,
+            link: widget.notecontent[i].link,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) ==
+            'code-link-property') {
+          contentWidgetList.add(CodePropertyLinkNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            link: widget.notecontent[i].link,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            count: widget.notecontent[i].count,
+          ));
         }
-        else if(getContentType(notecontent[i])=='code'){
-          contentWidgetList.add(
-            CodeNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='link'){
-          contentWidgetList.add(
-            LinkNote(
-              content: notecontent[i].content,
-              link: notecontent[i].link,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='property'){
-          contentWidgetList.add(
-            PropertyNote(
-              content: notecontent[i].content,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='code-link'){
-          contentWidgetList.add(
-            CodeLinkNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              link: notecontent[i].link,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='code-property'){
-          contentWidgetList.add(
-            CodePropertyNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='link-property'){
-          contentWidgetList.add(
-            LinkPropertyNote(
-              content: notecontent[i].content,
-              link: notecontent[i].link,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='code-link-property'){
-          contentWidgetList.add(
-            CodePropertyLinkNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              link: notecontent[i].link,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              count: notecontent[i].count,
-            )
-          );
-        }
-      }
-
-
-      else{
-        if(getContentType(notecontent[i])=='subtag-content'){
-          subtagWidgets[notecontent[i].subtag].add(
+      } else {
+        if (getContentType(widget.notecontent[i]) == 'subtag-content') {
+          subtagWidgets[widget.notecontent[i].subtag].add(
             ContentNote(
-              content: notecontent[i].content,
+              content: widget.notecontent[i].content,
               cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
+              count: widget.notecontent[i].count,
             ),
           );
-        }
-        else if(getContentType(notecontent[i])=='subtag-code'){
-          subtagWidgets[notecontent[i].subtag].add(
-            CodeNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='subtag-link'){
-          subtagWidgets[notecontent[i].subtag].add(
-            LinkNote(
-              content: notecontent[i].content,
-              link: notecontent[i].link,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='subtag-property'){
-          subtagWidgets[notecontent[i].subtag].add(
-            PropertyNote(
-              content: notecontent[i].content,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='subtag-code-link'){
-          subtagWidgets[notecontent[i].subtag].add(
-            CodeLinkNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              link: notecontent[i].link,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='subtag-code-property'){
-          subtagWidgets[notecontent[i].subtag].add(
-            CodePropertyNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='subtag-link-property'){
-          subtagWidgets[notecontent[i].subtag].add(
-            LinkPropertyNote(
-              content: notecontent[i].content,
-              link: notecontent[i].link,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
-        }
-        else if(getContentType(notecontent[i])=='subtag-code-link-property'){
-          subtagWidgets[notecontent[i].subtag].add(
-            CodePropertyLinkNote(
-              content: notecontent[i].content,
-              code: notecontent[i].code,
-              language: notecontent[i].language,
-              link: notecontent[i].link,
-              property1: notecontent[i].property1,
-              property2: notecontent[i].property2,
-              property3: notecontent[i].property3,
-              property4: notecontent[i].property4,
-              property5: notecontent[i].property5,
-              cardcolor: ColorLibrary.cardSubTagColor,
-              count: notecontent[i].count,
-            )
-          );
+        } else if (getContentType(widget.notecontent[i]) == 'subtag-code') {
+          subtagWidgets[widget.notecontent[i].subtag].add(CodeNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'subtag-link') {
+          subtagWidgets[widget.notecontent[i].subtag].add(LinkNote(
+            content: widget.notecontent[i].content,
+            link: widget.notecontent[i].link,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) == 'subtag-property') {
+          subtagWidgets[widget.notecontent[i].subtag].add(PropertyNote(
+            content: widget.notecontent[i].content,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) ==
+            'subtag-code-link') {
+          subtagWidgets[widget.notecontent[i].subtag].add(CodeLinkNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            link: widget.notecontent[i].link,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) ==
+            'subtag-code-property') {
+          subtagWidgets[widget.notecontent[i].subtag].add(CodePropertyNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) ==
+            'subtag-link-property') {
+          subtagWidgets[widget.notecontent[i].subtag].add(LinkPropertyNote(
+            content: widget.notecontent[i].content,
+            link: widget.notecontent[i].link,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
+        } else if (getContentType(widget.notecontent[i]) ==
+            'subtag-code-link-property') {
+          subtagWidgets[widget.notecontent[i].subtag].add(CodePropertyLinkNote(
+            content: widget.notecontent[i].content,
+            code: widget.notecontent[i].code,
+            language: widget.notecontent[i].language,
+            link: widget.notecontent[i].link,
+            property1: widget.notecontent[i].property1,
+            property2: widget.notecontent[i].property2,
+            property3: widget.notecontent[i].property3,
+            property4: widget.notecontent[i].property4,
+            property5: widget.notecontent[i].property5,
+            cardcolor: ColorLibrary.cardSubTagColor,
+            count: widget.notecontent[i].count,
+          ));
         }
       }
     }
 
     List<Widget> contentSubtagWidgetList = [];
     List<Widget> subtagContents = [];
-    for(var i in subtagWidgets.keys){
+    for (var i in subtagWidgets.keys) {
       subtagContents = [];
-      if(subtagWidgets[i].length != 0){
-        for(var j in subtagWidgets[i]){
+      if (subtagWidgets[i].length != 0) {
+        for (var j in subtagWidgets[i]) {
           subtagContents.add(j);
         }
-        contentSubtagWidgetList.add(
-          SizedBox(height:15)
-        );
-        contentSubtagWidgetList.add(
-          SubtagNote(cardchild: subtagContents, tagtext: i)
-        );
+        contentSubtagWidgetList.add(SizedBox(height: 15));
+        contentSubtagWidgetList
+            .add(SubtagNote(cardchild: subtagContents, tagtext: i));
       }
     }
 
-    
-
-    
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
     return InkWell(
       onTap: () {
         if (!card_provider.is_checked) {
           card_provider.checked();
-          card_provider.checkedTagIdx(index);
+          card_provider.checkedTagIdx(widget.index);
         } else {
-          if (card_provider.checked_tag == index) {
+          if (card_provider.checked_tag == widget.index) {
             card_provider.checked();
           } else {
-            card_provider.checkedTagIdx(index);
+            card_provider.checkedTagIdx(widget.index);
           }
         }
       },
@@ -300,7 +259,7 @@ class NoteCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: (() {
             if (card_provider.is_checked &&
-                card_provider.checked_tag == index) {
+                card_provider.checked_tag == widget.index) {
               return Border.all(
                   width: 3,
                   color: ColorLibrary.textThemeColor,
@@ -323,14 +282,15 @@ class NoteCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image(height: 60, width: 60, image: AssetImage(icon)),
+                    Image(
+                        height: 60, width: 60, image: AssetImage(widget.icon)),
                     SizedBox(
                       width: 20,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('# $tagname',
+                        Text('# ${widget.tagname}',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -338,7 +298,7 @@ class NoteCard extends StatelessWidget {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(description,
+                        Text(widget.description,
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontWeight: FontWeight.w500,
@@ -352,10 +312,10 @@ class NoteCard extends StatelessWidget {
                   child: IconButton(
                       splashRadius: 20,
                       onPressed: () {
-                        card_provider.changeHide(index);
+                        card_provider.changeHide(widget.index);
                       },
                       icon: (() {
-                        if (!card_provider.getHide(index)) {
+                        if (!card_provider.getHide(widget.index)) {
                           return Icon(
                             Icons.expand_less,
                             color: Colors.black54,
@@ -369,7 +329,7 @@ class NoteCard extends StatelessWidget {
                 )
               ],
             ),
-            if (!card_provider.getHide(index)) ...[
+            if (!card_provider.getHide(widget.index)) ...[
               SizedBox(
                 height: 15,
               ),
@@ -378,9 +338,7 @@ class NoteCard extends StatelessWidget {
                 width: double.infinity,
                 height: 2,
               ),
-              Column(
-                children: contentWidgetList
-              ),
+              Column(children: contentWidgetList),
               Column(
                 children: contentSubtagWidgetList,
               )
@@ -443,59 +401,43 @@ class NoteCard extends StatelessWidget {
     );
   }
 
-  String getContentType(NoteContent note){
-    if(!note.issubtag){
-      if(!note.iscode && !note.islink && !note.isproperty){
+  String getContentType(NoteContent note) {
+    if (!note.issubtag) {
+      if (!note.iscode && !note.islink && !note.isproperty) {
         return 'content';
-      }
-      else if(note.iscode && !note.islink && !note.isproperty){
+      } else if (note.iscode && !note.islink && !note.isproperty) {
         return 'code';
-      }
-      else if(!note.iscode && note.islink && !note.isproperty){
+      } else if (!note.iscode && note.islink && !note.isproperty) {
         return 'link';
-      }
-      else if(!note.iscode && !note.islink && note.isproperty){
+      } else if (!note.iscode && !note.islink && note.isproperty) {
         return 'property';
-      }
-      else if(note.iscode && note.islink && !note.isproperty){
+      } else if (note.iscode && note.islink && !note.isproperty) {
         return 'code-link';
-      }
-      else if(note.iscode && !note.islink && note.isproperty){
+      } else if (note.iscode && !note.islink && note.isproperty) {
         return 'code-property';
-      }
-      else if(!note.iscode && note.islink && note.isproperty){
+      } else if (!note.iscode && note.islink && note.isproperty) {
         return 'link-property';
-      }
-      else if(note.iscode && note.islink && note.isproperty){
+      } else if (note.iscode && note.islink && note.isproperty) {
         return 'code-link-property';
       }
     }
 
-    if(!note.iscode && !note.islink && !note.isproperty){
+    if (!note.iscode && !note.islink && !note.isproperty) {
       return 'subtag-content';
-    }
-    else if(note.iscode && !note.islink && !note.isproperty){
+    } else if (note.iscode && !note.islink && !note.isproperty) {
       return 'subtag-code';
-    }
-    else if(!note.iscode && note.islink && !note.isproperty){
+    } else if (!note.iscode && note.islink && !note.isproperty) {
       return 'subtag-link';
-    }
-    else if(!note.iscode && !note.islink && note.isproperty){
+    } else if (!note.iscode && !note.islink && note.isproperty) {
       return 'subtag-property';
-    }
-    else if(note.iscode && note.islink && !note.isproperty){
+    } else if (note.iscode && note.islink && !note.isproperty) {
       return 'subtag-code-link';
-    }
-    else if(note.iscode && !note.islink && note.isproperty){
+    } else if (note.iscode && !note.islink && note.isproperty) {
       return 'subtag-code-property';
-    }
-    else if(!note.iscode && note.islink && note.isproperty){
+    } else if (!note.iscode && note.islink && note.isproperty) {
       return 'subtag-link-property';
-    }
-    else{
+    } else {
       return 'subtag-code-link-property';
     }
-
-    
   }
 }

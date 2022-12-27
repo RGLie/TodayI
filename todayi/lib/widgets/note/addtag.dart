@@ -65,7 +65,7 @@ class _AddTagState extends State<AddTag> {
     for (var i in user_data.taglist) {
       dialogTag.add(InkWell(
         onTap: () {
-          print(note_tags.length);
+          //print(note_tags.length);
           for (var j = 0; j < note_tags.length; j++) {
             if (note_tags[j].tagname == i) {
               CollectionReference selectTag = FirebaseFirestore.instance
@@ -88,9 +88,12 @@ class _AddTagState extends State<AddTag> {
                   'datelist': FieldValue.arrayUnion([today_note.today_date])
                 });
 
-                
+                WidgetsBinding.instance.addPostFrameCallback((_){
+                  var today_note2 = Provider.of<NoteProvider>(context);
+                  today_note2.addTag(note_tags[j]);
+                });
 
-                today_note.addTag(note_tags[j]);
+                
                 //today_note.setNumIdx(today_note.tag_list.length);
               }
               Navigator.pop(context);

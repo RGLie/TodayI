@@ -403,60 +403,102 @@ class _TextContentState extends State<TextContent> {
                 _addButtonProvider.enterClicked();
                 FocusScope.of(context).requestFocus(new FocusNode());
                 if (_formKey.currentState!.validate()) {
-                  String ContentID = _addButtonProvider.is_tag_clicked==1 ?
-                    today_note.getChekcedTag().tagname+'.'+_tagController.text 
-                    + '?' + today_note.today_date 
-                    + '?' + today_note.count.toString() :
-                    today_note.getChekcedTag().tagname 
-                    + '?' + today_note.today_date 
-                    + '?' + today_note.count.toString();
-                  //_codeContoller.text
-                  CollectionReference contents = FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(userData.uid)
-                      .collection('contents');
-                  NoteContent newcontent = NoteContent(
-                    uid: userData.uid,
-                    tag: today_note.getChekcedTag().tagname,
-                    contentdate: today_note.today_date,
-                    lastupdatedate: today_note.today_date,
-                    iscode: _addButtonProvider.is_code_clicked==1,
-                    islink: _addButtonProvider.is_link_clicked==1,
-                    isproperty: _addButtonProvider.is_property_clicked==1,
-                    issubtag: _addButtonProvider.is_tag_clicked==1,
-                    property1: _propertyProvider.is_typeA_clicked==1,
-                    property2: _propertyProvider.is_typeB_clicked==1,
-                    property3: _propertyProvider.is_typeC_clicked==1,
-                    property4: _propertyProvider.is_typeD_clicked==1,
-                    property5: _propertyProvider.is_typeE_clicked==1,
-                    content: _textController.text,
-                    code: _addButtonProvider.is_code_clicked==1?_codeController.text:'',
-                    language: _addButtonProvider.is_code_clicked==1?_lanController.text:'',
-                    link: _addButtonProvider.is_link_clicked==1?_linkController.text:'',
-                    subtag: _addButtonProvider.is_tag_clicked==1?_tagController.text:'',
-                    count: today_note.count,
-                    contentid: ContentID
-                  );
-                  contents.doc(ContentID).set(newcontent.toJson());
-                  today_note.plusCount();
-
-                  if(_addButtonProvider.is_tag_clicked==1){
-                    CollectionReference selectTag = FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(userData.uid)
-                      .collection('tags');
-                    selectTag.doc(today_note.getChekcedTag().tagname).update({
-                      'subtaglist': FieldValue.arrayUnion([_tagController.text])
-                    });
-                    selectTag.doc(today_note.getChekcedTag().tagname).update({
-                      'issubtag': true
-                    });
+                  if (today_note.is_checked) {
+                    String ContentID = _addButtonProvider.is_tag_clicked==1 ?
+                      today_note.getChekcedTag().tagname+'.'+_tagController.text 
+                      + '?' + today_note.today_date 
+                      + '?' + today_note.count.toString() :
+                      today_note.getChekcedTag().tagname 
+                      + '?' + today_note.today_date 
+                      + '?' + today_note.count.toString();
+                    //_codeContoller.text
+                    CollectionReference contents = FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(userData.uid)
+                        .collection('contents');
+                    NoteContent newcontent = NoteContent(
+                      uid: userData.uid,
+                      tag: today_note.getChekcedTag().tagname,
+                      contentdate: today_note.today_date,
+                      lastupdatedate: today_note.today_date,
+                      iscode: _addButtonProvider.is_code_clicked==1,
+                      islink: _addButtonProvider.is_link_clicked==1,
+                      isproperty: _addButtonProvider.is_property_clicked==1,
+                      issubtag: _addButtonProvider.is_tag_clicked==1,
+                      property1: _propertyProvider.is_typeA_clicked==1,
+                      property2: _propertyProvider.is_typeB_clicked==1,
+                      property3: _propertyProvider.is_typeC_clicked==1,
+                      property4: _propertyProvider.is_typeD_clicked==1,
+                      property5: _propertyProvider.is_typeE_clicked==1,
+                      content: _textController.text,
+                      code: _addButtonProvider.is_code_clicked==1?_codeController.text:'',
+                      language: _addButtonProvider.is_code_clicked==1?_lanController.text:'',
+                      link: _addButtonProvider.is_link_clicked==1?_linkController.text:'',
+                      subtag: _addButtonProvider.is_tag_clicked==1?_tagController.text:'',
+                      count: today_note.count,
+                      contentid: ContentID
+                    );
+                    contents.doc(ContentID).set(newcontent.toJson());
+                    today_note.plusCount();
+                    
+                    if(_addButtonProvider.is_tag_clicked==1){
+                      CollectionReference selectTag = FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(userData.uid)
+                        .collection('tags');
+                      selectTag.doc(today_note.getChekcedTag().tagname).update({
+                        'subtaglist': FieldValue.arrayUnion([_tagController.text])
+                      });
+                      selectTag.doc(today_note.getChekcedTag().tagname).update({
+                        'issubtag': true
+                      });
+                    }
+                    _textController.clear();
+                    _tagController.clear();
+                    _codeController.clear();
+                    _linkController.clear();
+                    _lanController.clear();
                   }
-                  _textController.clear();
-                  _tagController.clear();
-                  _codeController.clear();
-                  _linkController.clear();
-                  _lanController.clear();
+                  else{
+                    showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              //Dialog Main Title
+              title: Column(
+                children: <Widget>[
+                  new Text("경고", style: TextStyle(color: Colors.redAccent),),
+                ],
+              ),
+              //
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "노트를 입력할 태그를 선택해주세요.",
+                    style: TextStyle(color: Colors.black)
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                new ElevatedButton(
+                  child: new Text("확인"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorLibrary.textThemeColor
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          }
+        );   
+                  }
 
 
                 }
