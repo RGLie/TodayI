@@ -88,10 +88,11 @@ class _AddTagState extends State<AddTag> {
                   'datelist': FieldValue.arrayUnion([today_note.today_date])
                 });
 
-                WidgetsBinding.instance.addPostFrameCallback((_){
-                  var today_note2 = Provider.of<NoteProvider>(context);
-                  today_note2.addTag(note_tags[j]);
-                }); 
+                // WidgetsBinding.instance.addPostFrameCallback((_){
+                //   //var today_note2 = Provider.of<NoteProvider>(context);
+                //   today_note.addTagNotify(note_tags[j]);
+                // }); 
+                //today_note.addTag(note_tags[j]);
 
                 
                 //today_note.setNumIdx(today_note.tag_list.length);

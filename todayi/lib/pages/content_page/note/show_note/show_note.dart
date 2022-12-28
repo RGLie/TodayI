@@ -22,6 +22,24 @@ class ShowNote extends StatefulWidget {
 class _ShowNoteState extends State<ShowNote> {
   //DataProvider db = DataProvider();
 
+  @override
+  void initState() {
+    super.initState();
+    // var noteDataList = Provider.of<List<Tag>>(context);
+    // var today_note = Provider.of<NoteProvider>(context);
+    // for (int i = 0; i < noteDataList.length; i++) {
+    //   for (var j = 0; j < noteDataList[i].datelist.length; j++) {
+    //     if (noteDataList[i].datelist[j] == today_note.today_date) {
+    //       //today_note.addTag(noteDataList[i]);
+    //       // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //       //   //var today_note2 = Provider.of<NoteProvider>(context);
+    //       //   today_note.addTagNotify(noteDataList[i]);
+    //       // });
+    //       today_note.addTag(noteDataList[i]);
+    //     }
+    //   }
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +50,7 @@ class _ShowNoteState extends State<ShowNote> {
 
     int todaynum = 0;
     List<Widget> noteCardList = [];
+    today_note.resetTag();
 
     for (int i = 0; i < noteDataList.length; i++) {
       for (var j = 0; j < noteDataList[i].datelist.length; j++) {
@@ -44,10 +63,11 @@ class _ShowNoteState extends State<ShowNote> {
             }
           }
           //today_note.addTag(noteDataList[i]);
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            var today_note2 = Provider.of<NoteProvider>(context);
-              today_note2.addTag(noteDataList[i]);
-          });
+          // WidgetsBinding.instance.addPostFrameCallback((_) {
+          //   //var today_note2 = Provider.of<NoteProvider>(context);
+          //   today_note.addTag(noteDataList[i]);
+          // });
+          today_note.addTag(noteDataList[i]);
           noteCardList.add(
             NoteCard(
               index: i,
@@ -79,7 +99,11 @@ class _ShowNoteState extends State<ShowNote> {
             SizedBox(
               width: 30,
             ),
-            Text(DateFormat('yyyy년 MM월 dd일').format(DateTime.now()),
+            Text(
+                DateFormat('yyyy년 MM월 dd일').format(DateTime.now()) +
+                    today_note.tag_list.length.toString() +
+                    '\n' +
+                    today_note.getChekcedTag().tagname,
                 style: TextStyle(
                     fontSize: 55,
                     fontWeight: FontWeight.w600,

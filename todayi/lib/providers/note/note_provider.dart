@@ -69,9 +69,14 @@ class NoteProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetTag() {
+    _tag_list = [];
+    //notifyListeners();
+  }
+
   void addTag(Tag tag) {
     _tag_list.add(tag);
-    notifyListeners();
+    //notifyListeners();
   }
 
   void checked() {
