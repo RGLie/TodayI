@@ -614,7 +614,7 @@ class _LoginPageState extends State<LoginPage>
 
   void addUserData(String EMAIL, String NAME, String UID, String RDATE, String RLDATE){
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    TUser userModel = TUser(email: EMAIL, uid: UID, name: NAME, registerdate: RDATE, recentlogindate: RLDATE, istag: false, taglist: ['index']);
+    TUser userModel = TUser(email: EMAIL, uid: UID, name: NAME, registerdate: RDATE, recentlogindate: RLDATE, istag: false, taglist: ['index'], count: 1);
     users.doc(UID).set(userModel.toJson());
   }
 

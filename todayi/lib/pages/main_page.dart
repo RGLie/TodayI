@@ -32,6 +32,7 @@ class MainPage extends StatelessWidget {
               name: '',
               registerdate: '',
               recentlogindate: '',
+              count: 0,
               istag: false,
               taglist: ['index']),
         ),

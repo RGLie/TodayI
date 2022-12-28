@@ -407,10 +407,10 @@ class _TextContentState extends State<TextContent> {
                     String ContentID = _addButtonProvider.is_tag_clicked==1 ?
                       today_note.getChekcedTag().tagname+'.'+_tagController.text 
                       + '?' + today_note.today_date 
-                      + '?' + today_note.count.toString() :
+                      + '?' + userData.count.toString() :
                       today_note.getChekcedTag().tagname 
                       + '?' + today_note.today_date 
-                      + '?' + today_note.count.toString();
+                      + '?' + userData.count.toString();
                     //_codeContoller.text
                     CollectionReference contents = FirebaseFirestore.instance
                         .collection('users')
@@ -435,11 +435,14 @@ class _TextContentState extends State<TextContent> {
                       language: _addButtonProvider.is_code_clicked==1?_lanController.text:'',
                       link: _addButtonProvider.is_link_clicked==1?_linkController.text:'',
                       subtag: _addButtonProvider.is_tag_clicked==1?_tagController.text:'',
-                      count: today_note.count,
+                      count: userData.count,
                       contentid: ContentID
                     );
                     contents.doc(ContentID).set(newcontent.toJson());
-                    today_note.plusCount();
+                    CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
+                    userCollection..doc(userData.uid).update({'count': FieldValue.increment(1)});
+                    
+                    //today_note.plusCount();
                     
                     if(_addButtonProvider.is_tag_clicked==1){
                       CollectionReference selectTag = FirebaseFirestore.instance
@@ -461,43 +464,43 @@ class _TextContentState extends State<TextContent> {
                   }
                   else{
                     showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              //Dialog Main Title
-              title: Column(
-                children: <Widget>[
-                  new Text("경고", style: TextStyle(color: Colors.redAccent),),
-                ],
-              ),
-              //
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "노트를 입력할 태그를 선택해주세요.",
-                    style: TextStyle(color: Colors.black)
-                  ),
-                ],
-              ),
-              actions: <Widget>[
-                new ElevatedButton(
-                  child: new Text("확인"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorLibrary.textThemeColor
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            );
-          }
-        );   
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          //Dialog Main Title
+                          title: Column(
+                            children: <Widget>[
+                              new Text("경고", style: TextStyle(color: Colors.redAccent),),
+                            ],
+                          ),
+                          //
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                "노트를 입력할 태그를 선택해주세요.",
+                                style: TextStyle(color: Colors.black)
+                              ),
+                            ],
+                          ),
+                          actions: <Widget>[
+                            new ElevatedButton(
+                              child: new Text("확인"),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorLibrary.textThemeColor
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    );   
                   }
 
 

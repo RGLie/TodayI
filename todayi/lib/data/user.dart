@@ -7,6 +7,7 @@ class TUser {
   String name;
   String registerdate;
   String recentlogindate;
+  int count;
   bool istag;
   List<String> taglist = [];
 
@@ -16,6 +17,7 @@ class TUser {
     required this.name,
     required this.registerdate,
     required this.recentlogindate,
+    required this.count,
     required this.istag,
     required this.taglist,
   });
@@ -27,6 +29,7 @@ class TUser {
       'name': name,
       'registerdate': registerdate,
       'recentlogindate': recentlogindate,
+      'count': count,
       'istag': istag,
       'taglist': taglist,
     };
@@ -41,6 +44,7 @@ class TUser {
       name: map['name'],
       registerdate: map['registerdate'],
       recentlogindate: map['recentlogindate'],
+      count: map['count'],
       istag: map['istag'],
       taglist: tags,
     );
@@ -52,6 +56,7 @@ class TUser {
         'name': name,
         'registerdate': registerdate,
         'recentlogindate': recentlogindate,
+        'count': count,
         'istag': istag,
         'taglist': taglist,
       };

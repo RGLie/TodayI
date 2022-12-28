@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
@@ -12,6 +13,7 @@ class AddContent extends StatelessWidget {
   Widget build(BuildContext context) {
     var _addButtonProvider = Provider.of<AddButtonProvider>(context);
     var today_note = Provider.of<NoteProvider>(context);
+    var user = Provider.of<TUser>(context);
 
     return Row(
       children: [
