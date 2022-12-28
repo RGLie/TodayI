@@ -100,10 +100,7 @@ class _ShowNoteState extends State<ShowNote> {
               width: 30,
             ),
             Text(
-                DateFormat('yyyy년 MM월 dd일').format(DateTime.now()) +
-                    today_note.tag_list.length.toString() +
-                    '\n' +
-                    today_note.getChekcedTag().tagname,
+                DateFormat('yyyy년 MM월 dd일').format(DateTime.now()),
                 style: TextStyle(
                     fontSize: 55,
                     fontWeight: FontWeight.w600,
