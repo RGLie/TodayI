@@ -30,7 +30,34 @@ class _AddTagState extends State<AddTag> {
       addTagWidgetList.add(SizedBox(width: 10));
       addTagWidgetList.add(
         InkWell(
-          onTap: () {},
+          onTap: () {
+            for (var j = 0; j < note_tags.length; j++) {
+            if (note_tags[j].tagname == user_data.taglist[i]) {
+              CollectionReference selectTag = FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(user_data.uid)
+                  .collection('tags');
+              if (note_tags[j].isdate == false) {
+                //FieldValue.arrayUnion([element]) DateFormat('yyyy/MM/dd').format(DateTime.now())
+                selectTag.doc(user_data.taglist[i]).update({'isdate': true});
+              }
+
+              bool flag = false;
+              for (var k in note_tags[j].datelist) {
+                if (k == today_note.today_date) {
+                  flag = true;
+                }
+              }
+              if (!flag) {
+                selectTag.doc(user_data.taglist[i]).update({
+                  'datelist': FieldValue.arrayUnion([today_note.today_date])
+                });
+              }
+            }
+          }
+
+
+          },
           child: Container(
             height: 35,
             padding: EdgeInsets.only(left: 12, right: 12),
