@@ -13,6 +13,7 @@ class NoteProvider extends ChangeNotifier {
 
   String _today_date = DateFormat('yyyy.MM.dd.').format(DateTime.now());
   String get today_date => _today_date;
+  DateTime _today_date_datetime = DateTime.now();
   //_is_hide number of index could make some index error
   List<bool> _is_hide = [
     true,
@@ -36,13 +37,35 @@ class NoteProvider extends ChangeNotifier {
 
   void changeDate(String d) {
     _checked_tag = 0;
+    _idx=0;
     _is_checked = false;
     _count = 1;
-    _is_hide = [];
+    _is_hide = [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ];
     _tag_list = [];
     _today_date = d;
     notifyListeners();
   }
+  void changeDateTime(DateTime d){
+    _today_date_datetime = d;
+    notifyListeners();
+  }
+  DateTime getDateTime(){
+    return _today_date_datetime;
+  }
+
 
   void resetTag() {
     _tag_list = [];

@@ -94,15 +94,66 @@ class _ShowNoteState extends State<ShowNote> {
         Row(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              width: 70,
-              image: AssetImage('assets/icons/calendar_icon.png'),
+            InkWell(
+              onTap: () async {
+                DateTime? newdate = await showDatePicker(
+                  context: context, 
+                  initialDate: today_note.getDateTime(), 
+                  firstDate: DateTime(1900), 
+                  lastDate: DateTime(2100),
+                );
+
+                if(newdate == null){
+                  return;
+                }
+                else{
+                  today_note.changeDate( DateFormat('yyyy.MM.dd.').format(newdate));
+                  today_note.changeDateTime(newdate);
+                  // today_note.resetTag();
+                  // today_note.resetIdx();
+
+                  // for (int i = 0; i < noteDataList.length; i++) {
+                  //   for (var j = 0; j < noteDataList[i].datelist.length; j++) {
+                  //     if (noteDataList[i].datelist[j] == today_note.today_date) {
+                  //       List<NoteContent> todayTagContentList = [];
+                  //       for (var k = 0; k < noteContentList.length; k++) {
+                  //         if (noteContentList[k].contentdate == today_note.today_date &&
+                  //             noteContentList[k].tag == noteDataList[i].tagname) {
+                  //           todayTagContentList.add(noteContentList[k]);
+                  //         }
+                  //       }
+                  //       today_note.addTag(noteDataList[i]);
+                  //       noteCardList.add(
+                  //         NoteCard(
+                  //           index: today_note.idx,
+                  //           tagname: noteDataList[i].tagname,
+                  //           description: noteDataList[i].description,
+                  //           icon: noteDataList[i].icon,
+                  //           notecontent: todayTagContentList,
+                  //         ),
+                  //       );
+                  //       noteCardList.add(SizedBox(
+                  //         height: 20,
+                  //       ));
+                  //       today_note.addIdx();
+                  //       //todaynum += 1;
+                  //     }
+                  //   }
+                  // }
+                }
+              },
+              child: Image(
+                width: 70,
+                image: AssetImage('assets/icons/calendar_icon.png'),
+              ),
             ),
             SizedBox(
               width: 30,
             ),
             Text(
-                DateFormat('yyyy년 MM월 dd일').format(DateTime.now()),
+                today_note.today_date.split('.')[0]+"년 "
+                +today_note.today_date.split('.')[1]+"월 "
+                +today_note.today_date.split('.')[2]+"일",
                 style: TextStyle(
                     fontSize: 55,
                     fontWeight: FontWeight.w600,
