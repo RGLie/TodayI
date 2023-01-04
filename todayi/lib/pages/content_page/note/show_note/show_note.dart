@@ -51,6 +51,7 @@ class _ShowNoteState extends State<ShowNote> {
     int todaynum = 0;
     List<Widget> noteCardList = [];
     today_note.resetTag();
+    today_note.resetIdx();
 
     for (int i = 0; i < noteDataList.length; i++) {
       for (var j = 0; j < noteDataList[i].datelist.length; j++) {
@@ -70,7 +71,7 @@ class _ShowNoteState extends State<ShowNote> {
           today_note.addTag(noteDataList[i]);
           noteCardList.add(
             NoteCard(
-              index: i,
+              index: today_note.idx,
               tagname: noteDataList[i].tagname,
               description: noteDataList[i].description,
               icon: noteDataList[i].icon,
@@ -80,6 +81,7 @@ class _ShowNoteState extends State<ShowNote> {
           noteCardList.add(SizedBox(
             height: 20,
           ));
+          today_note.addIdx();
           //todaynum += 1;
         }
       }
