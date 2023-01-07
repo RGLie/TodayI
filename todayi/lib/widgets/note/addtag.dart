@@ -19,6 +19,10 @@ class AddTag extends StatefulWidget {
 }
 
 class _AddTagState extends State<AddTag> {
+  final _tagController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     var user_data = Provider.of<TUser>(context);
@@ -236,24 +240,116 @@ class _AddTagState extends State<AddTag> {
                             new Text(
                               "노트 태그 생성",
                               style:
-                                  TextStyle(color: ColorLibrary.textThemeColor),
+                                  TextStyle(
+                                    color: ColorLibrary.textThemeColor,
+                                    fontWeight: FontWeight.w600
+                                    ),
                             ),
                           ],
                         ),
                         //
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text("가입이 완료되었습니다.",
-                                style: TextStyle(color: Colors.black)),
-                          ],
+                        content: SizedBox(
+                          width: 300,
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextFormField(
+                                  controller: _tagController,
+                                  minLines: 1,
+                                  maxLines: 1,
+                                  keyboardType: TextInputType.multiline,
+                                  cursorColor: ColorLibrary.textThemeColor,
+                                  style: TextStyle(
+                                      color: Colors.black, fontWeight: FontWeight.w500),
+                                  decoration: InputDecoration(
+                                      fillColor: ColorLibrary.cardColor,
+                                      filled: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                        borderSide: BorderSide(
+                                            color: ColorLibrary.cardColor, width: 0),
+                                      ),
+                                      hintText: '태그를 입력하세요.',
+                                      //labelText: '노트를 입력하세요',
+                                      labelStyle:
+                                          TextStyle(color: ColorLibrary.textThemeColor),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                        borderSide: BorderSide(
+                                            color: ColorLibrary.textThemeColor, width: 2.5),
+                                      )
+                                    ),
+                                  validator:(value) {
+                                    //띄워쓰기 처리 해야함
+                                    if (value!.isEmpty) {
+                                      return '태그를 입력하세요.';
+                                    }
+                                    return null;
+                                  }
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                TextFormField(
+                                  controller: _descriptionController,
+                                  minLines: 3,
+                                  maxLines: 3,
+                                  keyboardType: TextInputType.multiline,
+                                  cursorColor: ColorLibrary.textThemeColor,
+                                  style: TextStyle(
+                                      color: Colors.black, fontWeight: FontWeight.w500),
+                                  decoration: InputDecoration(
+                                      fillColor: ColorLibrary.cardColor,
+                                      filled: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                        borderSide: BorderSide(
+                                            color: ColorLibrary.cardColor, width: 0),
+                                      ),
+                                      hintText: '설명을 입력하세요.',
+                                      //labelText: '노트를 입력하세요',
+                                      labelStyle:
+                                          TextStyle(color: ColorLibrary.textThemeColor),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                        borderSide: BorderSide(
+                                            color: ColorLibrary.textThemeColor, width: 2.5),
+                                      )),
+                                  validator:(value) {
+                                    if (value!.isEmpty) {
+                                      return '설명을 입력하세요';
+                                    }
+                                    return null;
+                                  }
+                                ),
+                                
+                              ],
+                            ),
+                          ),
                         ),
                         actions: <Widget>[
-                          new ElevatedButton(
-                            child: new Text("확인"),
+                          ElevatedButton(
+                            child: new Text("생성"),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: ColorLibrary.textThemeColor),
+                            onPressed: () {
+                              FocusScope.of(context).requestFocus(new FocusNode());
+                              if (_formKey.currentState!.validate()) {
+                                
+                              }
+                            },
+                          ),
+                          ElevatedButton(
+                            child: new Text("닫기"),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.redAccent),
                             onPressed: () {
                               Navigator.pop(context);
                             },
