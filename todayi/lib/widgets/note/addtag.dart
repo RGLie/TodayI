@@ -342,7 +342,23 @@ class _AddTagState extends State<AddTag> {
                             onPressed: () {
                               FocusScope.of(context).requestFocus(new FocusNode());
                               if (_formKey.currentState!.validate()) {
-                                
+                                CollectionReference users = FirebaseFirestore.instance.collection('users');
+                                CollectionReference tags = FirebaseFirestore.instance.collection('users').doc(user_data.uid).collection('tags');
+                                users.doc(user_data.uid).update({'taglist': FieldValue.arrayUnion([_tagController.text])});
+                                Tag newTag = Tag(
+                                  uid: user_data.uid, 
+                                  username: user_data.name, 
+                                  tagname: _tagController.text, 
+                                  createdate: today_note.today_date, 
+                                  description: _descriptionController.text, 
+                                  icon: 'assets/icons/write_icon.png', 
+                                  issubtag: false, 
+                                  subtaglist: [], 
+                                  isdate: false, 
+                                  datelist: []
+                                );
+                                tags.doc(_tagController.text).set(newTag.toJson());
+                              
                               }
                             },
                           ),
