@@ -13,6 +13,7 @@ import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/providers/note/edit_note/property_provider.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
+import 'package:todayi/providers/note/show_note/icon_provider.dart';
 
 class MainPage extends StatelessWidget {
   User? userData;
@@ -55,6 +56,8 @@ class MainPage extends StatelessWidget {
           create: (BuildContext context) => CardNoteButtonProvider()),
         ChangeNotifierProvider(
           create: (BuildContext context) => NoteProvider()),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => IconProvider()),
       ], 
       child: MainPageSideBar());
   }
