@@ -104,7 +104,7 @@ class _TextContentState extends State<TextContent> {
                   borderSide:
                       BorderSide(color: ColorLibrary.cardColor, width: 0),
                 ),
-                hintText: '노트를 입력하세요.',
+                hintText: '노트를 입력하세요. (마크다운 형식 가능)',
                 //labelText: '노트를 입력하세요',
                 labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
                 focusedBorder: OutlineInputBorder(
