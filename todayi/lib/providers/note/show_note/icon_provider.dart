@@ -19,6 +19,13 @@ class IconProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void reset() {
+    _icon = 0;
+    _icon_checked = false;
+    _icon_clicked = false;
+    notifyListeners();
+  }
+
   void clickedChecked() {
     _icon_clicked = false;
     notifyListeners();

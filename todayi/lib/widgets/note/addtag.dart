@@ -423,8 +423,7 @@ class _AddTagState extends State<AddTag> {
                                       tagname: _tagController.text,
                                       createdate: today_note.today_date,
                                       description: _descriptionController.text,
-                                      icon:
-                                          'assets/icons/${(icon_provider.icon + 1).toString()}.png',
+                                      icon: 'assets/icons/${(icon_provider.icon + 1).toString()}.png',
                                       issubtag: false,
                                       subtaglist: [],
                                       isdate: false,

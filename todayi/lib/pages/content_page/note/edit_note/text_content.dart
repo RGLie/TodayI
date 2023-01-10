@@ -549,7 +549,8 @@ class _TextContentState extends State<TextContent> {
                 );
               })(),
             ),
-          )
+          ),
+          
         ],
       ),
     );

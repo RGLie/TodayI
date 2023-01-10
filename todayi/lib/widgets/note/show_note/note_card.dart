@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/content.dart';
+import 'package:todayi/data/tag.dart';
+import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
+import 'package:todayi/providers/note/show_note/icon_provider.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:todayi/widgets/note/show_note/code_link_note.dart';
 import 'package:todayi/widgets/note/show_note/code_link_property.dart';
@@ -37,8 +41,15 @@ class NoteCard extends StatefulWidget {
 }
 
 class _NoteCardState extends State<NoteCard> {
+  final _tagController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    var user_data = Provider.of<TUser>(context);
+    //var today_note = Provider.of<NoteProvider>(context);
+    var icon_provider = Provider.of<IconProvider>(context);
     List<Widget> contentWidgetList = [];
 
     Map<String, dynamic> subtagWidgets = {};
@@ -246,6 +257,180 @@ class _NoteCardState extends State<NoteCard> {
             card_provider.checkedTagIdx(widget.index);
           }
         }
+      },
+      onLongPress: () {
+        icon_provider.reset();
+        _descriptionController.text = card_provider.tag_list[widget.index].description;
+        showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            //Dialog Main Title
+            title: Column(
+              children: <Widget>[
+                new Text(
+                  "노트 태그 수정",
+                  style: TextStyle(
+                      color: ColorLibrary.textThemeColor,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+            //
+            content: SizedBox(
+              width: 300,
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('# '+card_provider.tag_list[widget.index].tagname,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                          controller: _descriptionController,
+                          minLines: 3,
+                          maxLines: 3,
+                          keyboardType: TextInputType.multiline,
+                          cursorColor: ColorLibrary.textThemeColor,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500),
+                          decoration: InputDecoration(
+                              fillColor: ColorLibrary.cardColor,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                borderSide: BorderSide(
+                                    color: ColorLibrary.cardColor,
+                                    width: 0),
+                              ),
+                              hintText: '설명을 입력하세요.',
+                              //suffixText: card_provider.tag_list[widget.index].description,
+                              //labelText: '노트를 입력하세요',
+                              labelStyle: TextStyle(
+                                  color:
+                                      ColorLibrary.textThemeColor),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(15)),
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorLibrary.textThemeColor,
+                                    width: 2.5),
+                              )),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return '설명을 입력하세요';
+                            }
+                            return null;
+                          }),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      (() {
+                        if (icon_provider.icon_clicked) {
+                          return Column(
+                            children: [
+                              Text(
+                                '아이콘을 선택해주세요',
+                                style: TextStyle(
+                                    color: Colors.redAccent,
+                                    fontSize: 14),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          );
+                        }
+                        return SizedBox(
+                          height: 5,
+                        );
+                      })(),
+                      Container(
+                        width: 300,
+                        height: 250,
+                        child: GridView.builder(
+                            itemCount: 50,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 5,
+                                    childAspectRatio: 1,
+                                    mainAxisSpacing: 5,
+                                    crossAxisSpacing: 5),
+                            itemBuilder:
+                                (BuildContext context, int index) {
+                              return InkWell(
+                                onTap: () {
+                                  icon_provider.checked();
+                                  icon_provider.clickedChecked();
+                                  icon_provider.iconChecked(index);
+                                },
+                                child: Image(
+                                  width: 50,
+                                  image: AssetImage(
+                                      'assets/icons/${(index + 1).toString()}.png'),
+                                ),
+                              );
+                            }),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                child: new Text("수정"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorLibrary.textThemeColor),
+                onPressed: () {
+                  FocusScope.of(context)
+                      .requestFocus(new FocusNode());
+                  if (icon_provider.icon_checked) {
+                    if (_formKey.currentState!.validate()) {
+                      CollectionReference tags = FirebaseFirestore
+                          .instance
+                          .collection('users')
+                          .doc(user_data.uid)
+                          .collection('tags');
+                      
+                      tags.doc(card_provider.tag_list[widget.index].tagname).update({
+                        'description': _descriptionController.text,
+                        'icon': 'assets/icons/${(icon_provider.icon + 1).toString()}.png',
+                      });
+                      Navigator.pop(context);
+                    }
+                  } else {
+                    icon_provider.buttonChecked();
+                  }
+                },
+              ),
+              ElevatedButton(
+                child: new Text("닫기"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
       },
       child: Container(
         padding: EdgeInsets.all(15),
