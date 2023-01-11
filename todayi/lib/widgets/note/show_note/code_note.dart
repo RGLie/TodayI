@@ -80,7 +80,7 @@ class CodeNote extends StatelessWidget {
                     }),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: 10, left: 15, right:15),
                 child: Container(
                   padding:
                       EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
@@ -104,44 +104,47 @@ class CodeNote extends StatelessWidget {
                   ),
                 ),
               ),
-              MarkdownBody(
-                  onTapLink: (text, href, title) {
-                    href != null ? launchUrl(Uri.parse(href)) : null;
-                  },
-                  selectable: true,
-                  data: codeblock,
-                  styleSheet: MarkdownStyleSheet(
-                    p: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 17),
-                    h4: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20),
-                    h3: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 22),
-                    h2: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 25),
-                    h1: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 28),
-                    // code: TextStyle(
-                    //   backgroundColor: Colors.black,
-                    //   color: Colors.white,
-                    //   fontSize: 16
-
-                    // )
-                  ),
-                  key: const Key("defaultmarkdownformatter"),
-                  builders: {
-                    'code': CodeElementBuilder(),
-                  }),
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: MarkdownBody(
+                    onTapLink: (text, href, title) {
+                      href != null ? launchUrl(Uri.parse(href)) : null;
+                    },
+                    selectable: true,
+                    data: codeblock,
+                    styleSheet: MarkdownStyleSheet(
+                      p: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17),
+                      h4: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20),
+                      h3: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 22),
+                      h2: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 25),
+                      h1: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 28),
+                      // code: TextStyle(
+                      //   backgroundColor: Colors.black,
+                      //   color: Colors.white,
+                      //   fontSize: 16
+              
+                      // )
+                    ),
+                    key: const Key("defaultmarkdownformatter"),
+                    builders: {
+                      'code': CodeElementBuilder(),
+                    }),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Row(
