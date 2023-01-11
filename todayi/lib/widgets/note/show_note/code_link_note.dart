@@ -24,7 +24,7 @@ class CodeLinkNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String codeblock = '```$language\n$code```';
+    String codeblock = '```$language\n$code';
     
     return Column(
       children: [
@@ -90,7 +90,7 @@ class CodeLinkNote extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('dart',
+                      Text(language,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15

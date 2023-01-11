@@ -32,7 +32,7 @@ class CodePropertyNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String codeblock = '```$language\n$code```';
+    String codeblock = '```$language\n$code';
     String txt = '';
 
     if (property1) {
@@ -117,7 +117,7 @@ class CodePropertyNote extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'dart',
+                        language,
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                       InkWell(

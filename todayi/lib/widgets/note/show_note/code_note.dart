@@ -21,7 +21,7 @@ class CodeNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String codeblock = '```$language\n$code```';
+    String codeblock = '```$language\n$code';
 
     return Column(
       children: [
@@ -80,7 +80,7 @@ class CodeNote extends StatelessWidget {
                     }),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 15),
+                padding: EdgeInsets.only(top: 10),
                 child: Container(
                   padding:
                       EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
@@ -89,15 +89,15 @@ class CodeNote extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'dart',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        language,
+                        style: TextStyle(color: Colors.white, fontSize: 10),
                       ),
                       InkWell(
                         onTap: () {},
                         child: Icon(
                           Icons.content_copy_outlined,
                           color: Colors.white,
-                          size: 15,
+                          size: 10,
                         ),
                       )
                     ],

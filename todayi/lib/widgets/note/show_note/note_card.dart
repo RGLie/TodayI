@@ -497,6 +497,8 @@ class _NoteCardState extends State<NoteCard> {
                   child: IconButton(
                       splashRadius: 20,
                       onPressed: () {
+                        // if(widget.notecontent.length==0){
+                        // }
                         card_provider.changeHide(widget.index);
                       },
                       icon: (() {
