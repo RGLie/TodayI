@@ -29,7 +29,7 @@ class CodeNote extends StatelessWidget {
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only(top: 15),
+          padding: EdgeInsets.only(left: 7, right: 7, top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
             color: cardcolor,
@@ -80,11 +80,15 @@ class CodeNote extends StatelessWidget {
                     }),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10, left: 15, right:15),
+                padding: EdgeInsets.only(top: 10,),
                 child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xff282c34),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                  ),
                   padding:
                       EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
-                  color: Color(0xff32363b),
+                  
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -104,8 +108,12 @@ class CodeNote extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              Container(
                 padding: EdgeInsets.only(left: 15, right: 15),
+                decoration: BoxDecoration(
+                    color: Color(0xff282c34),
+                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                  ),
                 child: MarkdownBody(
                     onTapLink: (text, href, title) {
                       href != null ? launchUrl(Uri.parse(href)) : null;
@@ -145,27 +153,24 @@ class CodeNote extends StatelessWidget {
                       'code': CodeElementBuilder(),
                     }),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 15, right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.content_copy_outlined,
-                          color: ColorLibrary.textThemeColor,
-                          size: 18,
-                        )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.delete_outline,
-                          color: ColorLibrary.textThemeColor,
-                          size: 22,
-                        )),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.content_copy_outlined,
+                        color: ColorLibrary.textThemeColor,
+                        size: 18,
+                      )),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.delete_outline,
+                        color: ColorLibrary.textThemeColor,
+                        size: 22,
+                      )),
+                ],
               ),
             ],
           ),
