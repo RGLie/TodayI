@@ -245,224 +245,224 @@ class _NoteCardState extends State<NoteCard> {
 
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
-    return InkWell(
-      onTap: () {
-        if (!card_provider.is_checked) {
-          card_provider.checked();
-          card_provider.checkedTagIdx(widget.index);
-        } else {
-          if (card_provider.checked_tag == widget.index) {
-            card_provider.checked();
-          } else {
-            card_provider.checkedTagIdx(widget.index);
+    return Container(
+      padding: EdgeInsets.all(15),
+      width: double.infinity,
+      //height: 100,
+      constraints: BoxConstraints(
+        maxWidth: 1000,
+      ),
+      decoration: BoxDecoration(
+        color: ColorLibrary.cardColor,
+        borderRadius: BorderRadius.circular(10),
+        border: (() {
+          if (card_provider.is_checked &&
+              card_provider.checked_tag == widget.index) {
+            return Border.all(
+                width: 3,
+                color: ColorLibrary.textThemeColor,
+                strokeAlign: BorderSide.strokeAlignOutside);
           }
-        }
-      },
-      onLongPress: () {
-        icon_provider.reset();
-        _descriptionController.text = card_provider.tag_list[widget.index].description;
-        showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-            //Dialog Main Title
-            title: Column(
-              children: <Widget>[
-                new Text(
-                  "노트 태그 수정",
-                  style: TextStyle(
-                      color: ColorLibrary.textThemeColor,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-            //
-            content: SizedBox(
-              width: 300,
-              child: Form(
-                key: _formKey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('# '+card_provider.tag_list[widget.index].tagname,
+        })(),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.25),
+            blurRadius: 5,
+            offset: Offset(3, 3), // Shadow position
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              if (!card_provider.is_checked) {
+                card_provider.checked();
+                card_provider.checkedTagIdx(widget.index);
+              } else {
+                if (card_provider.checked_tag == widget.index) {
+                  card_provider.checked();
+                } else {
+                  card_provider.checkedTagIdx(widget.index);
+                }
+              }
+            },
+            onLongPress: () {
+              icon_provider.reset();
+              _descriptionController.text = card_provider.tag_list[widget.index].description;
+              showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  //Dialog Main Title
+                  title: Column(
+                    children: <Widget>[
+                      new Text(
+                        "노트 태그 수정",
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600
-                        ),
+                            color: ColorLibrary.textThemeColor,
+                            fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                          controller: _descriptionController,
-                          minLines: 3,
-                          maxLines: 3,
-                          keyboardType: TextInputType.multiline,
-                          cursorColor: ColorLibrary.textThemeColor,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500),
-                          decoration: InputDecoration(
-                              fillColor: ColorLibrary.cardColor,
-                              filled: true,
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                borderSide: BorderSide(
-                                    color: ColorLibrary.cardColor,
-                                    width: 0),
-                              ),
-                              hintText: '설명을 입력하세요.',
-                              //suffixText: card_provider.tag_list[widget.index].description,
-                              //labelText: '노트를 입력하세요',
-                              labelStyle: TextStyle(
-                                  color:
-                                      ColorLibrary.textThemeColor),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15)),
-                                borderSide: BorderSide(
-                                    color:
-                                        ColorLibrary.textThemeColor,
-                                    width: 2.5),
-                              )),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return '설명을 입력하세요';
-                            }
-                            return null;
-                          }),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      (() {
-                        if (icon_provider.icon_clicked) {
-                          return Column(
-                            children: [
-                              Text(
-                                '아이콘을 선택해주세요',
-                                style: TextStyle(
-                                    color: Colors.redAccent,
-                                    fontSize: 14),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                            ],
-                          );
-                        }
-                        return SizedBox(
-                          height: 5,
-                        );
-                      })(),
-                      Container(
-                        width: 300,
-                        height: 250,
-                        child: GridView.builder(
-                            itemCount: 50,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 5,
-                                    childAspectRatio: 1,
-                                    mainAxisSpacing: 5,
-                                    crossAxisSpacing: 5),
-                            itemBuilder:
-                                (BuildContext context, int index) {
-                              return InkWell(
-                                onTap: () {
-                                  icon_provider.checked();
-                                  icon_provider.clickedChecked();
-                                  icon_provider.iconChecked(index);
-                                },
-                                child: Image(
-                                  width: 50,
-                                  image: AssetImage(
-                                      'assets/icons/${(index + 1).toString()}.png'),
-                                ),
-                              );
-                            }),
-                      )
                     ],
                   ),
-                ),
-              ),
-            ),
-            actions: <Widget>[
-              ElevatedButton(
-                child: new Text("수정"),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorLibrary.textThemeColor),
-                onPressed: () {
-                  FocusScope.of(context)
-                      .requestFocus(new FocusNode());
-                  if (icon_provider.icon_checked) {
-                    if (_formKey.currentState!.validate()) {
-                      CollectionReference tags = FirebaseFirestore
-                          .instance
-                          .collection('users')
-                          .doc(user_data.uid)
-                          .collection('tags');
-                      
-                      tags.doc(card_provider.tag_list[widget.index].tagname).update({
-                        'description': _descriptionController.text,
-                        'icon': 'assets/icons/${(icon_provider.icon + 1).toString()}.png',
-                      });
-                      Navigator.pop(context);
-                    }
-                  } else {
-                    icon_provider.buttonChecked();
-                  }
-                },
-              ),
-              ElevatedButton(
-                child: new Text("닫기"),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          );
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.all(15),
-        width: double.infinity,
-        //height: 100,
-        constraints: BoxConstraints(
-          maxWidth: 1000,
-        ),
-        decoration: BoxDecoration(
-          color: ColorLibrary.cardColor,
-          borderRadius: BorderRadius.circular(10),
-          border: (() {
-            if (card_provider.is_checked &&
-                card_provider.checked_tag == widget.index) {
-              return Border.all(
-                  width: 3,
-                  color: ColorLibrary.textThemeColor,
-                  strokeAlign: BorderSide.strokeAlignOutside);
-            }
-          })(),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.25),
-              blurRadius: 5,
-              offset: Offset(3, 3), // Shadow position
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+                  //
+                  content: SizedBox(
+                    width: 300,
+                    child: Form(
+                      key: _formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('# '+card_provider.tag_list[widget.index].tagname,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                                controller: _descriptionController,
+                                minLines: 3,
+                                maxLines: 3,
+                                keyboardType: TextInputType.multiline,
+                                cursorColor: ColorLibrary.textThemeColor,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500),
+                                decoration: InputDecoration(
+                                    fillColor: ColorLibrary.cardColor,
+                                    filled: true,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                      borderSide: BorderSide(
+                                          color: ColorLibrary.cardColor,
+                                          width: 0),
+                                    ),
+                                    hintText: '설명을 입력하세요.',
+                                    //suffixText: card_provider.tag_list[widget.index].description,
+                                    //labelText: '노트를 입력하세요',
+                                    labelStyle: TextStyle(
+                                        color:
+                                            ColorLibrary.textThemeColor),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15)),
+                                      borderSide: BorderSide(
+                                          color:
+                                              ColorLibrary.textThemeColor,
+                                          width: 2.5),
+                                    )),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return '설명을 입력하세요';
+                                  }
+                                  return null;
+                                }),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            (() {
+                              if (icon_provider.icon_clicked) {
+                                return Column(
+                                  children: [
+                                    Text(
+                                      '아이콘을 선택해주세요',
+                                      style: TextStyle(
+                                          color: Colors.redAccent,
+                                          fontSize: 14),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                  ],
+                                );
+                              }
+                              return SizedBox(
+                                height: 5,
+                              );
+                            })(),
+                            Container(
+                              width: 300,
+                              height: 250,
+                              child: GridView.builder(
+                                  itemCount: 50,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 5,
+                                          childAspectRatio: 1,
+                                          mainAxisSpacing: 5,
+                                          crossAxisSpacing: 5),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        icon_provider.checked();
+                                        icon_provider.clickedChecked();
+                                        icon_provider.iconChecked(index);
+                                      },
+                                      child: Image(
+                                        width: 50,
+                                        image: AssetImage(
+                                            'assets/icons/${(index + 1).toString()}.png'),
+                                      ),
+                                    );
+                                  }),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  actions: <Widget>[
+                    ElevatedButton(
+                      child: new Text("수정"),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorLibrary.textThemeColor),
+                      onPressed: () {
+                        FocusScope.of(context)
+                            .requestFocus(new FocusNode());
+                        if (icon_provider.icon_checked) {
+                          if (_formKey.currentState!.validate()) {
+                            CollectionReference tags = FirebaseFirestore
+                                .instance
+                                .collection('users')
+                                .doc(user_data.uid)
+                                .collection('tags');
+                            
+                            tags.doc(card_provider.tag_list[widget.index].tagname).update({
+                              'description': _descriptionController.text,
+                              'icon': 'assets/icons/${(icon_provider.icon + 1).toString()}.png',
+                            });
+                            Navigator.pop(context);
+                          }
+                        } else {
+                          icon_provider.buttonChecked();
+                        }
+                      },
+                    ),
+                    ElevatedButton(
+                      child: new Text("닫기"),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              });
+            },
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
@@ -516,74 +516,74 @@ class _NoteCardState extends State<NoteCard> {
                 )
               ],
             ),
-            if (!card_provider.getHide(widget.index)) ...[
-              SizedBox(
-                height: 15,
-              ),
-              Container(
-                color: ColorLibrary.textThemeColor,
-                width: double.infinity,
-                height: 2,
-              ),
-              Column(children: contentWidgetList),
-              Column(
-                children: contentSubtagWidgetList,
-              )
-              // ContentNote(
-              //   content: data,
-              // ),
-              // PropertyNote(
-              //   content: '안녕하세요',
-              //   property1: true,
-              //   property4: true,
-              // ),
-              // ContentNote(
-              //   content:
-              //       'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
-              // ),
-              // LinkPropertyNote(
-              //   content: 'Pub Dev 패키지',
-              //   link: 'https://pub.dev/',
-              //   property1: true,
-              //   property2: true,
-              //   property3: true,
-              // ),
-              // LinkNote(link: 'https://pub.dev/', content: data),
-              // CodeNote(
-              //   content: 'dart 코드 입니다',
-              //   code: coding,
-              //   language: 'dart',
-              // ),
-              // CodePropertyNote(
-              //   content: 'dart property 코드 입니다',
-              //   code: coding,
-              //   property5: true,
-              // ),
-              // CodeLinkNote(
-              //   content: 'dart link 코드 입니다',
-              //   code: coding,
-              //   link: 'https://www.naver.com',
-              //   language: 'dart',
-              // ),
-              // CodePropertyLinkNote(
-              //   content: 'dart link property 코드 입니다',
-              //   code: coding,
-              //   link: 'https://www.naver.com',
-              //   language: 'dart',
-              //   property5: true,
-              // ),
-              // SizedBox(
-              //   height: 15,
-              // ),
-              // SubtagNote(tagtext: '에러', cardchild: [
-              //   // ContentNote(
-              //   //   content: '에러 내용은 이거',
-              //   //   cardcolor: ColorLibrary.cardSubTagColor,
-              //   // )
-              // ])
-            ]
-          ],
-        ),
+          ),
+          if (!card_provider.getHide(widget.index)) ...[
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              color: ColorLibrary.textThemeColor,
+              width: double.infinity,
+              height: 2,
+            ),
+            Column(children: contentWidgetList),
+            Column(
+              children: contentSubtagWidgetList,
+            )
+            // ContentNote(
+            //   content: data,
+            // ),
+            // PropertyNote(
+            //   content: '안녕하세요',
+            //   property1: true,
+            //   property4: true,
+            // ),
+            // ContentNote(
+            //   content:
+            //       'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
+            // ),
+            // LinkPropertyNote(
+            //   content: 'Pub Dev 패키지',
+            //   link: 'https://pub.dev/',
+            //   property1: true,
+            //   property2: true,
+            //   property3: true,
+            // ),
+            // LinkNote(link: 'https://pub.dev/', content: data),
+            // CodeNote(
+            //   content: 'dart 코드 입니다',
+            //   code: coding,
+            //   language: 'dart',
+            // ),
+            // CodePropertyNote(
+            //   content: 'dart property 코드 입니다',
+            //   code: coding,
+            //   property5: true,
+            // ),
+            // CodeLinkNote(
+            //   content: 'dart link 코드 입니다',
+            //   code: coding,
+            //   link: 'https://www.naver.com',
+            //   language: 'dart',
+            // ),
+            // CodePropertyLinkNote(
+            //   content: 'dart link property 코드 입니다',
+            //   code: coding,
+            //   link: 'https://www.naver.com',
+            //   language: 'dart',
+            //   property5: true,
+            // ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // SubtagNote(tagtext: '에러', cardchild: [
+            //   // ContentNote(
+            //   //   content: '에러 내용은 이거',
+            //   //   cardcolor: ColorLibrary.cardSubTagColor,
+            //   // )
+            // ])
+          ]
+        ],
       ),
     );
   }

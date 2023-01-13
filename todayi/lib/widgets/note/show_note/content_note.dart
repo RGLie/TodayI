@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
@@ -75,7 +76,9 @@ class ContentNote extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(text:content));
+                      },
                       icon: Icon(
                         Icons.content_copy_outlined,
                         color: ColorLibrary.textThemeColor,
