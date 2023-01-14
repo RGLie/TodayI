@@ -29,7 +29,7 @@ class CodeNote extends StatelessWidget {
           height: 15,
         ),
         Container(
-          padding: EdgeInsets.only(left: 7, right: 7, top: 15),
+          padding: EdgeInsets.only( top: 15),
           width: double.infinity,
           decoration: BoxDecoration(
             color: cardcolor,
@@ -80,14 +80,14 @@ class CodeNote extends StatelessWidget {
                     }),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10,),
+                padding: EdgeInsets.only(left: 7, right: 7, top: 13,),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Color(0xff282c34),
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                   ),
                   padding:
-                      EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 5),
+                      EdgeInsets.only(left: 20, right: 20,  top: 6),
                   
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,50 +108,53 @@ class CodeNote extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(left: 15, right: 15),
-                decoration: BoxDecoration(
-                    color: Color(0xff282c34),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                  ),
-                child: MarkdownBody(
-                    onTapLink: (text, href, title) {
-                      href != null ? launchUrl(Uri.parse(href)) : null;
-                    },
-                    selectable: true,
-                    data: codeblock,
-                    styleSheet: MarkdownStyleSheet(
-                      p: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17),
-                      h4: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20),
-                      h3: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 22),
-                      h2: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 25),
-                      h1: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 28),
-                      // code: TextStyle(
-                      //   backgroundColor: Colors.black,
-                      //   color: Colors.white,
-                      //   fontSize: 16
-              
-                      // )
+              Padding(
+                padding: EdgeInsets.only(left: 7, right: 7),
+                child: Container(
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  decoration: BoxDecoration(
+                      color: Color(0xff282c34),
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                     ),
-                    key: const Key("defaultmarkdownformatter"),
-                    builders: {
-                      'code': CodeElementBuilder(),
-                    }),
+                  child: MarkdownBody(
+                      onTapLink: (text, href, title) {
+                        href != null ? launchUrl(Uri.parse(href)) : null;
+                      },
+                      selectable: true,
+                      data: codeblock,
+                      styleSheet: MarkdownStyleSheet(
+                        p: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17),
+                        h4: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20),
+                        h3: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 22),
+                        h2: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 25),
+                        h1: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 28),
+                        // code: TextStyle(
+                        //   backgroundColor: Colors.black,
+                        //   color: Colors.white,
+                        //   fontSize: 16
+                
+                        // )
+                      ),
+                      key: const Key("defaultmarkdownformatter"),
+                      builders: {
+                        'code': CodeElementBuilder(),
+                      }),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
