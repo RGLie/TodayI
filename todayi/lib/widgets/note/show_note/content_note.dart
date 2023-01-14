@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -78,6 +79,13 @@ class ContentNote extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         Clipboard.setData(ClipboardData(text:content));
+                        Fluttertoast.showToast(msg: '복사되었습니다.',
+                          gravity: ToastGravity.CENTER,
+                          backgroundColor: Colors.white10,
+                          fontSize: 20.0,
+                          textColor: ColorLibrary.textThemeColor,
+                          toastLength: Toast.LENGTH_SHORT
+                        );
                       },
                       icon: Icon(
                         Icons.content_copy_outlined,

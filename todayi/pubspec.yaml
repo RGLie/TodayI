@@ -46,6 +46,7 @@ dependencies:
   url_launcher: ^6.1.7
   flutter_highlighter: ^0.1.1
   highlight: ^0.7.0
+  fluttertoast: ^8.1.2
 
 dev_dependencies:
   flutter_test:
