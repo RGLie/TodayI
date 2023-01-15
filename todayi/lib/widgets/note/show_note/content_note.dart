@@ -80,10 +80,13 @@ class ContentNote extends StatelessWidget {
                       onPressed: () {
                         Clipboard.setData(ClipboardData(text:content));
                         Fluttertoast.showToast(msg: '복사되었습니다.',
-                          gravity: ToastGravity.CENTER,
-                          backgroundColor: Colors.white10,
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor: Colors.white,
+                          webBgColor: "linear-gradient(to right, #3A2000, #3A2000)",
+                          webPosition: 'center',
+                          
                           fontSize: 20.0,
-                          textColor: ColorLibrary.textThemeColor,
+                          textColor: Colors.white,
                           toastLength: Toast.LENGTH_SHORT
                         );
                       },
