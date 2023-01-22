@@ -65,6 +65,7 @@ class _NoteCardState extends State<NoteCard> {
         if (getContentType(widget.notecontent[i]) == 'content') {
           contentWidgetList.add(
             ContentNote(
+              tagname: widget.tagname,
               content: widget.notecontent[i].content,
               count: widget.notecontent[i].count,
             ),
@@ -142,6 +143,8 @@ class _NoteCardState extends State<NoteCard> {
         if (getContentType(widget.notecontent[i]) == 'subtag-content') {
           subtagWidgets[widget.notecontent[i].subtag].add(
             ContentNote(
+              tagname: widget.tagname,
+              subtag: widget.notecontent[i].subtag,
               content: widget.notecontent[i].content,
               cardcolor: ColorLibrary.cardSubTagColor,
               count: widget.notecontent[i].count,

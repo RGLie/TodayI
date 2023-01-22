@@ -1,13 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:todayi/data/user.dart';
+import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContentNote extends StatelessWidget {
   String content;
+  String subtag;
+  String tagname;
   Color cardcolor;
   int count;
 
@@ -15,11 +21,15 @@ class ContentNote extends StatelessWidget {
     super.key,
     required this.content,
     required this.count,
-    this.cardcolor = const Color(0xffE5DDD1)
+    required this.tagname,
+    this.cardcolor = const Color(0xffE5DDD1),
+    this.subtag = ''
   });
 
   @override
   Widget build(BuildContext context) {
+    var user_data = Provider.of<TUser>(context);
+    var today_note = Provider.of<NoteProvider>(context);
     return Column(
       children: [
         SizedBox(
@@ -96,7 +106,17 @@ class ContentNote extends StatelessWidget {
                         size: 18,
                       )),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        CollectionReference contents = FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(user_data.uid)
+                          .collection('contents');
+                        String contentID = subtag==''?
+                          tagname + '?' + today_note.today_date + '?' + count.toString()
+                          :tagname + '.'+ subtag+'?' + today_note.today_date + '?' + count.toString();
+                        contents.doc(contentID).delete();
+                        
+                      },
                       icon: Icon(
                         Icons.delete_outline,
                         color: ColorLibrary.textThemeColor,
