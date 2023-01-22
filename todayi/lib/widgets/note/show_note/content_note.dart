@@ -34,23 +34,41 @@ class ContentNote extends StatelessWidget {
       tagname + '?' + today_note.today_date + '?' + count.toString()
       :tagname + '.'+ subtag+'?' + today_note.today_date + '?' + count.toString();
     
-    return Dismissible(
-      key: Key(contentID),
-      background: Container(color: Colors.redAccent),
-      onDismissed: (direction) {
-        CollectionReference contents = FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(user_data.uid)
-                            .collection('contents');
-                          
-                          contents.doc(contentID).delete();
-      },
-      child: Column(
-        children: [
-          SizedBox(
-            height: 15,
-          ),
-          Container(
+    return Column(
+      children: [
+        SizedBox(
+          height: 15,
+        ),
+        Dismissible(
+          key: Key(contentID),
+            background: Container(
+              
+              decoration: BoxDecoration(
+                color: Colors.redAccent,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+
+                  )
+                ),
+              ),
+            ),
+            onDismissed: (direction) {
+              CollectionReference contents = FirebaseFirestore.instance
+                .collection('users')
+                .doc(user_data.uid)
+                .collection('contents');
+              
+              contents.doc(contentID).delete();
+            },
+          direction: DismissDirection.endToStart,
+
+          child: Container(
             padding: EdgeInsets.only(left: 15, right: 15, top: 15),
             width: double.infinity,
             decoration: BoxDecoration(
@@ -91,7 +109,7 @@ class ContentNote extends StatelessWidget {
                       //   backgroundColor: Colors.black,
                       //   color: Colors.white,
                       //   fontSize: 16
-    
+            
                       // )
                     ),
                     key: const Key("defaultmarkdownformatter"),
@@ -139,15 +157,15 @@ class ContentNote extends StatelessWidget {
                 ),
               ],
             ),
-    
+            
             // child: Text(content,
             //     style: TextStyle(
             //         color: Colors.black,
             //         fontWeight: FontWeight.w500,
             //         fontSize: 17)),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
