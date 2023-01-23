@@ -173,7 +173,7 @@ class _NoteCardState extends State<NoteCard> {
             subtag: widget.notecontent[i].subtag,
             content: widget.notecontent[i].content,
             link: widget.notecontent[i].link,
-            cardcolor:Color(0xffe0d1ba),
+            cardcolor:Color(0xffdeccb1),
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) == 'subtag-property') {
@@ -198,7 +198,7 @@ class _NoteCardState extends State<NoteCard> {
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             link: widget.notecontent[i].link,
-            cardcolor: Color(0xffe0d1ba),
+            cardcolor: Color(0xffdeccb1),
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) ==
@@ -229,7 +229,7 @@ class _NoteCardState extends State<NoteCard> {
             property3: widget.notecontent[i].property3,
             property4: widget.notecontent[i].property4,
             property5: widget.notecontent[i].property5,
-            cardcolor: Color(0xffe0d1ba),
+            cardcolor: Color(0xffdeccb1),
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) ==
@@ -246,7 +246,7 @@ class _NoteCardState extends State<NoteCard> {
             property3: widget.notecontent[i].property3,
             property4: widget.notecontent[i].property4,
             property5: widget.notecontent[i].property5,
-            cardcolor: Color(0xffe0d1ba),
+            cardcolor: Color(0xffdeccb1),
             count: widget.notecontent[i].count,
           ));
         }

@@ -25,7 +25,7 @@ class LinkNote extends StatelessWidget {
     required this.count,
     required this.tagname,
     this.subtag = '',
-    this.cardcolor = const Color(0xffdeccb1),
+    this.cardcolor = const Color(0xffe0d1ba)
   });
 
   @override
