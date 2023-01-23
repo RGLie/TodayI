@@ -9,6 +9,8 @@ class CodeLinkNote extends StatelessWidget {
   String code;
   String language;
   String link;
+  String subtag;
+  String tagname;
   Color cardcolor;
   int count;
 
@@ -18,6 +20,8 @@ class CodeLinkNote extends StatelessWidget {
     required this.code,
     required this.link,
     required this.count,
+    required this.tagname,
+    this.subtag = '',
     this.language='dart',
     this.cardcolor = const Color(0xffE5DDD1)
   });

@@ -7,6 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 class PropertyNote extends StatelessWidget {
   String content;
   int count;
+  String subtag;
+  String tagname;
   bool property1;
   bool property2;
   bool property3;
@@ -18,6 +20,8 @@ class PropertyNote extends StatelessWidget {
     super.key,
     required this.content,
     required this.count,
+    required this.tagname,
+    this.subtag = '',
     this.property1 = false,
     this.property2 = false,
     this.property3 = false,

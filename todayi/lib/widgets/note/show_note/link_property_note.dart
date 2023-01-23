@@ -8,6 +8,8 @@ class LinkPropertyNote extends StatelessWidget {
   String content;
   String link;
   int count;
+  String subtag;
+  String tagname;
   bool property1;
   bool property2;
   bool property3;
@@ -20,6 +22,8 @@ class LinkPropertyNote extends StatelessWidget {
     required this.content,
     required this.link,
     required this.count,
+    required this.tagname,
+    this.subtag = '',
     this.property1 = false,
     this.property2 = false,
     this.property3 = false,

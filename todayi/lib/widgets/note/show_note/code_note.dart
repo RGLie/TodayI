@@ -9,6 +9,8 @@ class CodeNote extends StatelessWidget {
   String code;
   String language;
   int count;
+  String subtag;
+  String tagname;
   Color cardcolor;
 
   CodeNote(
@@ -16,6 +18,8 @@ class CodeNote extends StatelessWidget {
       required this.content,
       required this.code,
       required this.count,
+      required this.tagname,
+      this.subtag = '',
       this.language = 'dart',
       this.cardcolor = const Color(0xffE5DDD1)});
 

@@ -9,6 +9,8 @@ class CodePropertyNote extends StatelessWidget {
   String code;
   String language;
   int count;
+  String subtag;
+  String tagname;
   bool property1;
   bool property2;
   bool property3;
@@ -21,6 +23,8 @@ class CodePropertyNote extends StatelessWidget {
     required this.content,
     required this.code,
     required this.count,
+    required this.tagname,
+    this.subtag = '',
     this.language = 'dart',
     this.property1 = false,
     this.property2 = false,

@@ -59,17 +59,29 @@ class ContentNote extends StatelessWidget {
               ),
             ),
             onDismissed: (direction) {
+
               CollectionReference contents = FirebaseFirestore.instance
                 .collection('users')
                 .doc(user_data.uid)
                 .collection('contents');
               
               contents.doc(contentID).delete();
+
+              Fluttertoast.showToast(msg: '삭제 되었습니다.',
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.white,
+                webBgColor: "linear-gradient(to right, #3A2000, #3A2000)",
+                webPosition: 'center',
+                
+                fontSize: 20.0,
+                textColor: Colors.white,
+                toastLength: Toast.LENGTH_SHORT
+              );
             },
           direction: DismissDirection.endToStart,
 
           child: Container(
-            padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+            padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
             width: double.infinity,
             decoration: BoxDecoration(
               color: cardcolor,
@@ -116,45 +128,45 @@ class ContentNote extends StatelessWidget {
                     builders: {
                       'code': CodeElementBuilder(),
                     }),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Clipboard.setData(ClipboardData(text:content));
-                          Fluttertoast.showToast(msg: '복사되었습니다.',
-                            gravity: ToastGravity.BOTTOM,
-                            backgroundColor: Colors.white,
-                            webBgColor: "linear-gradient(to right, #3A2000, #3A2000)",
-                            webPosition: 'center',
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     IconButton(
+                //         onPressed: () {
+                //           Clipboard.setData(ClipboardData(text:content));
+                //           Fluttertoast.showToast(msg: '복사되었습니다.',
+                //             gravity: ToastGravity.BOTTOM,
+                //             backgroundColor: Colors.white,
+                //             webBgColor: "linear-gradient(to right, #3A2000, #3A2000)",
+                //             webPosition: 'center',
                             
-                            fontSize: 20.0,
-                            textColor: Colors.white,
-                            toastLength: Toast.LENGTH_SHORT
-                          );
-                        },
-                        icon: Icon(
-                          Icons.content_copy_outlined,
-                          color: ColorLibrary.textThemeColor,
-                          size: 18,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          CollectionReference contents = FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(user_data.uid)
-                            .collection('contents');
+                //             fontSize: 20.0,
+                //             textColor: Colors.white,
+                //             toastLength: Toast.LENGTH_SHORT
+                //           );
+                //         },
+                //         icon: Icon(
+                //           Icons.content_copy_outlined,
+                //           color: ColorLibrary.textThemeColor,
+                //           size: 18,
+                //         )),
+                //     IconButton(
+                //         onPressed: () {
+                //           CollectionReference contents = FirebaseFirestore.instance
+                //             .collection('users')
+                //             .doc(user_data.uid)
+                //             .collection('contents');
                           
-                          contents.doc(contentID).delete();
+                //           contents.doc(contentID).delete();
                           
-                        },
-                        icon: Icon(
-                          Icons.delete_outline,
-                          color: ColorLibrary.textThemeColor,
-                          size: 22,
-                        )),
-                  ],
-                ),
+                //         },
+                //         icon: Icon(
+                //           Icons.delete_outline,
+                //           color: ColorLibrary.textThemeColor,
+                //           size: 22,
+                //         )),
+                //   ],
+                // ),
               ],
             ),
             

@@ -74,11 +74,13 @@ class _NoteCardState extends State<NoteCard> {
           contentWidgetList.add(CodeNote(
             content: widget.notecontent[i].content,
             code: widget.notecontent[i].code,
+            tagname: widget.tagname,
             language: widget.notecontent[i].language,
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) == 'link') {
           contentWidgetList.add(LinkNote(
+            tagname: widget.tagname,
             content: widget.notecontent[i].content,
             link: widget.notecontent[i].link,
             count: widget.notecontent[i].count,
@@ -86,6 +88,7 @@ class _NoteCardState extends State<NoteCard> {
         } else if (getContentType(widget.notecontent[i]) == 'property') {
           contentWidgetList.add(PropertyNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
             property1: widget.notecontent[i].property1,
             property2: widget.notecontent[i].property2,
             property3: widget.notecontent[i].property3,
@@ -96,6 +99,7 @@ class _NoteCardState extends State<NoteCard> {
         } else if (getContentType(widget.notecontent[i]) == 'code-link') {
           contentWidgetList.add(CodeLinkNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             link: widget.notecontent[i].link,
@@ -104,6 +108,7 @@ class _NoteCardState extends State<NoteCard> {
         } else if (getContentType(widget.notecontent[i]) == 'code-property') {
           contentWidgetList.add(CodePropertyNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             property1: widget.notecontent[i].property1,
@@ -116,6 +121,7 @@ class _NoteCardState extends State<NoteCard> {
         } else if (getContentType(widget.notecontent[i]) == 'link-property') {
           contentWidgetList.add(LinkPropertyNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
             link: widget.notecontent[i].link,
             property1: widget.notecontent[i].property1,
             property2: widget.notecontent[i].property2,
@@ -128,6 +134,7 @@ class _NoteCardState extends State<NoteCard> {
             'code-link-property') {
           contentWidgetList.add(CodePropertyLinkNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             link: widget.notecontent[i].link,
@@ -153,6 +160,8 @@ class _NoteCardState extends State<NoteCard> {
         } else if (getContentType(widget.notecontent[i]) == 'subtag-code') {
           subtagWidgets[widget.notecontent[i].subtag].add(CodeNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             cardcolor: ColorLibrary.cardSubTagColor,
@@ -160,14 +169,18 @@ class _NoteCardState extends State<NoteCard> {
           ));
         } else if (getContentType(widget.notecontent[i]) == 'subtag-link') {
           subtagWidgets[widget.notecontent[i].subtag].add(LinkNote(
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             content: widget.notecontent[i].content,
             link: widget.notecontent[i].link,
-            cardcolor: ColorLibrary.cardSubTagColor,
+            cardcolor:Color(0xffe0d1ba),
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) == 'subtag-property') {
           subtagWidgets[widget.notecontent[i].subtag].add(PropertyNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             property1: widget.notecontent[i].property1,
             property2: widget.notecontent[i].property2,
             property3: widget.notecontent[i].property3,
@@ -180,16 +193,20 @@ class _NoteCardState extends State<NoteCard> {
             'subtag-code-link') {
           subtagWidgets[widget.notecontent[i].subtag].add(CodeLinkNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             link: widget.notecontent[i].link,
-            cardcolor: ColorLibrary.cardSubTagColor,
+            cardcolor: Color(0xffe0d1ba),
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) ==
             'subtag-code-property') {
           subtagWidgets[widget.notecontent[i].subtag].add(CodePropertyNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             property1: widget.notecontent[i].property1,
@@ -204,19 +221,23 @@ class _NoteCardState extends State<NoteCard> {
             'subtag-link-property') {
           subtagWidgets[widget.notecontent[i].subtag].add(LinkPropertyNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             link: widget.notecontent[i].link,
             property1: widget.notecontent[i].property1,
             property2: widget.notecontent[i].property2,
             property3: widget.notecontent[i].property3,
             property4: widget.notecontent[i].property4,
             property5: widget.notecontent[i].property5,
-            cardcolor: ColorLibrary.cardSubTagColor,
+            cardcolor: Color(0xffe0d1ba),
             count: widget.notecontent[i].count,
           ));
         } else if (getContentType(widget.notecontent[i]) ==
             'subtag-code-link-property') {
           subtagWidgets[widget.notecontent[i].subtag].add(CodePropertyLinkNote(
             content: widget.notecontent[i].content,
+            tagname: widget.tagname,
+            subtag: widget.notecontent[i].subtag,
             code: widget.notecontent[i].code,
             language: widget.notecontent[i].language,
             link: widget.notecontent[i].link,
@@ -225,7 +246,7 @@ class _NoteCardState extends State<NoteCard> {
             property3: widget.notecontent[i].property3,
             property4: widget.notecontent[i].property4,
             property5: widget.notecontent[i].property5,
-            cardcolor: ColorLibrary.cardSubTagColor,
+            cardcolor: Color(0xffe0d1ba),
             count: widget.notecontent[i].count,
           ));
         }
