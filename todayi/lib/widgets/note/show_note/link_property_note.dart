@@ -115,7 +115,7 @@ class LinkPropertyNote extends StatelessWidget {
               );
             },
             onTap: () {
-              Fluttertoast.showToast(msg: '링크를 들어가기 위해 꾹 눌러주세요.',
+              Fluttertoast.showToast(msg: '링크를 들어가기 위해 길게 눌러주세요.',
                 gravity: ToastGravity.BOTTOM,
                 backgroundColor: Colors.white,
                 webBgColor: "linear-gradient(to right, #3A2000, #3A2000)",
