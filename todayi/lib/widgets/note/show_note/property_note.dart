@@ -107,7 +107,7 @@ class PropertyNote extends StatelessWidget {
             },
           direction: DismissDirection.endToStart,
           child: Container(
-            padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+            padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 10),
             width: double.infinity,
             decoration: BoxDecoration(
               color: cardcolor,
