@@ -19,6 +19,7 @@ import 'package:todayi/widgets/note/show_note/link_property_note.dart';
 import 'package:todayi/widgets/note/show_note/property_note.dart';
 import 'package:todayi/widgets/note/show_note/subtag/subtag_note.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class NoteCard extends StatefulWidget {
   int index;
@@ -553,59 +554,18 @@ class _NoteCardState extends State<NoteCard> {
             Column(children: contentWidgetList),
             Column(
               children: contentSubtagWidgetList,
-            )
-            // ContentNote(
-            //   content: data,
-            // ),
-            // PropertyNote(
-            //   content: '안녕하세요',
-            //   property1: true,
-            //   property4: true,
-            // ),
-            // ContentNote(
-            //   content:
-            //       'Provider를 이용해 Note Card 구현 완료\nEdit Note 색상 및 디자인 일부 변경',
-            // ),
-            // LinkPropertyNote(
-            //   content: 'Pub Dev 패키지',
-            //   link: 'https://pub.dev/',
-            //   property1: true,
-            //   property2: true,
-            //   property3: true,
-            // ),
-            // LinkNote(link: 'https://pub.dev/', content: data),
-            // CodeNote(
-            //   content: 'dart 코드 입니다',
-            //   code: coding,
-            //   language: 'dart',
-            // ),
-            // CodePropertyNote(
-            //   content: 'dart property 코드 입니다',
-            //   code: coding,
-            //   property5: true,
-            // ),
-            // CodeLinkNote(
-            //   content: 'dart link 코드 입니다',
-            //   code: coding,
-            //   link: 'https://www.naver.com',
-            //   language: 'dart',
-            // ),
-            // CodePropertyLinkNote(
-            //   content: 'dart link property 코드 입니다',
-            //   code: coding,
-            //   link: 'https://www.naver.com',
-            //   language: 'dart',
-            //   property5: true,
-            // ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // SubtagNote(tagtext: '에러', cardchild: [
-            //   // ContentNote(
-            //   //   content: '에러 내용은 이거',
-            //   //   cardcolor: ColorLibrary.cardSubTagColor,
-            //   // )
-            // ])
+            ),
+            MasonryGridView.count(
+              crossAxisCount: 4,
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+              itemBuilder: (context, index) {
+                return Tile(
+                  index: index,
+                  extent: (index % 5 + 1) * 100,
+                );
+              },
+            );
           ]
         ],
       ),
