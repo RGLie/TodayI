@@ -556,16 +556,101 @@ class _NoteCardState extends State<NoteCard> {
               children: contentSubtagWidgetList,
             ),
             MasonryGridView.count(
-              crossAxisCount: 4,
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 4,
-              itemBuilder: (context, index) {
-                return Tile(
-                  index: index,
-                  extent: (index % 5 + 1) * 100,
+              shrinkWrap: true,
+              padding: EdgeInsets.all(8),
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              itemCount: widget.notecontent.length,
+              itemBuilder: (context, i) {
+                //if (!widget.notecontent[i].issubtag) {
+                  if (getContentType(widget.notecontent[i]) == 'content') {
+                    return ContentNote(
+                        tagname: widget.tagname,
+                        content: widget.notecontent[i].content,
+                        count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) == 'code') {
+                    return CodeNote(
+                      content: widget.notecontent[i].content,
+                      code: widget.notecontent[i].code,
+                      tagname: widget.tagname,
+                      language: widget.notecontent[i].language,
+                      count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) == 'link') {
+                    return LinkNote(
+                      tagname: widget.tagname,
+                      content: widget.notecontent[i].content,
+                      link: widget.notecontent[i].link,
+                      count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) == 'property') {
+                    return PropertyNote(
+                      content: widget.notecontent[i].content,
+                      tagname: widget.tagname,
+                      property1: widget.notecontent[i].property1,
+                      property2: widget.notecontent[i].property2,
+                      property3: widget.notecontent[i].property3,
+                      property4: widget.notecontent[i].property4,
+                      property5: widget.notecontent[i].property5,
+                      count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) == 'code-link') {
+                    return CodeLinkNote(
+                      content: widget.notecontent[i].content,
+                      tagname: widget.tagname,
+                      code: widget.notecontent[i].code,
+                      language: widget.notecontent[i].language,
+                      link: widget.notecontent[i].link,
+                      count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) == 'code-property') {
+                    return CodePropertyNote(
+                      content: widget.notecontent[i].content,
+                      tagname: widget.tagname,
+                      code: widget.notecontent[i].code,
+                      language: widget.notecontent[i].language,
+                      property1: widget.notecontent[i].property1,
+                      property2: widget.notecontent[i].property2,
+                      property3: widget.notecontent[i].property3,
+                      property4: widget.notecontent[i].property4,
+                      property5: widget.notecontent[i].property5,
+                      count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) == 'link-property') {
+                    return LinkPropertyNote(
+                      content: widget.notecontent[i].content,
+                      tagname: widget.tagname,
+                      link: widget.notecontent[i].link,
+                      property1: widget.notecontent[i].property1,
+                      property2: widget.notecontent[i].property2,
+                      property3: widget.notecontent[i].property3,
+                      property4: widget.notecontent[i].property4,
+                      property5: widget.notecontent[i].property5,
+                      count: widget.notecontent[i].count,
+                    );
+                  } else if (getContentType(widget.notecontent[i]) ==
+                      'code-link-property') {
+                    return CodePropertyLinkNote(
+                      content: widget.notecontent[i].content,
+                      tagname: widget.tagname,
+                      code: widget.notecontent[i].code,
+                      language: widget.notecontent[i].language,
+                      link: widget.notecontent[i].link,
+                      property1: widget.notecontent[i].property1,
+                      property2: widget.notecontent[i].property2,
+                      property3: widget.notecontent[i].property3,
+                      property4: widget.notecontent[i].property4,
+                      property5: widget.notecontent[i].property5,
+                      count: widget.notecontent[i].count,
+                    );
+                  }
+                //} 
+                return Container(
                 );
               },
-            );
+            )
           ]
         ],
       ),
