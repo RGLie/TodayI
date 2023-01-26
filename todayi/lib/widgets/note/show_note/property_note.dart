@@ -63,9 +63,9 @@ class PropertyNote extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(
-          height: 15,
-        ),
+        // SizedBox(
+        //   height: 15,
+        // ),
         Dismissible(
           key: Key(contentID),
             background: Container(

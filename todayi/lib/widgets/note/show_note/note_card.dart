@@ -254,19 +254,7 @@ class _NoteCardState extends State<NoteCard> {
       }
     }
 
-    List<Widget> contentSubtagWidgetList = [];
-    List<Widget> subtagContents = [];
-    for (var i in subtagWidgets.keys) {
-      subtagContents = [];
-      if (subtagWidgets[i].length != 0) {
-        for (var j in subtagWidgets[i]) {
-          subtagContents.add(j);
-        }
-        contentSubtagWidgetList.add(SizedBox(height: 15));
-        contentSubtagWidgetList
-            .add(SubtagNote(cardchild: subtagContents, tagtext: i));
-      }
-    }
+    
 
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
@@ -551,9 +539,20 @@ class _NoteCardState extends State<NoteCard> {
               width: double.infinity,
               height: 2,
             ),
-            Column(children: contentWidgetList),
-            Column(
-              children: contentSubtagWidgetList,
+            // Column(children: contentWidgetList),
+            // Column(
+            //   children: contentSubtagWidgetList,
+            // ),
+            MasonryGridView.count(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(8),
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              itemCount: contentWidgetList.length,
+              itemBuilder: (context, i) {
+                return contentWidgetList[i];
+              },
             ),
             MasonryGridView.count(
               shrinkWrap: true,
@@ -561,96 +560,20 @@ class _NoteCardState extends State<NoteCard> {
               crossAxisCount: 2,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              itemCount: widget.notecontent.length,
+              itemCount: subtagWidgets.keys.length,
               itemBuilder: (context, i) {
-                //if (!widget.notecontent[i].issubtag) {
-                  if (getContentType(widget.notecontent[i]) == 'content') {
-                    return ContentNote(
-                        tagname: widget.tagname,
-                        content: widget.notecontent[i].content,
-                        count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) == 'code') {
-                    return CodeNote(
-                      content: widget.notecontent[i].content,
-                      code: widget.notecontent[i].code,
-                      tagname: widget.tagname,
-                      language: widget.notecontent[i].language,
-                      count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) == 'link') {
-                    return LinkNote(
-                      tagname: widget.tagname,
-                      content: widget.notecontent[i].content,
-                      link: widget.notecontent[i].link,
-                      count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) == 'property') {
-                    return PropertyNote(
-                      content: widget.notecontent[i].content,
-                      tagname: widget.tagname,
-                      property1: widget.notecontent[i].property1,
-                      property2: widget.notecontent[i].property2,
-                      property3: widget.notecontent[i].property3,
-                      property4: widget.notecontent[i].property4,
-                      property5: widget.notecontent[i].property5,
-                      count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) == 'code-link') {
-                    return CodeLinkNote(
-                      content: widget.notecontent[i].content,
-                      tagname: widget.tagname,
-                      code: widget.notecontent[i].code,
-                      language: widget.notecontent[i].language,
-                      link: widget.notecontent[i].link,
-                      count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) == 'code-property') {
-                    return CodePropertyNote(
-                      content: widget.notecontent[i].content,
-                      tagname: widget.tagname,
-                      code: widget.notecontent[i].code,
-                      language: widget.notecontent[i].language,
-                      property1: widget.notecontent[i].property1,
-                      property2: widget.notecontent[i].property2,
-                      property3: widget.notecontent[i].property3,
-                      property4: widget.notecontent[i].property4,
-                      property5: widget.notecontent[i].property5,
-                      count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) == 'link-property') {
-                    return LinkPropertyNote(
-                      content: widget.notecontent[i].content,
-                      tagname: widget.tagname,
-                      link: widget.notecontent[i].link,
-                      property1: widget.notecontent[i].property1,
-                      property2: widget.notecontent[i].property2,
-                      property3: widget.notecontent[i].property3,
-                      property4: widget.notecontent[i].property4,
-                      property5: widget.notecontent[i].property5,
-                      count: widget.notecontent[i].count,
-                    );
-                  } else if (getContentType(widget.notecontent[i]) ==
-                      'code-link-property') {
-                    return CodePropertyLinkNote(
-                      content: widget.notecontent[i].content,
-                      tagname: widget.tagname,
-                      code: widget.notecontent[i].code,
-                      language: widget.notecontent[i].language,
-                      link: widget.notecontent[i].link,
-                      property1: widget.notecontent[i].property1,
-                      property2: widget.notecontent[i].property2,
-                      property3: widget.notecontent[i].property3,
-                      property4: widget.notecontent[i].property4,
-                      property5: widget.notecontent[i].property5,
-                      count: widget.notecontent[i].count,
-                    );
+                List<Widget> subtagContents = [];
+                  if (subtagWidgets[subtagWidgets.keys.toList()[i]].length != 0) {
+                    for (var j in subtagWidgets[subtagWidgets.keys.toList()[i]]) {
+                      subtagContents.add(j);
+                    }
+                    
+                    return SubtagNote(cardchild: subtagContents, tagtext: subtagWidgets.keys.toList()[i]);
                   }
-                //} 
-                return Container(
-                );
+                return Container();
               },
-            )
+            ),
+
           ]
         ],
       ),
