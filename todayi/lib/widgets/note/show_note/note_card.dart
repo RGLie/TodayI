@@ -530,6 +530,7 @@ class _NoteCardState extends State<NoteCard> {
               ],
             ),
           ),
+          
           if (!card_provider.getHide(widget.index)) ...[
             SizedBox(
               height: 15,
@@ -539,27 +540,19 @@ class _NoteCardState extends State<NoteCard> {
               width: double.infinity,
               height: 2,
             ),
+            SizedBox(
+              height: 15,
+            ),
             // Column(children: contentWidgetList),
             // Column(
             //   children: contentSubtagWidgetList,
             // ),
             MasonryGridView.count(
               shrinkWrap: true,
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(10),
               crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              itemCount: contentWidgetList.length,
-              itemBuilder: (context, i) {
-                return contentWidgetList[i];
-              },
-            ),
-            MasonryGridView.count(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(8),
-              crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
               itemCount: subtagWidgets.keys.length,
               itemBuilder: (context, i) {
                 List<Widget> subtagContents = [];
@@ -573,6 +566,18 @@ class _NoteCardState extends State<NoteCard> {
                 return Container();
               },
             ),
+            MasonryGridView.count(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(8),
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              itemCount: contentWidgetList.length,
+              itemBuilder: (context, i) {
+                return contentWidgetList[i];
+              },
+            ),
+            
 
           ]
         ],
