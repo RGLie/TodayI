@@ -176,52 +176,55 @@ class CodeLinkNote extends StatelessWidget {
                         toastLength: Toast.LENGTH_SHORT
                       );
                     },
-                      child: Container(
-                        padding: EdgeInsets.only(left: 15, right: 15),
-                        decoration: BoxDecoration(
-                            color: Color(0xff282c34),
-                            borderRadius: BorderRadius.all(Radius.circular(5))
-                            //borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                          ),
-                        child: MarkdownBody(
-                            onTapLink: (text, href, title) {
-                              href != null ? launchUrl(Uri.parse(href)) : null;
-                            },
-                            selectable: true,
-                            data: codeblock,
-                            styleSheet: MarkdownStyleSheet(
-                              p: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 17),
-                              h4: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20),
-                              h3: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 22),
-                              h2: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 25),
-                              h1: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 28),
-                              // code: TextStyle(
-                              //   backgroundColor: Colors.black,
-                              //   color: Colors.white,
-                              //   fontSize: 16
-                        
-                              // )
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        child: Container(
+                          //padding: EdgeInsets.only(left: 15, right: 15),
+                          decoration: BoxDecoration(
+                              color: Color(0xff282c34),
+                              //borderRadius: BorderRadius.all(Radius.circular(5))
+                              //borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                             ),
-                            key: const Key("defaultmarkdownformatter"),
-                            builders: {
-                              'code': CodeElementBuilder(),
-                            }
-                          ),
+                          child: MarkdownBody(
+                              onTapLink: (text, href, title) {
+                                href != null ? launchUrl(Uri.parse(href)) : null;
+                              },
+                              selectable: true,
+                              data: codeblock,
+                              styleSheet: MarkdownStyleSheet(
+                                p: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 17),
+                                h4: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20),
+                                h3: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 22),
+                                h2: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 25),
+                                h1: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 28),
+                                // code: TextStyle(
+                                //   backgroundColor: Colors.black,
+                                //   color: Colors.white,
+                                //   fontSize: 16
+                          
+                                // )
+                              ),
+                              key: const Key("defaultmarkdownformatter"),
+                              builders: {
+                                'code': CodeElementBuilder(),
+                              }
+                            ),
+                        ),
                       ),
                     ),
                   ),

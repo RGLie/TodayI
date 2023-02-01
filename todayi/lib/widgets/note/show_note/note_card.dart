@@ -532,51 +532,63 @@ class _NoteCardState extends State<NoteCard> {
           ),
           
           if (!card_provider.getHide(widget.index)) ...[
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              color: ColorLibrary.textThemeColor,
-              width: double.infinity,
-              height: 2,
-            ),
-            SizedBox(
-              height: 15,
-            ),
+            if((subtagWidgets.keys.length+contentWidgetList.length)>0)...[
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                color: ColorLibrary.textThemeColor,
+                width: double.infinity,
+                height: 2,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+            ],
+            
+            if(subtagWidgets.keys.length!=0)...[
+              MasonryGridView.count(
+                shrinkWrap: true,
+                //padding: EdgeInsets.all(10),
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                itemCount: subtagWidgets.keys.length,
+                itemBuilder: (context, i) {
+                  List<Widget> subtagContents = [];
+                    if (subtagWidgets[subtagWidgets.keys.toList()[i]].length != 0) {
+                      for (var j in subtagWidgets[subtagWidgets.keys.toList()[i]]) {
+                        subtagContents.add(j);
+                      }
+                      
+                      return SubtagNote(cardchild: subtagContents, tagtext: subtagWidgets.keys.toList()[i]);
+                    }
+                  return Container();
+                },
+              ),
+              SizedBox(
+                height: 17,
+              ),
+            ],
+            
             // Column(children: contentWidgetList),
             // Column(
             //   children: contentSubtagWidgetList,
             // ),
-            MasonryGridView.count(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(10),
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              itemCount: subtagWidgets.keys.length,
-              itemBuilder: (context, i) {
-                List<Widget> subtagContents = [];
-                  if (subtagWidgets[subtagWidgets.keys.toList()[i]].length != 0) {
-                    for (var j in subtagWidgets[subtagWidgets.keys.toList()[i]]) {
-                      subtagContents.add(j);
-                    }
-                    
-                    return SubtagNote(cardchild: subtagContents, tagtext: subtagWidgets.keys.toList()[i]);
-                  }
-                return Container();
-              },
-            ),
-            MasonryGridView.count(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(8),
-              crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              itemCount: contentWidgetList.length,
-              itemBuilder: (context, i) {
-                return contentWidgetList[i];
-              },
-            ),
+            if(contentWidgetList.length!=0)...[
+              MasonryGridView.count(
+                shrinkWrap: true,
+                //padding: EdgeInsets.all(8),
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                itemCount: contentWidgetList.length,
+                itemBuilder: (context, i) {
+                  return contentWidgetList[i];
+                },
+              ),
+            ]
+            
             
 
           ]
