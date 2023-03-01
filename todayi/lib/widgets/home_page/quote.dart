@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 
 class QuoteWidget extends StatelessWidget {
   String quotation;
@@ -9,46 +10,48 @@ class QuoteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var rsp = Responsive(pageContext: context);
+    
     return Container(
-      width: 930,
+      width: rsp.rspWidth(930),
       child: Column(
         children: [
           Container(
             color: ColorLibrary.textThemeColor,
-            height: 2,
-            width: 260,
+            height: rsp.rspHeight(2),
+            width: rsp.rspWidth(260),
           ),
           SizedBox(
-            height: 35,
+            height: rsp.rspHeight(35),
           ),
           Text(
             quotation,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 30,
+                fontSize: rsp.rspWidth(30),
                 color: ColorLibrary.textThemeColor,
                 fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.italic),
           ),
           SizedBox(
-            height: 15,
+            height: rsp.rspHeight(15),
           ),
           Text(
             '- ${person} -',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 25,
+              fontSize: rsp.rspWidth(25),
               color: ColorLibrary.textThemeColor,
               fontWeight: FontWeight.w300,
             ),
           ),
           SizedBox(
-            height: 35,
+            height: rsp.rspHeight(15),
           ),
           Container(
             color: ColorLibrary.textThemeColor,
-            height: 2,
-            width: 260,
+            height: rsp.rspHeight(2),
+            width: rsp.rspWidth(260),
           ),
         ],
       ),

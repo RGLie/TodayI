@@ -4,6 +4,7 @@ import 'package:todayi/pages/auth_state_controll.dart';
 import 'package:todayi/pages/root_page.dart';
 import 'package:todayi/providers/start_button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 
 class HomePageStartButton extends StatelessWidget {
   Color boxColor;
@@ -13,9 +14,10 @@ class HomePageStartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var rsp = Responsive(pageContext: context);
     return Container(
-      width: 260,
-      height: 290,
+      width: rsp.rspWidth(260),
+      height: rsp.rspHeight(290),
       decoration: BoxDecoration(
         color: boxColor,
         borderRadius: BorderRadius.circular(10),
@@ -25,12 +27,12 @@ class HomePageStartButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image(
-            width: 150,
+            width: rsp.rspWidth(150),
             image: AssetImage('assets/icons/write_icon.png'),
           ),
           Text(
             '시작하기',
-            style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700),
+            style: TextStyle(fontSize: rsp.rspWidth(35), fontWeight: FontWeight.w700),
           )
         ],
       ),

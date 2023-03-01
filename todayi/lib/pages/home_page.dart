@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todayi/pages/root_page.dart';
 import 'package:todayi/providers/button_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:todayi/widgets/home_page/quote.dart';
 import 'package:todayi/widgets/home_page/start_button.dart';
 
@@ -17,10 +18,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _buildBody());
+    return Scaffold(body: _buildBody(context));
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
+    var rsp = Responsive(pageContext: context);
+    
     return Stack(
       children: [
         Container(
@@ -37,20 +40,20 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 20, right: 25),
+                padding: EdgeInsets.only(top: rsp.rspHeight(20), right: rsp.rspWidth(25)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       'About',
                       style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: rsp.rspWidth(17), fontWeight: FontWeight.w500),
                     )
                   ],
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: rsp.ratioHeight(0.1),
                 width: double.infinity,
               ),
               Table(
@@ -59,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   0: FixedColumnWidth(MediaQuery.of(context).size.width * 0.15),
                   1: IntrinsicColumnWidth(),
                   2: FixedColumnWidth(MediaQuery.of(context).size.width * 0.25),
-                  3: FixedColumnWidth(400),
+                  3: FixedColumnWidth(rsp.rspWidth(400)),
                   4: FlexColumnWidth()
                 },
                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
@@ -70,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text('하루를 마무리하는 습관',
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 43,
+                              fontSize: rsp.rspWidth(43),
                               color: Color(0xff6A3B00))),
                     ),
                     Container(),
@@ -80,22 +83,22 @@ class _HomePageState extends State<HomePage> {
                   TableRow(children: [
                     Container(
                       color: ColorLibrary.textThemeColor,
-                      height: 3,
+                      height: rsp.rspHeight(3),
                     ),
                     Container(
                       child: Text('Today I',
                           style: TextStyle(
                               fontWeight: FontWeight.w900,
                               color: ColorLibrary.textThemeColor,
-                              fontSize: 105,
+                              fontSize: rsp.rspWidth(105),
                               fontFamily: 'NotoSansKR')),
                     ),
                     Container(
                       color: ColorLibrary.textThemeColor,
-                      height: 3,
+                      height: rsp.rspHeight(3),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: EdgeInsets.only(left: rsp.rspWidth(10), right: rsp.rspWidth(10)),
                       child: Center(
                         child: DefaultTextStyle(
                           style: const TextStyle(
@@ -105,21 +108,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: AnimatedTextKit(
                             animatedTexts: [
-                              FadeAnimatedText('Learned'),
-                              FadeAnimatedText('Designed'),
-                              FadeAnimatedText('Read'),
+                              FadeAnimatedText('Learned',textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Designed',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Read',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
                               FadeAnimatedText('Developed',
-                                  textStyle: TextStyle(fontSize: 80)),
-                              FadeAnimatedText('Learned'),
-                              FadeAnimatedText('Designed'),
-                              FadeAnimatedText('Read'),
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Learned',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Designed',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Read',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
                               FadeAnimatedText('Developed',
-                                  textStyle: TextStyle(fontSize: 80)),
-                              FadeAnimatedText('Learned'),
-                              FadeAnimatedText('Designed'),
-                              FadeAnimatedText('Read'),
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Learned',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Designed',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              FadeAnimatedText('Read',
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
                               FadeAnimatedText('Developed',
-                                  textStyle: TextStyle(fontSize: 80)),
+                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
                             ],
                             onTap: () {},
                           ),
@@ -128,14 +139,14 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       color: ColorLibrary.textThemeColor,
-                      height: 3,
+                      height: rsp.rspHeight(3),
                     ),
                   ])
                 ],
               ),
               StartButton(),
               SizedBox(
-                height: 35,
+                height: rsp.rspHeight(35),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
