@@ -36,146 +36,144 @@ class _HomePageState extends State<HomePage> {
             subdivisions: 1,
           ),
         ),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: rsp.rspHeight(20), right: rsp.rspWidth(25)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'About',
-                      style:
-                          TextStyle(fontSize: rsp.rspWidth(17), fontWeight: FontWeight.w500),
-                    )
-                  ],
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: rsp.rspHeight(20), right: rsp.rspWidth(25)),
                 ),
-              ),
-              Container(
-                height: rsp.ratioHeight(0.1),
-                width: double.infinity,
-              ),
-              Table(
-                //IntrinsicColumnWidth()FixedColumnWidth(64)
-                columnWidths: {
-                  0: FixedColumnWidth(MediaQuery.of(context).size.width * 0.15),
-                  1: IntrinsicColumnWidth(),
-                  2: FixedColumnWidth(MediaQuery.of(context).size.width * 0.25),
-                  3: FixedColumnWidth(rsp.rspWidth(400)),
-                  4: FlexColumnWidth()
-                },
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                children: [
-                  TableRow(children: [
-                    Container(),
-                    Container(
-                      child: Text('하루를 마무리하는 습관',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: rsp.rspWidth(43),
-                              color: Color(0xff6A3B00))),
-                    ),
-                    Container(),
-                    Container(),
-                    Container(),
-                  ]),
-                  TableRow(children: [
-                    Container(
-                      color: ColorLibrary.textThemeColor,
-                      height: rsp.rspHeight(3),
-                    ),
-                    Container(
-                      child: Text('Today I',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: ColorLibrary.textThemeColor,
-                              fontSize: rsp.rspWidth(105),
-                              fontFamily: 'NotoSansKR')),
-                    ),
-                    Container(
-                      color: ColorLibrary.textThemeColor,
-                      height: rsp.rspHeight(3),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: rsp.rspWidth(10), right: rsp.rspWidth(10)),
-                      child: Center(
-                        child: DefaultTextStyle(
-                          style: const TextStyle(
-                            fontSize: 90.0,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xff3A2000),
-                          ),
-                          child: AnimatedTextKit(
-                            animatedTexts: [
-                              FadeAnimatedText('Learned',textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Designed',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Read',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Developed',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Learned',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Designed',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Read',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Developed',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Learned',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Designed',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Read',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                              FadeAnimatedText('Developed',
-                                  textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
-                            ],
-                            onTap: () {},
+                Container(
+                  height: rsp.ratioHeight(0.1),
+                  width: double.infinity,
+                ),
+                Table(
+                  //IntrinsicColumnWidth()FixedColumnWidth(64)
+                  columnWidths: {
+                    0: FixedColumnWidth(MediaQuery.of(context).size.width * 0.15),
+                    1: IntrinsicColumnWidth(),
+                    2: FixedColumnWidth(MediaQuery.of(context).size.width * 0.25),
+                    3: FixedColumnWidth(rsp.rspWidth(400)),
+                    4: FlexColumnWidth()
+                  },
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  children: [
+                    TableRow(children: [
+                      Container(),
+                      Container(
+                        child: Text('하루를 마무리하는 습관',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: rsp.rspWidth(43),
+                                color: Color(0xff6A3B00))),
+                      ),
+                      Container(),
+                      Container(),
+                      Container(),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                        color: ColorLibrary.textThemeColor,
+                        height: rsp.rspHeight(3),
+                      ),
+                      Container(
+                        child: Text('Today I',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: ColorLibrary.textThemeColor,
+                                fontSize: rsp.rspWidth(105),
+                                fontFamily: 'NotoSansKR')),
+                      ),
+                      Container(
+                        color: ColorLibrary.textThemeColor,
+                        height: rsp.rspHeight(3),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: rsp.rspWidth(10), right: rsp.rspWidth(10)),
+                        child: Center(
+                          child: DefaultTextStyle(
+                            style: const TextStyle(
+                              fontSize: 90.0,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff3A2000),
+                            ),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                FadeAnimatedText('Learned',textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Designed',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Read',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Developed',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Learned',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Designed',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Read',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Developed',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Learned',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Designed',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Read',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                                FadeAnimatedText('Developed',
+                                    textStyle: TextStyle(fontSize: rsp.rspWidth(80),)),
+                              ],
+                              onTap: () {},
+                            ),
                           ),
                         ),
                       ),
+                      Container(
+                        color: ColorLibrary.textThemeColor,
+                        height: rsp.rspHeight(3),
+                      ),
+                    ])
+                  ],
+                ),
+              ],
+            ),
+            StartButton(),
+            Column(
+              children: [
+                
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_back_ios,
+                            color: ColorLibrary.textThemeColor),
+                        onPressed: () {},
+                      ),
+                    ),
+                    QuoteWidget(
+                      quotation:
+                          '기록하기를 좋아하라, 쉬지말고 기록해라, 생각이 떠오르면 수시로 기록하라, \n기억은 흐려지고 생각은 사라진다.',
+                      person: '다산 정약용',
                     ),
                     Container(
-                      color: ColorLibrary.textThemeColor,
-                      height: rsp.rspHeight(3),
-                    ),
-                  ])
-                ],
-              ),
-              StartButton(),
-              SizedBox(
-                height: rsp.rspHeight(35),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios,
-                          color: ColorLibrary.textThemeColor),
-                      onPressed: () {},
-                    ),
-                  ),
-                  QuoteWidget(
-                    quotation:
-                        '기록하기를 좋아하라, 쉬지말고 기록해라, 생각이 떠오르면 수시로 기록하라, \n기억은 흐려지고 생각은 사라진다.',
-                    person: '다산 정약용',
-                  ),
-                  Container(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorLibrary.textThemeColor,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: ColorLibrary.textThemeColor,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {},
                     ),
-                  ),
-                ],
-              )
-            ],
-          ),
+                  ],
+                ),
+                SizedBox(
+                  height: rsp.rspHeight(70),
+                ),
+              ],
+            )
+          ],
         ),
       ],
     );

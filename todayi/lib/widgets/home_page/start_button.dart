@@ -28,6 +28,7 @@ class HomePageStartButton extends StatelessWidget {
         children: [
           Image(
             width: rsp.rspWidth(150),
+            height: rsp.rspHeight(150),
             image: AssetImage('assets/icons/write_icon.png'),
           ),
           Text(

@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todayi/data/user.dart';
 import 'package:todayi/pages/home_page.dart';
+import 'package:todayi/utils/responsive.dart';
 
 class AccountBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //var userCollectionData = Provider.of<User?>(context);
     var user_data = Provider.of<TUser>(context);
+    var rsp = Responsive(pageContext: context);
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: EdgeInsets.only(left: rsp.rspWidth(20), right: rsp.rspWidth(20)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,7 +29,7 @@ class AccountBar extends StatelessWidget {
                     user_data.name,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: rsp.rspHeight(18),
                         fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -37,7 +39,7 @@ class AccountBar extends StatelessWidget {
                     user_data.email,
                     style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 14,
+                        fontSize: rsp.rspHeight(14),
                         fontWeight: FontWeight.w400),
                   )
                 ],
@@ -52,6 +54,7 @@ class AccountBar extends StatelessWidget {
               },
               icon: Icon(
                 Icons.logout,
+                size:rsp.rspHeight(25),
                 color: Colors.white,
               ))
         ],

@@ -5,6 +5,7 @@ import 'package:todayi/pages/content_page_changer.dart';
 import 'package:todayi/pages/home_page.dart';
 import 'package:todayi/providers/main_home_page/sidebar_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:todayi/widgets/main_home_page/account_bar.dart';
 
 class MainPageSideBar extends StatefulWidget {
@@ -19,6 +20,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
   Widget build(BuildContext context) {
     var user_data = Provider.of<TUser>(context);
     var sidebar_provider = Provider.of<SideBarProvider>(context);
+    var rsp = Responsive(pageContext: context);
 
     final List<String> sidebar_list = ['노트', '타임라인', '태그', '보내기', '소셜'];
     final List<IconData> icon_list = [
@@ -34,7 +36,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
         children: [
           Container(
             constraints: BoxConstraints(
-              minWidth: 250,
+              minWidth: rsp.rspWidth(250),
             ),
             width: MediaQuery.of(context).size.width * 0.15,
             height: double.infinity,
@@ -55,7 +57,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                       'Today I',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 45,
+                          fontSize: rsp.rspWidth(45),
                           fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -65,20 +67,20 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                        padding: EdgeInsets.only(left: 30),
+                        padding: EdgeInsets.only(left: rsp.rspWidth(30)),
                         child: Text(
                           'Contents',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
+                              fontSize: rsp.rspWidth(18),
                               fontWeight: FontWeight.w300),
                         )),
                     SizedBox(
-                      height: 300,
+                      height: rsp.rspWidth(300),
                       child: ListView.builder(
                         itemCount: sidebar_list.length,
                         padding: EdgeInsets.only(
-                            left: 20, right: 20, top: 8, bottom: 8),
+                            left: rsp.rspWidth(20), right: rsp.rspWidth(20), top: rsp.rspHeight(8), bottom: rsp.rspHeight(8)),
                         itemBuilder: (BuildContext context, int index) {
                           return Material(
                             color: ColorLibrary.textThemeColor,
@@ -91,7 +93,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                                 sidebar_provider.changeIndex(index);
                               },
                               child: Container(
-                                  height: 40,
+                                  height: rsp.rspHeight(40),
                                   width: double.infinity,
                                   child: Row(
                                     crossAxisAlignment:
@@ -99,20 +101,21 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        width: 10,
+                                        width: rsp.rspWidth(10),
                                       ),
                                       Icon(
                                         icon_list[index],
+                                        size: rsp.rspHeight(25),
                                         color: Colors.white,
                                       ),
                                       SizedBox(
-                                        width: 15,
+                                        width: rsp.rspWidth(15),
                                       ),
                                       Text(
                                         sidebar_list[index],
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 20,
+                                            fontSize: rsp.rspWidth(20),
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ],
@@ -126,7 +129,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: 70,
+                  height: rsp.rspHeight(70),
                   color: Color(0xff543209),
                   child: AccountBar()
                 )
