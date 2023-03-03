@@ -13,6 +13,7 @@ class AccountBar extends StatelessWidget {
     var user_data = Provider.of<TUser>(context);
     var rsp = Responsive(pageContext: context);
     return Container(
+      //height: 60,
       padding: EdgeInsets.only(left: rsp.rspWidth(20), right: rsp.rspWidth(20)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +30,7 @@ class AccountBar extends StatelessWidget {
                     user_data.name,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: rsp.rspHeight(18),
+                        fontSize: rsp.rspWidth(18),
                         fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -39,7 +40,7 @@ class AccountBar extends StatelessWidget {
                     user_data.email,
                     style: TextStyle(
                         color: Colors.white70,
-                        fontSize: rsp.rspHeight(14),
+                        fontSize: rsp.rspWidth(14),
                         fontWeight: FontWeight.w400),
                   )
                 ],
@@ -54,7 +55,7 @@ class AccountBar extends StatelessWidget {
               },
               icon: Icon(
                 Icons.logout,
-                size:rsp.rspHeight(25),
+                size:rsp.rspWidth(25),
                 color: Colors.white,
               ))
         ],

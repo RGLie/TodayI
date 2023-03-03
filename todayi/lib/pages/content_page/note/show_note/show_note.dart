@@ -9,6 +9,7 @@ import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/data_provider.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:todayi/widgets/note/addtag.dart';
 import 'package:todayi/widgets/note/show_note/note_card.dart';
 
@@ -47,6 +48,7 @@ class _ShowNoteState extends State<ShowNote> {
     var today_note = Provider.of<NoteProvider>(context);
     var userData = Provider.of<TUser>(context);
     var noteContentList = Provider.of<List<NoteContent>>(context);
+    var rsp = Responsive(pageContext: context);
 
     int todaynum = 0;
     List<Widget> noteCardList = [];
@@ -143,43 +145,43 @@ class _ShowNoteState extends State<ShowNote> {
                 }
               },
               child: Image(
-                width: 70,
+                width: rsp.rspWidth(70),
                 image: AssetImage('assets/icons/calendar_icon.png'),
               ),
             ),
             SizedBox(
-              width: 30,
+              width: rsp.rspWidth(30),
             ),
             Text(
                 today_note.today_date.split('.')[0]+"년 "
                 +today_note.today_date.split('.')[1]+"월 "
                 +today_note.today_date.split('.')[2]+"일",
                 style: TextStyle(
-                    fontSize: 55,
+                    fontSize: rsp.rspWidth(55),
                     fontWeight: FontWeight.w600,
                     color: Colors.black)),
             SizedBox(
-              width: 30,
+              width: rsp.rspWidth(30),
             ),
           ],
         ),
         SizedBox(
-          height: 15,
+          height: rsp.rspHeight(15),
         ),
         Container(
           color: ColorLibrary.textThemeColor,
           width: double.infinity,
-          height: 4,
+          height: rsp.rspHeight(4),
           constraints: BoxConstraints(
-            maxWidth: 1000,
+            maxWidth: rsp.rspWidth(1000),
           ),
         ),
         SizedBox(
-          height: 10,
+          height: rsp.rspHeight(10),
         ),
         AddTag(),
         SizedBox(
-          height: 15,
+          height: rsp.rspHeight(15),
         ),
         Expanded(
           child: SingleChildScrollView(

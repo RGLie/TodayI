@@ -4,6 +4,7 @@ import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:todayi/widgets/note/edit_note/add_content_button.dart';
 
 class AddContent extends StatelessWidget {
@@ -14,6 +15,7 @@ class AddContent extends StatelessWidget {
     var _addButtonProvider = Provider.of<AddButtonProvider>(context);
     var today_note = Provider.of<NoteProvider>(context);
     var user = Provider.of<TUser>(context);
+    var rsp = Responsive(pageContext: context);
 
     return Row(
       children: [
@@ -95,7 +97,7 @@ class AddContent extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 15,
+          width: rsp.rspWidth(15),
         ),
         MouseRegion(
           onEnter: (PointerEvent details) {
@@ -174,7 +176,7 @@ class AddContent extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 15,
+          width: rsp.rspWidth(15),
         ),
         MouseRegion(
           onEnter: (PointerEvent details) {
@@ -253,7 +255,7 @@ class AddContent extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 15,
+          width: rsp.rspWidth(15),
         ),
         MouseRegion(
           onEnter: (PointerEvent details) {

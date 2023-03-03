@@ -76,6 +76,7 @@ class _LoginPageState extends State<LoginPage>
               style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 105,
+                  color: ColorLibrary.textThemeColor,
                   fontFamily: 'NotoSansKR')),
           SizedBox(
             height: 15,
@@ -141,83 +142,85 @@ class _LoginPageState extends State<LoginPage>
               controller: _tabController,
               children: [
                 // first tab bar view widget
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      Container(
-                          margin: EdgeInsets.all(5),
-                          child: TextFormField(
-                            controller: _inEmailController,
-                            keyboardType: TextInputType.emailAddress,
-                            cursorColor: ColorLibrary.textThemeColor,
-                            decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.mail),
-                                suffixIconColor: ColorLibrary.textThemeColor,
-                                border: OutlineInputBorder(),
-                                labelText: '이메일',
-                                labelStyle: TextStyle(
-                                    color: ColorLibrary.textThemeColor),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.all(5),
+                            child: TextFormField(
+                              controller: _inEmailController,
+                              keyboardType: TextInputType.emailAddress,
+                              cursorColor: ColorLibrary.textThemeColor,
+                              decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.mail),
+                                  suffixIconColor: ColorLibrary.textThemeColor,
+                                  border: OutlineInputBorder(),
+                                  labelText: '이메일',
+                                  labelStyle: TextStyle(
                                       color: ColorLibrary.textThemeColor),
-                                )),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return '이메일은 필수사항입니다.';
-                              }
-                              if (!RegExp(
-                                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                  .hasMatch(value)) {
-                                return '잘못된 이메일 형식입니다.';
-                              }
-                              return null;
-                            },
-                          )),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                          margin: EdgeInsets.all(5),
-                          child: TextFormField(
-                            controller: _inPasswordController,
-                            obscureText: true,
-                            cursorColor: ColorLibrary.textThemeColor,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.lock),
-                                suffixIconColor: ColorLibrary.textThemeColor,
-                                border: OutlineInputBorder(),
-                                labelText: '패스워드',
-                                labelStyle: TextStyle(
-                                    color: ColorLibrary.textThemeColor),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ColorLibrary.textThemeColor),
+                                  )),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return '이메일은 필수사항입니다.';
+                                }
+                                if (!RegExp(
+                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                    .hasMatch(value)) {
+                                  return '잘못된 이메일 형식입니다.';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            margin: EdgeInsets.all(5),
+                            child: TextFormField(
+                              controller: _inPasswordController,
+                              obscureText: true,
+                              cursorColor: ColorLibrary.textThemeColor,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.lock),
+                                  suffixIconColor: ColorLibrary.textThemeColor,
+                                  border: OutlineInputBorder(),
+                                  labelText: '패스워드',
+                                  labelStyle: TextStyle(
                                       color: ColorLibrary.textThemeColor),
-                                )),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return '패스워드를 입력하세요.';
-                              }
-                              return null;
-                            },
-                          )),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      SignInUpButton(
-                        signText: 'Sign In',
-                        signTab: () {
-                          FocusScope.of(context).requestFocus(new FocusNode());
-                          if (_formKey.currentState!.validate()) {
-                            signIn(_inEmailController.text, _inPasswordController.text);
-                              _inEmailController.clear();
-                              _inPasswordController.clear();
-                              
-                          }
-                        },
-                      ),
-                    ],
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: ColorLibrary.textThemeColor),
+                                  )),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return '패스워드를 입력하세요.';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                          height: 3,
+                        ),
+                        SignInUpButton(
+                          signText: 'Sign In',
+                          signTab: () {
+                            FocusScope.of(context).requestFocus(new FocusNode());
+                            if (_formKey.currentState!.validate()) {
+                              signIn(_inEmailController.text, _inPasswordController.text);
+                                _inEmailController.clear();
+                                _inPasswordController.clear();
+                                
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 

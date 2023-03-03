@@ -35,9 +35,9 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
       body: Row(
         children: [
           Container(
-            constraints: BoxConstraints(
-              minWidth: rsp.rspWidth(250),
-            ),
+            // constraints: BoxConstraints(
+            //   minWidth: 250,
+            // ),
             width: MediaQuery.of(context).size.width * 0.15,
             height: double.infinity,
             color: ColorLibrary.textThemeColor,
@@ -129,7 +129,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: rsp.rspHeight(70),
+                  height: rsp.rspHeight(80),
                   color: Color(0xff543209),
                   child: AccountBar()
                 )

@@ -11,6 +11,7 @@ import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/icon_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 
 class AddTag extends StatefulWidget {
   const AddTag({super.key});
@@ -30,7 +31,7 @@ class _AddTagState extends State<AddTag> {
     var note_tags = Provider.of<List<Tag>>(context);
     var today_note = Provider.of<NoteProvider>(context);
     var icon_provider = Provider.of<IconProvider>(context);
-
+    var rsp = Responsive(pageContext: context);
     List<Widget> addTagWidgetList = [];
     List<Widget> dialogTag = [];
     for (var i = 0; i < min(user_data.taglist.length, 4); i++) {
