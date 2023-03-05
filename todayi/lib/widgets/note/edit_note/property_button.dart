@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todayi/utils/responsive.dart';
 
 class PropertyButton extends StatelessWidget {
   String text;
@@ -11,16 +12,17 @@ class PropertyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var rsp = Responsive(pageContext: context);
     return Container(
-      height: 35,
-      padding: EdgeInsets.only(left: 12, right:12),
+      height: rsp.rspHeight(35),
+      padding: EdgeInsets.only(left: rsp.rspWidth(12), right:rsp.rspWidth(12)),
       decoration: boxdecoration,
       child: Center(
         child: Text('@ ${text}',
           style: TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 15
+            fontSize: rsp.rspWidth(15)
           ),
         )
       ),

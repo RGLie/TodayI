@@ -72,7 +72,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                           'Contents',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: rsp.rspWidth(18),
+                              fontSize: rsp.rspHeight(18),
                               fontWeight: FontWeight.w300),
                         )),
                     SizedBox(
@@ -115,7 +115,7 @@ class _MainPageSideBarState extends State<MainPageSideBar> {
                                         sidebar_list[index],
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: rsp.rspWidth(20),
+                                            fontSize: rsp.rspHeight(20),
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ],

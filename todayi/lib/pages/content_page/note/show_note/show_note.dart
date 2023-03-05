@@ -81,7 +81,7 @@ class _ShowNoteState extends State<ShowNote> {
             ),
           );
           noteCardList.add(SizedBox(
-            height: 20,
+            height: rsp.rspHeight(20),
           ));
           today_note.addIdx();
           //todaynum += 1;
@@ -142,7 +142,7 @@ class _ShowNoteState extends State<ShowNote> {
                   //     }
                   //   }
                   // }
-                }
+                } 
               },
               child: Image(
                 width: rsp.rspWidth(70),

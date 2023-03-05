@@ -35,7 +35,7 @@ class _AddTagState extends State<AddTag> {
     List<Widget> addTagWidgetList = [];
     List<Widget> dialogTag = [];
     for (var i = 0; i < min(user_data.taglist.length, 4); i++) {
-      addTagWidgetList.add(SizedBox(width: 10));
+      addTagWidgetList.add(SizedBox(width: rsp.rspWidth(10)));
       addTagWidgetList.add(
         InkWell(
           onTap: () {
@@ -65,11 +65,11 @@ class _AddTagState extends State<AddTag> {
             }
           },
           child: Container(
-            height: 35,
-            padding: EdgeInsets.only(left: 12, right: 12),
+            height: rsp.rspHeight(35),
+            padding: EdgeInsets.only(left: rsp.rspWidth(12), right: rsp.rspWidth(12)),
             decoration: BoxDecoration(
               color: ColorLibrary.cardColor,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(rsp.rspHeight(10)),
               boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -88,7 +88,7 @@ class _AddTagState extends State<AddTag> {
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: 15),
+                  fontSize: rsp.rspHeight(17)),
             )),
           ),
         ),
@@ -200,11 +200,11 @@ class _AddTagState extends State<AddTag> {
                     });
               },
               child: Container(
-                height: 35,
-                padding: EdgeInsets.only(left: 12, right: 12),
+                height: rsp.rspHeight(35),
+                padding: EdgeInsets.only(left: rsp.rspWidth(12), right: rsp.rspWidth(12)),
                 decoration: BoxDecoration(
                   color: ColorLibrary.cardColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(rsp.rspHeight(10)),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -219,12 +219,12 @@ class _AddTagState extends State<AddTag> {
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
-                      fontSize: 15),
+                      fontSize: rsp.rspHeight(17)),
                 )),
               ),
             ),
             SizedBox(
-              width: 10,
+              width: rsp.rspWidth(10),
             ),
             InkWell(
               onTap: () {
@@ -452,11 +452,11 @@ class _AddTagState extends State<AddTag> {
                     });
               },
               child: Container(
-                height: 35,
-                padding: EdgeInsets.only(left: 12, right: 12),
+                height: rsp.rspHeight(35),
+                padding: EdgeInsets.only(left: rsp.rspWidth(12), right: rsp.rspWidth(12)),
                 decoration: BoxDecoration(
                   color: ColorLibrary.cardColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(rsp.rspHeight(10)),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -471,7 +471,7 @@ class _AddTagState extends State<AddTag> {
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
-                      fontSize: 15),
+                      fontSize: rsp.rspHeight(17)),
                 )),
               ),
             ),

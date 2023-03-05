@@ -9,6 +9,7 @@ import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/providers/note/show_note/card_note_button_provider.dart';
 import 'package:todayi/providers/note/show_note/icon_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:todayi/widgets/note/show_note/code_link_note.dart';
 import 'package:todayi/widgets/note/show_note/code_link_property.dart';
 import 'package:todayi/widgets/note/show_note/code_note.dart';
@@ -45,6 +46,7 @@ class _NoteCardState extends State<NoteCard> {
   final _tagController = TextEditingController();
   final _descriptionController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class _NoteCardState extends State<NoteCard> {
     //var today_note = Provider.of<NoteProvider>(context);
     var icon_provider = Provider.of<IconProvider>(context);
     List<Widget> contentWidgetList = [];
-
+    var rsp = Responsive(pageContext: context);
     Map<String, dynamic> subtagWidgets = {};
 
     for (var i = 0; i < widget.notecontent.length; i++) {
@@ -259,15 +261,15 @@ class _NoteCardState extends State<NoteCard> {
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.all(rsp.rspHeight(15)),
       width: double.infinity,
       //height: 100,
       constraints: BoxConstraints(
-        maxWidth: 1000,
+        maxWidth: rsp.rspWidth(1000),
       ),
       decoration: BoxDecoration(
         color: ColorLibrary.cardColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
         border: (() {
           if (card_provider.is_checked &&
               card_provider.checked_tag == widget.index) {
@@ -481,9 +483,9 @@ class _NoteCardState extends State<NoteCard> {
                 Row(
                   children: [
                     Image(
-                        height: 60, width: 60, image: AssetImage(widget.icon)),
+                        height: rsp.rspHeight(60), width: rsp.rspWidth(60), image: AssetImage(widget.icon)),
                     SizedBox(
-                      width: 20,
+                      width: rsp.rspWidth(20),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -492,15 +494,15 @@ class _NoteCardState extends State<NoteCard> {
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 30)),
+                                fontSize: rsp.rspHeight(30))),
                         SizedBox(
-                          height: 5,
+                          height: rsp.rspHeight(5),
                         ),
                         Text(widget.description,
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 15)),
+                                fontSize: rsp.rspHeight(15))),
                       ],
                     ),
                   ],
@@ -534,7 +536,7 @@ class _NoteCardState extends State<NoteCard> {
           if (!card_provider.getHide(widget.index)) ...[
             if((subtagWidgets.keys.length+contentWidgetList.length)>0)...[
               SizedBox(
-                height: 15,
+                height: rsp.rspHeight(15),
               ),
               Container(
                 color: ColorLibrary.textThemeColor,
@@ -542,7 +544,7 @@ class _NoteCardState extends State<NoteCard> {
                 height: 2,
               ),
               SizedBox(
-                height: 15,
+                height: rsp.rspHeight(15),
               ),
             ],
             
@@ -551,8 +553,8 @@ class _NoteCardState extends State<NoteCard> {
                 shrinkWrap: true,
                 //padding: EdgeInsets.all(10),
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                mainAxisSpacing: rsp.rspHeight(10),
+                crossAxisSpacing: rsp.rspWidth(10),
                 itemCount: subtagWidgets.keys.length,
                 itemBuilder: (context, i) {
                   List<Widget> subtagContents = [];
@@ -567,7 +569,7 @@ class _NoteCardState extends State<NoteCard> {
                 },
               ),
               SizedBox(
-                height: 17,
+                height: rsp.rspHeight(17),
               ),
             ],
             
@@ -580,8 +582,8 @@ class _NoteCardState extends State<NoteCard> {
                 shrinkWrap: true,
                 //padding: EdgeInsets.all(8),
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                mainAxisSpacing: rsp.rspHeight(10),
+                crossAxisSpacing: rsp.rspWidth(10),
                 itemCount: contentWidgetList.length,
                 itemBuilder: (context, i) {
                   return contentWidgetList[i];

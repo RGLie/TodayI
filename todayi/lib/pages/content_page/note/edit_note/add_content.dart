@@ -40,7 +40,7 @@ class AddContent extends StatelessWidget {
                       _addButtonProvider.is_code_clicked == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                       border: Border.all(
                           width: 2.5,
                           color: ColorLibrary.textThemeColor,
@@ -57,7 +57,7 @@ class AddContent extends StatelessWidget {
                   if (_addButtonProvider.code_mouse_state == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColorRegioned,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                       // border: Border.all(
                       //     width: 2.5,
                       //     color: ColorLibrary.textThemeColor,
@@ -75,7 +75,7 @@ class AddContent extends StatelessWidget {
                   if (_addButtonProvider.is_code_clicked == 1) {
                     return BoxDecoration(
                       color: ColorLibrary.cardColor,
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                       border: Border.all(
                           width: 2.5,
                           color: ColorLibrary.textThemeColor,
@@ -84,7 +84,7 @@ class AddContent extends StatelessWidget {
                   }
                   return BoxDecoration(
                     color: ColorLibrary.cardColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     boxShadow: [
                       BoxShadow(
                         color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -119,7 +119,7 @@ class AddContent extends StatelessWidget {
                     _addButtonProvider.is_link_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColorRegioned,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     border: Border.all(
                         width: 2.5,
                         color: ColorLibrary.textThemeColor,
@@ -136,7 +136,7 @@ class AddContent extends StatelessWidget {
                 if (_addButtonProvider.link_mouse_state == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColorRegioned,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     // border: Border.all(
                     //     width: 2.5,
                     //     color: ColorLibrary.textThemeColor,
@@ -153,7 +153,7 @@ class AddContent extends StatelessWidget {
                 if (_addButtonProvider.is_link_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     border: Border.all(
                         width: 2.5,
                         color: ColorLibrary.textThemeColor,
@@ -162,7 +162,7 @@ class AddContent extends StatelessWidget {
                 }
                 return BoxDecoration(
                   color: ColorLibrary.cardColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -191,14 +191,14 @@ class AddContent extends StatelessWidget {
             },
             child: AddContentButton(
               txt: '속성 추가',
-              subtxt: '배운점, 잘한점 ...',
+              subtxt: '느낀점',
               imgpath: 'assets/icons/email_at_icon.png',
               boxdecoration: (() {
                 if (_addButtonProvider.property_mouse_state == 1 &&
                     _addButtonProvider.is_property_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColorRegioned,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     border: Border.all(
                         width: 2.5,
                         color: ColorLibrary.textThemeColor,
@@ -215,7 +215,7 @@ class AddContent extends StatelessWidget {
                 if (_addButtonProvider.property_mouse_state == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColorRegioned,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     // border: Border.all(
                     //     width: 2.5,
                     //     color: ColorLibrary.textThemeColor,
@@ -232,7 +232,7 @@ class AddContent extends StatelessWidget {
                 if (_addButtonProvider.is_property_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     border: Border.all(
                         width: 2.5,
                         color: ColorLibrary.textThemeColor,
@@ -241,7 +241,7 @@ class AddContent extends StatelessWidget {
                 }
                 return BoxDecoration(
                   color: ColorLibrary.cardColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -277,7 +277,7 @@ class AddContent extends StatelessWidget {
                     _addButtonProvider.is_tag_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColorRegioned,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     border: Border.all(
                         width: 2.5,
                         color: ColorLibrary.textThemeColor,
@@ -294,7 +294,7 @@ class AddContent extends StatelessWidget {
                 if (_addButtonProvider.tag_mouse_state == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColorRegioned,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     // border: Border.all(
                     //     width: 2.5,
                     //     color: ColorLibrary.textThemeColor,
@@ -311,7 +311,7 @@ class AddContent extends StatelessWidget {
                 if (_addButtonProvider.is_tag_clicked == 1) {
                   return BoxDecoration(
                     color: ColorLibrary.cardColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     border: Border.all(
                         width: 2.5,
                         color: ColorLibrary.textThemeColor,
@@ -320,7 +320,7 @@ class AddContent extends StatelessWidget {
                 }
                 return BoxDecoration(
                   color: ColorLibrary.cardColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.25),

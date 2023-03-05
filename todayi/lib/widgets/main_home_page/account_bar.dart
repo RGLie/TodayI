@@ -30,7 +30,7 @@ class AccountBar extends StatelessWidget {
                     user_data.name,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: rsp.rspWidth(18),
+                        fontSize: rsp.rspHeight(18),
                         fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -40,7 +40,7 @@ class AccountBar extends StatelessWidget {
                     user_data.email,
                     style: TextStyle(
                         color: Colors.white70,
-                        fontSize: rsp.rspWidth(14),
+                        fontSize: rsp.rspHeight(14),
                         fontWeight: FontWeight.w400),
                   )
                 ],
@@ -55,7 +55,7 @@ class AccountBar extends StatelessWidget {
               },
               icon: Icon(
                 Icons.logout,
-                size:rsp.rspWidth(25),
+                size:rsp.rspHeight(25),
                 color: Colors.white,
               ))
         ],

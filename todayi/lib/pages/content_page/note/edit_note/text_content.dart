@@ -7,6 +7,7 @@ import 'package:todayi/providers/note/edit_note/add_button_provider.dart';
 import 'package:todayi/providers/note/edit_note/property_provider.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:todayi/widgets/note/edit_note/property_button.dart';
 
 class TextContent extends StatefulWidget {
@@ -30,6 +31,7 @@ class _TextContentState extends State<TextContent> {
     var _propertyProvider = Provider.of<PropertyProvider>(context);
     var today_note = Provider.of<NoteProvider>(context);
     var userData = Provider.of<TUser>(context);
+    var rsp = Responsive(pageContext: context);
 
     return Form(
       key: _formKey,
@@ -39,43 +41,47 @@ class _TextContentState extends State<TextContent> {
             Row(
               children: [
                 SizedBox(
-                  width: 10,
+                  width: rsp.rspWidth(10),
                 ),
                 Text('#',
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
-                        fontSize: 30)),
+                        fontSize: rsp.rspHeight(30))),
                 SizedBox(
-                  width: 15,
+                  width: rsp.rspWidth(15),
                 ),
                 Container(
-                  height: 45,
-                  width: 190,
+                  //height: rsp.rspHeight(45),
+                  width: rsp.rspWidth(190),
                   child: TextFormField(
                     controller: _tagController,
                     minLines: 1,
                     maxLines: 1,
                     keyboardType: TextInputType.multiline,
                     cursorColor: ColorLibrary.textThemeColor,
+                    
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500),
+                        color: Colors.black, fontWeight: FontWeight.w500, fontSize: rsp.rspHeight(17)),
                     decoration: InputDecoration(
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(rsp.rspHeight(20)),
                         fillColor: ColorLibrary.cardColor,
                         filled: true,
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                            Radius.circular(rsp.rspWidth(10)),
                           ),
                           borderSide: BorderSide(
                               color: ColorLibrary.cardColor, width: 0),
                         ),
-                        hintText: '태그를 입력하세요.',
+                        hintText: '태그를 입력하세요',
+                        hintStyle: TextStyle(fontSize: rsp.rspHeight(17)),
                         //labelText: '노트를 입력하세요',
                         labelStyle:
-                            TextStyle(color: ColorLibrary.textThemeColor),
+                            TextStyle(color: ColorLibrary.textThemeColor, fontSize: rsp.rspHeight(17)),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderRadius: BorderRadius.all(Radius.circular(rsp.rspWidth(15))),
                           borderSide: BorderSide(
                               color: ColorLibrary.textThemeColor, width: 2.5),
                         )),
@@ -90,7 +96,7 @@ class _TextContentState extends State<TextContent> {
               ],
             ),
             SizedBox(
-              height: 15,
+              height: rsp.rspHeight(15),
             ),
           ],
           TextFormField(
@@ -99,9 +105,12 @@ class _TextContentState extends State<TextContent> {
             maxLines: 4,
             keyboardType: TextInputType.multiline,
             cursorColor: ColorLibrary.textThemeColor,
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: rsp.rspHeight(17)),
             decoration: InputDecoration(
+              
                 fillColor: ColorLibrary.cardColor,
+                isDense: true,
+                contentPadding: EdgeInsets.all(rsp.rspHeight(20)),
                 filled: true,
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(
@@ -111,17 +120,18 @@ class _TextContentState extends State<TextContent> {
                       BorderSide(color: ColorLibrary.cardColor, width: 0),
                 ),
                 hintText: '노트를 입력하세요. (마크다운)',
+                hintStyle: TextStyle(fontSize: rsp.rspHeight(17)),
                 //labelText: '노트를 입력하세요',
-                labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                labelStyle: TextStyle(color: ColorLibrary.textThemeColor, fontSize: rsp.rspHeight(17)),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderRadius: BorderRadius.all(Radius.circular(rsp.rspWidth(15))),
                   borderSide: BorderSide(
                       color: ColorLibrary.textThemeColor, width: 2.5),
                 )),
           ),
           if (_addButtonProvider.is_code_clicked == 1) ...[
             SizedBox(
-              height: 15,
+              height: rsp.rspHeight(15),
             ),
             TextFormField(
               controller: _lanController,
@@ -130,28 +140,31 @@ class _TextContentState extends State<TextContent> {
               keyboardType: TextInputType.multiline,
               cursorColor: ColorLibrary.textThemeColor,
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: rsp.rspHeight(17)),
               decoration: InputDecoration(
                   fillColor: ColorLibrary.codeCardColor,
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(rsp.rspHeight(20)),
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+                      Radius.circular(rsp.rspWidth(10)),
                     ),
                     borderSide:
                         BorderSide(color: ColorLibrary.codeCardColor, width: 0),
                   ),
                   hintText: '코드 언어를 입력하세요.',
+                  hintStyle: TextStyle(fontSize: rsp.rspHeight(17)),
                   //labelText: '노트를 입력하세요',
-                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor, fontSize: rsp.rspHeight(17)),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.all(Radius.circular(rsp.rspWidth(15))),
                     borderSide: BorderSide(
                         color: ColorLibrary.textThemeColor, width: 2.5),
                   )),
             ),
             SizedBox(
-              height: 15,
+              height: rsp.rspHeight(15),
             ),
             TextFormField(
               controller: _codeController,
@@ -160,22 +173,25 @@ class _TextContentState extends State<TextContent> {
               keyboardType: TextInputType.multiline,
               cursorColor: ColorLibrary.textThemeColor,
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: rsp.rspHeight(17)),
               decoration: InputDecoration(
                   fillColor: ColorLibrary.codeCardColor,
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(rsp.rspHeight(20)),
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+                      Radius.circular(rsp.rspWidth(10)),
                     ),
                     borderSide:
                         BorderSide(color: ColorLibrary.codeCardColor, width: 0),
                   ),
                   hintText: '코드를 입력하세요.',
+                  hintStyle: TextStyle(fontSize: rsp.rspHeight(17)),
                   //labelText: '노트를 입력하세요',
-                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor, fontSize: rsp.rspHeight(17)),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.all(Radius.circular(rsp.rspWidth(15))),
                     borderSide: BorderSide(
                         color: ColorLibrary.textThemeColor, width: 2.5),
                   )),
@@ -183,7 +199,7 @@ class _TextContentState extends State<TextContent> {
           ],
           if (_addButtonProvider.is_link_clicked == 1) ...[
             SizedBox(
-              height: 15,
+              height: rsp.rspHeight(15),
             ),
             TextFormField(
               controller: _linkController,
@@ -191,23 +207,27 @@ class _TextContentState extends State<TextContent> {
               maxLines: 1,
               keyboardType: TextInputType.url,
               cursorColor: ColorLibrary.textThemeColor,
+              
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: rsp.rspHeight(17)),
               decoration: InputDecoration(
                   fillColor: ColorLibrary.cardColor,
                   filled: true,
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(rsp.rspHeight(20)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(10),
+                      Radius.circular(rsp.rspWidth(10)),
                     ),
                     borderSide:
                         BorderSide(color: ColorLibrary.cardColor, width: 0),
                   ),
                   hintText: '링크를 입력하세요.',
+                  hintStyle: TextStyle(fontSize: rsp.rspHeight(17)),
                   //labelText: '노트를 입력하세요',
-                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor),
+                  labelStyle: TextStyle(color: ColorLibrary.textThemeColor, fontSize: rsp.rspHeight(17)),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.all(Radius.circular(rsp.rspWidth(15))),
                     borderSide: BorderSide(
                         color: ColorLibrary.textThemeColor, width: 2.5),
                   )),
@@ -215,7 +235,7 @@ class _TextContentState extends State<TextContent> {
           ],
           if (_addButtonProvider.is_property_clicked == 1) ...[
             SizedBox(
-              height: 15,
+              height: rsp.rspHeight(15),
             ),
             Row(
               children: [
@@ -239,7 +259,7 @@ class _TextContentState extends State<TextContent> {
                               }
                               return ColorLibrary.cardColor;
                             })(),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(rsp.rspHeight(20)),
                             border: (() {
                               if (_propertyProvider.is_typeA_clicked == 1) {
                                 return Border.all(
@@ -252,7 +272,7 @@ class _TextContentState extends State<TextContent> {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: rsp.rspWidth(15),
                 ),
                 MouseRegion(
                   onEnter: (PointerEvent details) {
@@ -274,7 +294,7 @@ class _TextContentState extends State<TextContent> {
                               }
                               return ColorLibrary.cardColor;
                             })(),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(rsp.rspHeight(20)),
                             border: (() {
                               if (_propertyProvider.is_typeB_clicked == 1) {
                                 return Border.all(
@@ -287,7 +307,7 @@ class _TextContentState extends State<TextContent> {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: rsp.rspWidth(15),
                 ),
                 MouseRegion(
                   onEnter: (PointerEvent details) {
@@ -309,7 +329,7 @@ class _TextContentState extends State<TextContent> {
                               }
                               return ColorLibrary.cardColor;
                             })(),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(rsp.rspHeight(20)),
                             border: (() {
                               if (_propertyProvider.is_typeC_clicked == 1) {
                                 return Border.all(
@@ -322,7 +342,7 @@ class _TextContentState extends State<TextContent> {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: rsp.rspWidth(15),
                 ),
                 MouseRegion(
                   onEnter: (PointerEvent details) {
@@ -344,7 +364,7 @@ class _TextContentState extends State<TextContent> {
                               }
                               return ColorLibrary.cardColor;
                             })(),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(rsp.rspHeight(20)),
                             border: (() {
                               if (_propertyProvider.is_typeD_clicked == 1) {
                                 return Border.all(
@@ -357,7 +377,7 @@ class _TextContentState extends State<TextContent> {
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  width: rsp.rspWidth(15),
                 ),
                 MouseRegion(
                   onEnter: (PointerEvent details) {
@@ -379,7 +399,7 @@ class _TextContentState extends State<TextContent> {
                               }
                               return ColorLibrary.cardColor;
                             })(),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(rsp.rspHeight(20)),
                             border: (() {
                               if (_propertyProvider.is_typeE_clicked == 1) {
                                 return Border.all(
@@ -395,7 +415,7 @@ class _TextContentState extends State<TextContent> {
             ),
           ],
           SizedBox(
-            height: 15,
+            height: rsp.rspHeight(15),
           ),
           MouseRegion(
             onEnter: (PointerEvent details) {
@@ -463,9 +483,9 @@ class _TextContentState extends State<TextContent> {
                     userCollection
                       ..doc(userData.uid)
                           .update({'count': FieldValue.increment(1)});
-
+        
                     //today_note.plusCount();
-
+        
                     if (_addButtonProvider.is_tag_clicked == 1) {
                       CollectionReference selectTag = FirebaseFirestore.instance
                           .collection('users')
@@ -531,9 +551,9 @@ class _TextContentState extends State<TextContent> {
                   case 1:
                     return Container(
                       width: double.infinity,
-                      height: 50,
+                      height: rsp.rspHeight(50),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                         color: ColorLibrary.textThemeColor,
                         //boxShadow: boxShadows,
                       ),
@@ -541,7 +561,7 @@ class _TextContentState extends State<TextContent> {
                           child: Text(
                         '완료',
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: rsp.rspWidth(15),
                             fontFamily: 'NotoSansKR',
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
@@ -550,18 +570,18 @@ class _TextContentState extends State<TextContent> {
                 }
                 return Container(
                   width: double.infinity,
-                  height: 50,
+                  height: rsp.rspHeight(50),
                   decoration: BoxDecoration(
                     border: Border.all(
                         width: 2.5, color: ColorLibrary.textThemeColor),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
                     //boxShadow: boxShadows,
                   ),
                   child: Center(
                       child: Text(
                     '완료',
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: rsp.rspWidth(15),
                       fontFamily: 'NotoSansKR',
                       fontWeight: FontWeight.w700,
                     ),
