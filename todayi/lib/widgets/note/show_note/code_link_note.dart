@@ -8,6 +8,7 @@ import 'package:todayi/data/user.dart';
 import 'package:todayi/providers/note/note_provider.dart';
 import 'package:todayi/utils/code_element.dart';
 import 'package:todayi/utils/colors.dart';
+import 'package:todayi/utils/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CodeLinkNote extends StatelessWidget {
@@ -37,6 +38,7 @@ class CodeLinkNote extends StatelessWidget {
     String codeblock = '```$language\n$code';
     var user_data = Provider.of<TUser>(context);
     var today_note = Provider.of<NoteProvider>(context);
+    var rsp = Responsive(pageContext: context);
     String contentID = subtag==''?
       tagname + '?' + today_note.today_date + '?' + count.toString()
       :tagname + '.'+ subtag+'?' + today_note.today_date + '?' + count.toString();
@@ -53,11 +55,11 @@ class CodeLinkNote extends StatelessWidget {
               
               decoration: BoxDecoration(
                 color: Colors.redAccent,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
               ),
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.all(rsp.rspWidth(15)),
                   child: Icon(
                     Icons.delete,
                     color: Colors.white,
@@ -106,17 +108,17 @@ class CodeLinkNote extends StatelessWidget {
               );
             },
             child: Container(
-              padding: EdgeInsets.only( top: 15, bottom: 10),
+              padding: EdgeInsets.only( top: rsp.rspHeight(15), bottom: rsp.rspHeight(10)),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: cardcolor,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(rsp.rspWidth(10)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
+                    padding: EdgeInsets.only(left: rsp.rspWidth(15), right: rsp.rspWidth(15)),
                     child: MarkdownBody(
                         onTapLink: (text, href, title) {
                           href != null ? launchUrl(Uri.parse(href)) : null;
@@ -127,23 +129,23 @@ class CodeLinkNote extends StatelessWidget {
                           p: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
-                              fontSize: 17),
+                              fontSize: rsp.rspWidth(17)),
                           h4: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                              fontSize: 20),
+                              fontSize: rsp.rspWidth(20)),
                           h3: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                              fontSize: 22),
+                              fontSize: rsp.rspWidth(22)),
                           h2: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                              fontSize: 25),
+                              fontSize: rsp.rspWidth(25)),
                           h1: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                              fontSize: 28),
+                              fontSize: rsp.rspWidth(28)),
                           // code: TextStyle(
                           //   backgroundColor: Colors.black,
                           //   color: Colors.white,
@@ -157,11 +159,11 @@ class CodeLinkNote extends StatelessWidget {
                         }),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: rsp.rspHeight(15),
                   ),
                   
                   Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: EdgeInsets.only(left: rsp.rspWidth(10), right: rsp.rspWidth(10)),
                     child: InkWell(
                       onTap: () {
                       Clipboard.setData(ClipboardData(text:code));
@@ -195,23 +197,23 @@ class CodeLinkNote extends StatelessWidget {
                                 p: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 17),
+                                    fontSize: rsp.rspWidth(17)),
                                 h4: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 20),
+                                    fontSize: rsp.rspWidth(20)),
                                 h3: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 22),
+                                    fontSize: rsp.rspWidth(22)),
                                 h2: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 25),
+                                    fontSize: rsp.rspWidth(25)),
                                 h1: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 28),
+                                    fontSize: rsp.rspWidth(28)),
                                 // code: TextStyle(
                                 //   backgroundColor: Colors.black,
                                 //   color: Colors.white,

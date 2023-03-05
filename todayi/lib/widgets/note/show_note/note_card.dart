@@ -261,7 +261,7 @@ class _NoteCardState extends State<NoteCard> {
     //var hide_button_provider = Provider.of<CardNoteButtonProvider>(context);
     var card_provider = Provider.of<NoteProvider>(context);
     return Container(
-      padding: EdgeInsets.all(rsp.rspHeight(15)),
+      padding: EdgeInsets.only(top: rsp.rspHeight(15), bottom:rsp.rspHeight(15), left: rsp.rspWidth(15), right:rsp.rspWidth(15), ),
       width: double.infinity,
       //height: 100,
       constraints: BoxConstraints(
@@ -483,9 +483,9 @@ class _NoteCardState extends State<NoteCard> {
                 Row(
                   children: [
                     Image(
-                        height: rsp.rspHeight(60), width: rsp.rspWidth(60), image: AssetImage(widget.icon)),
+                        width: rsp.rspWidth(60),  image: AssetImage(widget.icon)),
                     SizedBox(
-                      width: rsp.rspWidth(20),
+                      width: 20,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -494,7 +494,7 @@ class _NoteCardState extends State<NoteCard> {
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
-                                fontSize: rsp.rspHeight(30))),
+                                fontSize: rsp.rspWidth(30))),
                         SizedBox(
                           height: rsp.rspHeight(5),
                         ),
@@ -502,7 +502,7 @@ class _NoteCardState extends State<NoteCard> {
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontWeight: FontWeight.w500,
-                                fontSize: rsp.rspHeight(15))),
+                                fontSize: rsp.rspWidth(15))),
                       ],
                     ),
                   ],
