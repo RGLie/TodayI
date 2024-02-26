@@ -101,8 +101,10 @@ class _LoginPageState extends State<LoginPage>
             ),
             child: TabBar(
               controller: _tabController,
+              
               // give the indicator a decoration (color and border radius)
               indicator: BoxDecoration(
+                
                 // borderRadius: BorderRadius.circular(
                 //   25.0,
                 // ),
@@ -114,14 +116,23 @@ class _LoginPageState extends State<LoginPage>
               ),
               labelColor: Colors.white,
               unselectedLabelColor: ColorLibrary.textThemeColor,
+              
               tabs: [
                 // first tab [you can add an icon using the icon property]
-                Tab(
-                  text: 'Sign In',
+                Container(
+                  width: double.infinity,
+                  child: Tab(
+                    text: 'Sign In',
+                    
+                  ),
                 ),
                 // second tab [you can add an icon using the icon property]
-                Tab(
-                  text: 'Sign Up',
+                Container(
+                  width: double.infinity,
+                  child: Tab(
+                    text: 'Sign Up',
+                    
+                  ),
                 ),
               ],
             ),
